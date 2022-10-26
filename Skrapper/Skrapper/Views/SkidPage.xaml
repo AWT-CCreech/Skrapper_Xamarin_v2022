@@ -21,9 +21,9 @@
                 <RowDefinition 
                     Height=".1*"/>
                 <RowDefinition 
-                    Height=".1*"/>
-                <RowDefinition 
                     Height=".6*"/>
+                <RowDefinition 
+                    Height=".1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition 
@@ -59,10 +59,7 @@
                 Margin="0,0,0,0"/>
             <Button 
                 x:Name="BtnNewSkidNum"
-                Text="+"
-                TextColor="{StaticResource AddTextColor}"
-                FontAttributes="Bold"
-                FontSize="24"
+                ImageSource="icon_plus.svg"
                 BackgroundColor="{StaticResource AddBGColor}"
                 Grid.Row="0"
                 Grid.Column="3"
@@ -70,11 +67,8 @@
                 Margin="0,0,0,0"/>
             <Button 
                 x:Name="BtnRefresh"
-                Text="®"
-                TextColor="{StaticResource AddTextColor}"
-                FontAttributes="Bold"
-                FontSize="24"
-                BackgroundColor="{StaticResource RefreshBGColor}"
+                ImageSource="icon_refresh.svg"
+                BackgroundColor="{StaticResource Tertiary}"
                 Grid.Row="0"
                 Grid.Column="4"
                 Grid.ColumnSpan="1"
@@ -129,12 +123,14 @@
                 HorizontalOptions="CenterAndExpand"
                 Grid.Row="3"
                 Grid.Column="0"
-                Grid.ColumnSpan="5">
+                Grid.ColumnSpan="5"
+                VerticalOptions="End">
                 <Button
                     x:Name="SaveSkidDataBtn"
                     Text="update"
                     TextColor="White"
                     FontSize="12"
+                    FontAttributes="Bold"
                     BackgroundColor="{StaticResource UpdateBG}"
                     Margin="0,0,0,0"/>
                 <Button
@@ -142,6 +138,7 @@
                     Text="print"
                     TextColor="White"
                     FontSize="12"
+                    FontAttributes="Bold"
                     BackgroundColor="{StaticResource Primary}"
                     Margin="0,0,0,0"/>
                 
@@ -149,11 +146,15 @@
 
             <Label
                 x:Name="SkidPrintLabel"
+                Text="TEST"
                 TextColor="LightGoldenrodYellow"
+                FontSize="36"
+                HorizontalTextAlignment="Center"
                 BackgroundColor="{StaticResource Secondary}"
                 Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="5"
+                VerticalOptions="End"
                 Margin="0,0,0,0"/>
 
         </Grid>

@@ -15,12 +15,12 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="#e6e6e6" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="#e6e6e6"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
             </Style>
@@ -75,12 +75,15 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <!--
+        <ShellContent Title="About" Icon="icon_about.png"  Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Route="Skid" ContentTemplate="{DataTemplate local:SkidPage}" />
-        <ShellContent Route="ScanPage" ContentTemplate="{DataTemplate local:ScanPage}" />
-        <ShellContent Route="HistoryPage" ContentTemplate="{DataTemplate local:HistoryPage}" />
-        <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate local:SettingsPage}" />
+        -->
+        <ShellContent Title="Skid" Icon="icon_pallet.png" Route="Skid" ContentTemplate="{DataTemplate local:SkidPage}" />
+        <ShellContent Title="Scan" Icon="icon_barcode.png" Route="ScanPage" ContentTemplate="{DataTemplate local:ScanPage}" />
+        <ShellContent Title="History" Icon="icon_history.png" Route="HistoryPage" ContentTemplate="{DataTemplate local:HistoryPage}" />
+        <ShellContent Title="Settings" Icon="icon_settings.png" Route="SettingsPage" ContentTemplate="{DataTemplate local:SettingsPage}" />
+            
     </TabBar>
 
     <!--

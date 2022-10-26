@@ -33,7 +33,7 @@
 
             <Picker x:Name="pkrUser"
                     Title="username" 
-                    BackgroundColor="LightGray"
+                    BackgroundColor="{StaticResource PkrBG}"
                     ItemsSource="{Binding Path=Users.Result}"
                     SelectedIndex="{Binding Path=SelectedUserIndex, Mode=TwoWay}"
                     SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}"
@@ -60,7 +60,7 @@
                         Grid.Row="1"
                         Margin="0,0,0,0"/>
 
-            <Frame BackgroundColor="LightGray"
+            <Frame BackgroundColor="{StaticResource PkrBG}"
                    Grid.Column="0"
                    Grid.ColumnSpan="4"
                    Grid.Row="2"

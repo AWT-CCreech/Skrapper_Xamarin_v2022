@@ -13,10 +13,10 @@
             <Color x:Key="Triad1">#06477c</Color>
             <Color x:Key="Triad2">#7c0647</Color>
             <Color x:Key="Triad3">#477c06</Color>
-            <Color x:Key="PkrBG">#fefefe</Color>
-            <Color x:Key="UpdateBG">#ffbb34</Color>
+            <Color x:Key="PkrBG">#f2f2f2</Color>
+            <Color x:Key="UpdateBG">Goldenrod</Color>
             <Color x:Key="AddBGColor">#02c753</Color>
-            <Color x:Key="AddTextColor">White</Color>
+            <Color x:Key="BtnText">White</Color>
             <Color x:Key="RefreshBGColor">#7c0647</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
