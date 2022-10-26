@@ -2,13 +2,64 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:skrapper="clr-namespace:Skrapper" 
+             xmlns:vm="clr-namespace:Skrapper"
              mc:Ignorable="d"
              x:Class="Skrapper.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFFFFF"
+             Visual="Material"
+             Title="Skrapper">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="FillAndExpand">
+            <Image Source="skrapper_logo.png"
+                   Margin="0,36,0,0"/>
+            <Picker x:Name="pkrLoginUser" Title="username" 
+                    BackgroundColor="Transparent" 
+                    TextColor="#0e263a" TitleColor="Gray"
+                    ItemsSource="{Binding Users.Result}"
+                    SelectedItem="{Binding SelectedUser, Mode=TwoWay}" 
+                    SelectedIndex="{Binding SelectedUserIndex, Mode=TwoWay}"
+                    HorizontalTextAlignment="Center" Margin="20,-81,20,21"/>
+            <Button x:Name="btnLogin" Text="Login" 
+                    BackgroundColor="{StaticResource Primary}"
+                    VerticalOptions="Center" 
+                    Margin="21,0,21,3"
+                    Command="{Binding LoginCommand}"/>
+            <Button x:Name="btnQuit" Text="Quit" 
+                    BackgroundColor="Black" 
+                    VerticalOptions="Center"
+                    Margin="21,0,21,0"
+                    Command="{Binding QuitCommand}"/>
+            <ActivityIndicator x:Name="aiLogin" x:FieldModifier="public" 
+                               Color="DarkGray"
+                               IsVisible="True"
+                               IsRunning="{Binding IsBusy}"
+                               VerticalOptions="CenterAndExpand" 
+                               Scale=".60"
+                               Margin="0,0,0,0"/>
+            <Label x:Name="messageLabel" 
+                   Text="{Binding MessageLabel}"
+                   TextColor="{Binding MessageLabelColor}"
+                   HorizontalTextAlignment="Center" 
+                   MaxLines="1"
+                   Margin="0,0,0,0"/>
+            <Label x:Name="ksVersionLabel" 
+                   Text="{Binding VersionLabel}" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalOptions="EndAndExpand"
+                   MaxLines="1"
+                   Margin="0,0,0,0"/>
+            <Label x:Name="ksCopyrightLabel" 
+                   Text="{Binding CopyrightLabel}" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalOptions="EndAndExpand"
+                   MaxLines="1"
+                   Margin="0,0,0,9"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

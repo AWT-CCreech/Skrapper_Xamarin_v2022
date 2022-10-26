@@ -3,9 +3,9 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace Skrapper.ViewModels
+namespace Skrapper
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel : MainViewModel
     {
         public AboutViewModel()
         {

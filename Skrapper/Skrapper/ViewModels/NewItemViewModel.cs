@@ -5,9 +5,9 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Skrapper.ViewModels
+namespace Skrapper
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewItemViewModel : MainViewModel
     {
         private string text;
         private string description;

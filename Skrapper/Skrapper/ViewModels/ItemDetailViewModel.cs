@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Skrapper.ViewModels
+namespace Skrapper
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    public class ItemDetailViewModel : MainViewModel
     {
         private string itemId;
         private string text;

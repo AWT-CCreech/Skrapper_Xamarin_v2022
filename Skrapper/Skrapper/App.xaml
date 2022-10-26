@@ -7,7 +7,17 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">#06477D</Color>
+            <Color x:Key="Secondary">#060c7c</Color>
+            <Color x:Key="Tertiary">#067c77</Color>
+            <Color x:Key="Triad1">#06477c</Color>
+            <Color x:Key="Triad2">#7c0647</Color>
+            <Color x:Key="Triad3">#477c06</Color>
+            <Color x:Key="PkrBG">#fefefe</Color>
+            <Color x:Key="UpdateBG">#ffbb34</Color>
+            <Color x:Key="AddBGColor">#02c753</Color>
+            <Color x:Key="AddTextColor">White</Color>
+            <Color x:Key="RefreshBGColor">#7c0647</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -27,6 +37,6 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

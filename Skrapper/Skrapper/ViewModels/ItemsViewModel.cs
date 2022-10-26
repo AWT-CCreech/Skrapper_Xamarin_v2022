@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Skrapper.ViewModels
+namespace Skrapper
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsViewModel : MainViewModel
     {
         private Item _selectedItem;
 

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skrapper.Views.ItemsPage"
              Title="{Binding Title}"
-             xmlns:local="clr-namespace:Skrapper.ViewModels"  
+             xmlns:local="clr-namespace:Skrapper"  
              xmlns:model="clr-namespace:Skrapper.Models"  
              x:Name="BrowseItemsPage">
 
