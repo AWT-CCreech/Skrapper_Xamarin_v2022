@@ -26,7 +26,7 @@
                       HorizontalScrollBarVisibility="Always"
                       VerticalScrollBarVisibility="Always"
                       IsPullToRefreshEnabled="True"
-                      BackgroundColor="LightGray"
+                      BackgroundColor="{StaticResource PkrBG}"
                       SelectionMode="Single"
                       Grid.Column="0"
                       Grid.ColumnSpan="2"

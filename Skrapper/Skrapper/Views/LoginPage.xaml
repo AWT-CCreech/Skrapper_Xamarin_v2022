@@ -20,7 +20,8 @@
                    Margin="0,36,0,0"/>
             <Picker x:Name="pkrLoginUser" Title="username" 
                     BackgroundColor="Transparent" 
-                    TextColor="#0e263a" TitleColor="Gray"
+                    TitleColor="Gray"
+                    TextColor="{StaticResource PkrText}" 
                     ItemsSource="{Binding Users.Result}"
                     SelectedItem="{Binding SelectedUser, Mode=TwoWay}" 
                     SelectedIndex="{Binding SelectedUserIndex, Mode=TwoWay}"

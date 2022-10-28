@@ -1,6 +1,7 @@
 ﻿using MyWebService;
 using Skrapper.Services;
 using Skrapper.Themes;
+using Skrapper.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,47 +27,49 @@ namespace Skrapper
         {
             Title = "SETTINGS";
 
+            LogoutCommand = new Command(OnLogoutClicked);
+            DebugResultsCommand = new Command(OnDebugClicked);
+            CheckServerCommand = new Command(OnCheckServerClicked);
+            ShowDeviceInfoCommand = new Command(OnShowDeviceInfoClicked);
+        }
 
-            DebugResultsCommand = new Command(
-                execute: async () =>
+        private async void OnDebugClicked()
+        {
+            if (Globals.gLastScanData.Length > 0 || Globals.gLastScanResults.Length > 0)
+                await _messageService.DisplayError("Debug", "gLastScanResults...\r\n" + Globals.gLastScanResults + "\r\n\r\ngLastScanData...\r\n" + Globals.gLastScanData, "dismiss");
+            else
+                return;
+        }
+
+        private async void OnCheckServerClicked()
+        {
+            Task<string> ts;
+            string s, t;
+            try
+            {
+                using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
                 {
-                    if (Globals.gLastScanData.Length > 0 || Globals.gLastScanResults.Length > 0)
-                        await _messageService.DisplayError("Debug", "gLastScanResults...\r\n" + Globals.gLastScanResults + "\r\n\r\ngLastScanData...\r\n" + Globals.gLastScanData, "dismiss");
-                    else
-                        return;
-                });
+                    if (!eHelpDeskContext.WebServiceConnected()) return;
 
-            CheckServerCommand = new Command(
-                execute: async () =>
-                {
-                    Task<string> ts;
-                    string s, t;
-                    try
-                    {
-                        using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
-                        {
-                            if (!eHelpDeskContext.WebServiceConnected()) return;
+                    ts = Task.Run(() => locWS.Endpoint.Address.ToString());
+                    s = ts.Result;
+                    ts = Task.Run(() => locWS.GetServerURL());
+                    t = ts.Result;
+                    locWS.Close();
+                }
+                s = string.Format("cbTestMode = {0}\n\nWebSvr\n{1}\n\nServer\n{2}", testModeIsChecked, s, t);
+                await _messageService.DisplayError("Server Mode", s, "dismiss");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.ToString());
+                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(CheckServerCommand)\r\n" + err.Message, "dismiss");
+            }
+        }
 
-                            ts = Task.Run(() => locWS.Endpoint.Address.ToString());
-                            s = ts.Result;
-                            ts = Task.Run(() => locWS.GetServerURL());
-                            t = ts.Result;
-                            locWS.Close();
-                        }
-                        s = string.Format("cbTestMode = {0}\n\nWebSvr\n{1}\n\nServer\n{2}", testModeIsChecked, s, t);
-                        await _messageService.DisplayError("Server Mode", s, "dismiss");
-                    }
-                    catch (Exception err)
-                    {
-                        Console.WriteLine(err.ToString());
-                        await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(CheckServerCommand)\r\n" + err.Message, "dismiss");
-                    }
-                });
-
-            ShowDeviceInfoCommand = new Command(
-                execute: async () =>
-                {
-                    string _info = "Model: " + Globals.gDeviceModel
+        private async void OnShowDeviceInfoClicked()
+        {
+            string _info = "Model: " + Globals.gDeviceModel
                             + "\r\nName: " + Globals.gDeviceName
                             + "\r\nPlatform: " + Globals.gDevicePlatform
                             + "\r\nType: " + Globals.gDeviceType
@@ -74,37 +77,16 @@ namespace Skrapper
                             + "\r\nManufacturer: " + Globals.gDeviceManufacturer
                             + "\r\n\r\n S/N: " + Globals.DeviceSN;
 
-                    await _messageService.DisplayError("Device Info", _info, "dismiss");
-                });
+            await _messageService.DisplayError("Device Info", _info, "dismiss");
         }
 
-        int selectedUserIndex = Globals.pUserIdx;
-        public int SelectedUserIndex
+        private async  void OnLogoutClicked()
         {
-            set
-            {
-                Console.WriteLine("[MainViewModel.cs] (SelectedUserIndex) >> " + value);
-                SetProperty(ref selectedUserIndex, value);
-                Globals.pUserIdx = selectedUserIndex;
-            }
-            get { return selectedUserIndex; }
-
+            SelectedUserIndex = -1;
+            App.IsUserLoggedIn = false;
+            await Xamarin.Essentials.SecureStorage.SetAsync("isUserLogged", "0");
+            Application.Current.MainPage = new LoginPage();
         }
-
-        string selectedUser = Globals.UserName;
-        public string SelectedUser
-        {
-            set
-            {
-                Console.WriteLine("[MainViewModel.cs] (SelectedUser) >> " + value);
-
-                SetProperty(ref selectedUser, value);
-                Globals.UserName = selectedUser;
-            }
-            get { return selectedUser; }
-        }
-
-
 
         ObservableCollection<string> heciCodes = null;
         public ObservableCollection<string> HeciCodes

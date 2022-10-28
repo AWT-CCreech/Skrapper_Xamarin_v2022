@@ -15,15 +15,14 @@ namespace Skrapper
 
         public LoginViewModel()
         {
-            Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.LoadUserPickerList());
+            //Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.LoadUserPickerList());
             LoginCommand = new Command(OnLoginClicked);
             QuitCommand = new Command(OnQuitClicked);
         }
 
-        public NotifyTaskCompletion<ObservableCollection<string>> Users { get; private set; }
-        public string CopyrightLabel { get; } = Constants.ksCopyrightStr;
-        public string VersionLabel { get; } = Constants.ksVersionStr;
+        //public NotifyTaskCompletion<ObservableCollection<string>> Users { get; private set; }
 
+        /*
         int selectedUserIndex = Globals.pUserIdx;
         public int SelectedUserIndex
         {
@@ -88,7 +87,7 @@ namespace Skrapper
             }
             get { return messageLabel; }
         }
-
+        */
         private async void OnLoginClicked(object obj)
         {
             IsBusy = true;

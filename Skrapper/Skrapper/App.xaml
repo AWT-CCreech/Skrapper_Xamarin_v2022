@@ -14,6 +14,7 @@
             <Color x:Key="Triad2">#7c0647</Color>
             <Color x:Key="Triad3">#477c06</Color>
             <Color x:Key="PkrBG">#f2f2f2</Color>
+            <Color x:Key="PkrText">DimGray</Color>
             <Color x:Key="UpdateBG">Goldenrod</Color>
             <Color x:Key="AddBGColor">#02c753</Color>
             <Color x:Key="BtnText">White</Color>

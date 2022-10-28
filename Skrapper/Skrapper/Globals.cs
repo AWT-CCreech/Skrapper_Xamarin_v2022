@@ -34,6 +34,14 @@ namespace Skrapper
         public static int unameIdx = -1;
 
         #region--:[SKID TAB]:--
+        public static string SkidsList = null;
+        public static string CarrierList = null;
+        public static int pSkidIdx = -1;
+        public static string pSkidItem = string.Empty;
+        public static int pActionIdx = -1;
+        public static string pActionItem = string.Empty;
+        public static int pCarrierIdx = -1;
+        public static string pCarrierItem = string.Empty;
         #endregion
 
 

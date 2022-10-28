@@ -12,17 +12,15 @@
     <ContentPage.Content>
         <Grid Margin="15,15,15,15">
             <Grid.RowDefinitions>
-                <RowDefinition Height=".4*"/>
-                <RowDefinition Height=".2*"/>
-                <RowDefinition Height=".2*"/>
-                <RowDefinition Height=".2*"/>
-                <RowDefinition Height=".2*"/>
-                <RowDefinition Height=".2*"/>
-                <RowDefinition Height=".2*"/>
                 <RowDefinition Height=".2*"/>
                 <RowDefinition Height=".15*"/>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".1*"/>
                 <RowDefinition Height=".15*"/>
-                <RowDefinition Height=".15*"/>
+                <RowDefinition Height=".1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".1*"/>
@@ -39,7 +37,7 @@
                     SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}"
                     FontSize="18"
                     TitleColor="Gray"
-                    TextColor="#06477D"
+                    TextColor="{StaticResource PkrText}"
                     Grid.Column="0"
                     Grid.ColumnSpan="4"
                     Grid.Row="0"
@@ -135,25 +133,37 @@
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
-            <Button Text="check" Scale=".69" 
-                        HorizontalOptions="EndAndExpand"
-                        BackgroundColor="#06477D"
-                        Command="{Binding CheckServerCommand}"
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="4"
-                        Margin="0,-6,0,0"/>
+            <Button 
+                Text="check" Scale=".69" 
+                HorizontalOptions="EndAndExpand"
+                BackgroundColor="#06477D"
+                Command="{Binding CheckServerCommand}"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="4"
+                Margin="0,-6,0,0"/>
 
-            <Label Text="{Binding Path=VersionLabel}" 
-                       FontAttributes="Italic" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="EndAndExpand"
-                       MaxLines="1"
-                       LineBreakMode="NoWrap"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="4"
-                       Grid.Row="10"
-                       Margin="0,0,0,0"/>
+            <Button 
+                x:Name="btnLogoff" 
+                Text="Logout" 
+                BackgroundColor="IndianRed" 
+                VerticalOptions="End"
+                Command="{Binding LogoutCommand}"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="7"
+                Margin="0,5,0,-15"/>
+            <Label 
+                Text="{Binding Path=VersionLabel}" 
+                FontAttributes="Italic" 
+                HorizontalOptions="Center" 
+                VerticalOptions="EndAndExpand"
+                MaxLines="1"
+                LineBreakMode="NoWrap"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="8"
+                Margin="0,0,0,0"/>
         </Grid>
 
     </ContentPage.Content>

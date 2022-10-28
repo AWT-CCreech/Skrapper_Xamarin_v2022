@@ -19,6 +19,13 @@ namespace Skrapper.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
+        bool orderInProcess = false;
+        public bool OrderInProcess
+        {
+            get { return orderInProcess; }
+            set { SetProperty(ref orderInProcess, value); }
+        }
+
         string title = string.Empty;
         public string Title
         {
