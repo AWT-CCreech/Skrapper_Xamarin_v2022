@@ -17,7 +17,7 @@ namespace Skrapper
 
         public MainViewModel()
         {
-            Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.LoadUserPickerList());
+            Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
             Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
             Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
         }

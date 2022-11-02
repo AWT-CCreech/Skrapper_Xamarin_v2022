@@ -15,7 +15,7 @@ namespace Skrapper
 
         public LoginViewModel()
         {
-            //Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.LoadUserPickerList());
+            //Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
             LoginCommand = new Command(OnLoginClicked);
             QuitCommand = new Command(OnQuitClicked);
         }

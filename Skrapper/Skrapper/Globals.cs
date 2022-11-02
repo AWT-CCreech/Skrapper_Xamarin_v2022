@@ -35,7 +35,9 @@ namespace Skrapper
 
         #region--:[SKID TAB]:--
         public static string SkidsList = null;
+        public static string PartTypeList = null;
         public static string CarrierList = null;
+        public static string LocationList = null;
         public static int pSkidIdx = -1;
         public static string pSkidItem = string.Empty;
         public static int pActionIdx = -1;

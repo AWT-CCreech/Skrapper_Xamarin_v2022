@@ -1,10 +1,13 @@
-﻿using MyWebService;
+﻿using Java.Nio.Channels;
+using MyWebService;
 using Skrapper.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using static Android.Provider.Telephony;
 
 namespace Skrapper
 {
@@ -13,10 +16,10 @@ namespace Skrapper
         public static IMessageService _messageService = new MessageService();
         #region *** USER *** 
         /// <summary>
-        /// Async method for loading all usernames for login page and settings tab.
+        /// Get all active usernames.
         /// </summary>
         /// <returns>(ObservableCollection<string>) usernames</returns>
-        public static async Task<ObservableCollection<string>> LoadUserPickerList()
+        public static async Task<ObservableCollection<string>> GetUserPickerList()
         {
 
             List<string> users;
@@ -35,10 +38,10 @@ namespace Skrapper
                     locWS.Close();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                await _messageService.DisplayError("[ERROR: PickerService.cs]", "(LoadUserPickList)\r\n" + e.Message + "\r\n" + e.ToString(), "dismiss");
-                Console.WriteLine("[ERROR: PickerService.cs] (LoadUserPickList) e.ToString() >> " + e.ToString());
+                await _messageService.DisplayError("[ERROR: PickerService.cs]", "(LoadUserPickList)\r\n" + ex.Message, "dismiss");
+                Console.WriteLine("[ERROR: PickerService.cs] (LoadUserPickList) >> " + ex.ToString());
             }
 
 
@@ -55,6 +58,10 @@ namespace Skrapper
         #endregion
 
         #region *** SKID ***
+        /// <summary>
+        /// Get all active skrapper skid numbers for past two months.
+        /// </summary>
+        /// <returns>(ObservableCollection<string>) skids</returns>
         public static async Task<ObservableCollection<string>> GetSkidNumbers()
         {
             List<string> skids;
@@ -80,7 +87,8 @@ namespace Skrapper
                 }
                 catch (Exception ex)
                 {
-                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(GetSkidNumbers)\r\n..." + ex.Message, "dismiss");
+                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(GetSkidNumbers)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: PickerService.cs] (GetSkidNumbers) >> " + ex.ToString());
                 }
             }
             string s = Globals.SkidsList;
@@ -91,6 +99,48 @@ namespace Skrapper
 
             return result;
         }
+
+        /// <summary>
+        /// Get all part types.
+        /// </summary>
+        /// <returns>(ObservableCollection<string>) partTypes</returns>
+        public static async Task<ObservableCollection<string>> GetPartTypes()
+        {
+            List<string> types;
+            Task<string> ts;
+            char[] delims = new char[] { ',' };
+            string[] sList;
+            ObservableCollection<string> result = new();
+            if (eHelpDeskContext.WebServiceConnected())
+            {
+                try
+                {
+                    using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
+                    {
+                        ts = Task.Run(() => locWS.Skp_SkidGetMetalPartTypes());
+                        Globals.PartTypeList = ts.Result;
+                        locWS.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(GetPartTypes)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: PickerService.cs] (GetPartTypes) >> " + ex.ToString());
+                }
+            }
+            string s = Globals.PartTypeList;
+            sList = s.Split(delims);
+            types = sList.ToList();
+
+            result = new ObservableCollection<string>(types);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get all active carriers.
+        /// </summary>
+        /// <returns>(ObservableCollection<string>) carriers</returns>
         public static async Task<ObservableCollection<string>> GetCarriers()
         {
             List<string> carriers;
@@ -111,6 +161,7 @@ namespace Skrapper
                 }
                 catch (Exception ex)
                 {
+                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(GetCarriers)\r\n" + ex.Message, "dismiss");
                     Console.WriteLine("[ERROR: PickerService.cs] (GetCarriers) >> " + ex.ToString());
                 }
             }
@@ -119,6 +170,43 @@ namespace Skrapper
             carriers = sList.ToList();
 
             result = new ObservableCollection<string>(carriers);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get all locations.
+        /// </summary>
+        /// <returns>(ObservableCollection<string>) locations</returns>
+        public static async Task<ObservableCollection<string>> GetLocations()
+        {
+            List<string> locations;
+            Task<string> locs;
+            char[] delims = new char[] { ',' };
+            string[] sList;
+            ObservableCollection<string> result = new();
+            if (eHelpDeskContext.WebServiceConnected())
+            {
+                try
+                {
+                    using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
+                    {
+                        locs = Task.Run(() => locWS.Skp_SkidGetLocationList());
+                        Globals.LocationList = locs.Result;
+                        locWS.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(GetLocations)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: PickerService.cs] (GetLocations) >> " + ex.ToString());
+                }
+            }
+            string s = Globals.LocationList;
+            sList = s.Split(delims);
+            locations = sList.ToList();
+
+            result = new ObservableCollection<string>(locations);
 
             return result;
         }
