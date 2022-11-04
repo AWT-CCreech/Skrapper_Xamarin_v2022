@@ -81,7 +81,7 @@ namespace Skrapper
                         DateTime dt = DateTime.Today.AddDays(-60);
 
                         skn = Task.Run(() => locWS.Skp_SkidListGetAfterDate(dt));
-                        Globals.SkidsList = skn.Result;
+                        Globals.SkidNumberList = skn.Result;
                         locWS.Close();
                     }
                 }
@@ -91,7 +91,7 @@ namespace Skrapper
                     Console.WriteLine("[ERROR: PickerService.cs] (GetSkidNumbers) >> " + ex.ToString());
                 }
             }
-            string s = Globals.SkidsList;
+            string s = Globals.SkidNumberList;
             sList = s.Split(delims);
             skids = sList.ToList();
 
@@ -129,6 +129,43 @@ namespace Skrapper
                 }
             }
             string s = Globals.PartTypeList;
+            sList = s.Split(delims);
+            types = sList.ToList();
+
+            result = new ObservableCollection<string>(types);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get all skid types.
+        /// </summary>
+        /// <returns>(ObservableCollection<string>) skidTypes</returns>
+        public static async Task<ObservableCollection<string>> GetSkidTypes()
+        {
+            List<string> types;
+            Task<string> ts;
+            char[] delims = new char[] { ',' };
+            string[] sList;
+            ObservableCollection<string> result = new();
+            if (eHelpDeskContext.WebServiceConnected())
+            {
+                try
+                {
+                    using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
+                    {
+                        ts = Task.Run(() => locWS.Skp_SkidGetSkidTypes());
+                        Globals.SkidTypeList = ts.Result;
+                        locWS.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(GetSkidTypes)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: PickerService.cs] (GetSkidTypes) >> " + ex.ToString());
+                }
+            }
+            string s = Globals.SkidTypeList;
             sList = s.Split(delims);
             types = sList.ToList();
 

@@ -1,7 +1,9 @@
 ﻿using Skrapper.Models;
 using Skrapper.Services;
+using Skrapper.Themes;
 using Skrapper.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Xamarin.Essentials;
@@ -15,8 +17,38 @@ namespace Skrapper
         public string VersionLabel { get; } = Constants.ksVersionStr;
         public string CopyrightLabel { get; } = Constants.ksCopyrightStr;
 
+
+        public Command EnterPartNumberCommand { private set; get; }
+        public Command SerialNumberReturnCommand { private set; get; }
+        public Command SubmitScanCommand { private set; get; }
+        public Command CompleteOrderCommand { private set; get; }
+        public Command DeleteLastScanCommand { private set; get; }
+
         public MainViewModel()
         {
+            Theme theme;
+            if (!Globals.bTestMode)
+                theme = Theme.Live;
+            else
+                theme = Theme.Test;
+
+            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+            if (mergedDictionaries != null)
+            {
+                mergedDictionaries.Clear();
+
+                switch (theme)
+                {
+                    case Theme.Test:
+                        mergedDictionaries.Add(new TestTheme());
+                        break;
+                    case Theme.Live:
+                    default:
+                        mergedDictionaries.Add(new LiveTheme());
+                        break;
+                }
+            }
+
             Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
             Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
             Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
@@ -46,7 +78,7 @@ namespace Skrapper
 
         }
 
-        string selectedUser = Globals.UserName;
+        public string selectedUser = Globals.UserName;
         public string SelectedUser
         {
             set
@@ -94,11 +126,13 @@ namespace Skrapper
         #endregion
 
         #region --: Skid Page :-- 
-        public NotifyTaskCompletion<ObservableCollection<string>> Skids { get; private set; }
+        public NotifyTaskCompletion<ObservableCollection<string>> Skids { get; set; }
         public NotifyTaskCompletion<ObservableCollection<string>> Carriers { get; private set; }
         #endregion
 
         #region --: Scan Page :--
+        public NotifyTaskCompletion<ObservableCollection<string>> PartNumberChoices { get; private set; }
+
         public void SetOrderInProcess(bool inProcess)
         {
             SetProperty(ref orderInProcess, true);

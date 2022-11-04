@@ -123,7 +123,7 @@ namespace Skrapper
             get { return overrideKeyboardlessEntry; }
         }
 
-        bool testModeIsChecked;
+        public bool testModeIsChecked;
         public bool TestModeIsChecked
         {
             set

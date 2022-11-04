@@ -19,8 +19,10 @@ namespace Skrapper
         public static string gDeviceVersion = DeviceInfo.VersionString;
         public static string gDevicePlatform = DeviceInfo.Platform.ToString();
         public static string gDeviceType = DeviceInfo.DeviceType.ToString();
-        #endregion
 
+        public static Color gAirWayLive = Color.FromHex("#e8e8e8");
+        public static Color gAirWayTest = Color.FromHex("#99afc1");
+        #endregion
 
         #region--:[WEBSERVICE]:--
         //Main webservice declaration
@@ -34,8 +36,9 @@ namespace Skrapper
         public static int unameIdx = -1;
 
         #region--:[SKID TAB]:--
-        public static string SkidsList = null;
+        public static string SkidNumberList = null;
         public static string PartTypeList = null;
+        public static string SkidTypeList = null;
         public static string CarrierList = null;
         public static string LocationList = null;
         public static int pSkidIdx = -1;
@@ -51,10 +54,20 @@ namespace Skrapper
         public static int pPartNumIdx = -1; //pkrPartNum.SelectedIndex
         public static string pPartNumItem = null;
 
-        public static string eAltPartNum = null;
-
         public static string eSerialNoText = null;
-        public static string eHeciText = "";
+
+        public static string cdi = null;
+        public static string gStatus = ""; //lblStatus
+        public static string gValidate = null; //lblValidate
+
+        public static string gValidStatus = null; //labValidStatus
+        public static Color gValidStatusTextBGColor;
+        public static Color gValidStatusTextColor = Color.IndianRed;
+
+        public static int gCntScanForOrderType = 0;
+        public static int gCntScanForOrderNum = 0;
+        public static int gRemaining = 0;
+
         public static int rowID = 0;
         public static int iAdjID = 0;
         #endregion

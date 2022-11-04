@@ -1,4 +1,9 @@
-﻿using System;
+﻿using MyWebService;
+using Skrapper.Services;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -7,10 +12,71 @@ namespace Skrapper
 {
     public class SkidViewModel : MainViewModel
     {
+        public IMessageService _messageService = new MessageService();
+
+        public Command EnterSkidNumberCommand { private set; get; }
+        public Command CreateNewSkidNumberCommand { private set; get; }
+
         public SkidViewModel()
         {
             Title = "SKID";
+            EnterSkidNumberCommand = new Command(OnEnterSkidNumberClicked);
+            CreateNewSkidNumberCommand = new Command(
+                execute: async () =>
+                {
+                    await OnCreateNewSkidNumberClicked(Skids.Result);
+                    OnPropertyChanged("Skids");
+                    SetProperty(ref selectedSkidIndex, 0);
+                    OnPropertyChanged("SelectedSkidIndex");
+                });
         }
+
+        private async void OnEnterSkidNumberClicked(object obj)
+        {
+            if (eHelpDeskContext.WebServiceConnected())
+            {
+                try
+                {
+                    if (Skids == null) return;
+                    bool b = await _messageService.CustomInputDialog(Skids.Result, "Skid # Entry", "Please insert skid number below...", "OK");
+                    if (b)
+                    {
+                        SetProperty(ref selectedSkidIndex, 0);
+                        OnPropertyChanged("SelectedSkidIndex");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnEnterSkidNumberClicked)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: SkidViewModel.cs] (OnEnterSkidNumberClicked) >> " + ex.ToString());
+                }
+            }
+        }
+
+        private async Task OnCreateNewSkidNumberClicked(ObservableCollection<string> list)
+        {
+            Task<string> ts;
+            if (eHelpDeskContext.WebServiceConnected())
+            {
+                try
+                {
+                    using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
+                    {
+                        ts = Task.Run(() => locWS.Skp_SkidNewNumber(selectedUser));
+                        string skidNo = ts.Result;
+                        Console.WriteLine("[SkidsViewModel.cs] (OnCreateNewSkidNumberClicked) skidNo >>" + skidNo);
+                        list.Insert(0, skidNo);
+                        locWS.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnCreateNewSkidNumberClicked)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: SkidViewModel.cs] (OnCreateNewSkidNumberClicked) >> " + ex.ToString());
+                }
+            }
+        }
+
 
         int selectedSkidIndex = Globals.pSkidIdx;
         public int SelectedSkidIndex

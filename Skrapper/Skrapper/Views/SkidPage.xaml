@@ -48,6 +48,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
+                Command="{Binding EnterSkidNumberCommand}"
                 Margin="0,0,0,0"/>
             <Picker 
                 x:Name="PkrSkidNum"
@@ -68,6 +69,7 @@
                 Grid.Row="0"
                 Grid.Column="3"
                 Grid.ColumnSpan="1"
+                Command="{Binding CreateNewSkidNumberCommand}"
                 Margin="3,0,3,0"/>
             <Button 
                 x:Name="BtnRefresh"

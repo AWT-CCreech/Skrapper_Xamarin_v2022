@@ -16,7 +16,7 @@ namespace Skrapper.Services
     public class MessageService : IMessageService
     {
         /// <summary>
-        /// Display complete order alert and determine user response for completing current working order.
+        /// Display complete order alert and determine user response for completing inProcess order.
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
@@ -37,7 +37,7 @@ namespace Skrapper.Services
         /// <param name="title"></param>
         /// <param name="message"></param>
         /// <param name="confirm"></param>
-        /// <returns>(bool)</returns>
+        /// <returns>(bool) r</returns>
         public async Task<bool> CustomInputDialog(ObservableCollection<string> list, string title, string message, string confirm)
         {
             string r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21);

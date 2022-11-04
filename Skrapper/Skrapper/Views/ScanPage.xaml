@@ -16,26 +16,80 @@
                 <RowDefinition 
                     Height=".15*"/>
                 <RowDefinition 
-                    Height=".15*"/>
-                <RowDefinition 
-                    Height=".15*"/>
-                <RowDefinition 
-                    Height=".5*"/>
-                <RowDefinition 
                     Height=".2*"/>
+                <RowDefinition 
+                    Height=".15*"/>
+                <RowDefinition 
+                    Height=".15*"/>
+                <RowDefinition 
+                    Height=".15*"/>
+                <RowDefinition 
+                    Height=".3*"/>
+                <RowDefinition 
+                    Height=".12*"/>
+                <RowDefinition 
+                    Height=".15*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition 
-                    Width=".1*"/>
+                    Width=".10*"/>
                 <ColumnDefinition 
-                    Width=".2*"/>
+                    Width=".15*"/>
                 <ColumnDefinition 
-                    Width=".45*"/>
+                    Width=".10*"/>
                 <ColumnDefinition 
-                    Width=".18*"/>
+                    Width=".10*"/>
                 <ColumnDefinition 
-                    Width=".18*"/>
+                    Width=".20*"/>
+                <ColumnDefinition 
+                    Width=".20*"/>
             </Grid.ColumnDefinitions>
+            
+            <Button 
+                x:Name="btnPartNum"
+                Text="Part #"
+                Style="{StaticResource BtnStyle}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="0"
+                Command="{Binding EnterPartNumberCommand}"/>
+            <Picker 
+                x:Name="pkrPartNum"
+                TitleColor="Gray"
+                TextColor="{StaticResource PkrText}"
+                ItemsSource="{Binding Path=PartNumberChoices.Result}"
+                ItemDisplayBinding="{Binding .}"
+                SelectedItem="{Binding SelectedPartNumber}"
+                SelectedIndex="{Binding SelectedPartNumberIndex}"
+                BackgroundColor="{StaticResource PkrBG}"
+                FontSize="18"
+                FontAttributes="Bold" 
+                Grid.Column="2"
+                Grid.ColumnSpan="4"
+                Grid.Row="0"
+                Margin="0,0,0,0"/>
+
+            <Button 
+                Text="Alt #" 
+                TextColor="#06477D"
+                BackgroundColor="#06477d"
+                IsEnabled="False"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Margin="0,0,0,18"/>
+            <Entry 
+                x:Name="entAltPartNum"
+                BackgroundColor="White"
+                Text="{Binding AltPartNumber.Result, Mode=TwoWay}"
+                IsSpellCheckEnabled="False"
+                IsReadOnly="True"
+                TextColor="Gray" 
+                FontSize="15"
+                Grid.Column="2"
+                Grid.ColumnSpan="4"
+                Grid.Row="1"
+                Margin="0,0,0,18"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
