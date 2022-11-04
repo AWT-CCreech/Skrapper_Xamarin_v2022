@@ -157,7 +157,6 @@ namespace Skrapper
                     }
                 }
 
-                //SelectedOrderTypeIndex = -1;
             }
             get { return testModeIsChecked; }
         }
