@@ -16,7 +16,7 @@
                 <RowDefinition 
                     Height=".15*"/>
                 <RowDefinition 
-                    Height=".2*"/>
+                    Height=".15*"/>
                 <RowDefinition 
                     Height=".15*"/>
                 <RowDefinition 
@@ -46,7 +46,7 @@
             </Grid.ColumnDefinitions>
             
             <Button 
-                x:Name="btnPartNum"
+                x:Name="BtnPartNum"
                 Text="Part #"
                 Style="{StaticResource BtnStyle}"
                 Grid.Column="0"
@@ -54,7 +54,7 @@
                 Grid.Row="0"
                 Command="{Binding EnterPartNumberCommand}"/>
             <Picker 
-                x:Name="pkrPartNum"
+                x:Name="PkrPartNum"
                 TitleColor="Gray"
                 TextColor="{StaticResource PkrText}"
                 ItemsSource="{Binding Path=PartNumberChoices.Result}"
@@ -77,19 +77,48 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="1"
-                Margin="0,0,0,18"/>
+                Margin="0,0,0,0"/>
             <Entry 
-                x:Name="entAltPartNum"
-                BackgroundColor="White"
+                x:Name="EntAltPartNum"
+                BackgroundColor="{StaticResource PkrBG}"
                 Text="{Binding AltPartNumber.Result, Mode=TwoWay}"
+                TextColor="{StaticResource PkrText}" 
                 IsSpellCheckEnabled="False"
                 IsReadOnly="True"
-                TextColor="Gray" 
                 FontSize="15"
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="1"
-                Margin="0,0,0,18"/>
+                Margin="0,0,0,0"/>
+
+            <Button
+                Text="Type"
+                TextColor="#06477D"
+                BackgroundColor="#06477d"
+                IsEnabled="False"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="2"
+                Margin="0,0,0,0"/>
+            <Picker 
+                x:Name="PkrPartType"
+                TitleColor="{StaticResource Primary}"
+                BackgroundColor="{StaticResource PkrBG}"
+                TextColor="{StaticResource PkrText}"
+                Grid.Column="2"
+                Grid.ColumnSpan="3"
+                Grid.Row="2"
+                Margin="0,0,0,0"/>
+            <Button 
+                x:Name="BtnAddCarrierSuffix"
+                ImageSource="icon_carrier_suffix.svg"
+                CornerRadius="9"
+                BackgroundColor="{StaticResource Tertiary}"
+                Grid.Column="5"
+                Grid.ColumnSpan="1"
+                Grid.Row="2"
+                Command="{Binding AddCarrierSuffixCommand}"
+                Margin="3,0,3,0"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

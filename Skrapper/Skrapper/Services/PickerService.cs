@@ -1,16 +1,16 @@
-﻿using Java.Nio.Channels;
-using MyWebService;
+﻿using MyWebService;
 using Skrapper.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using static Android.Provider.Telephony;
 
 namespace Skrapper
 {
+    /// <summary>
+    /// Main class for retrieving all ObservableCollection data for pickers. 
+    /// </summary>
     public class PickerService : ViewModelBase
     {
         public static IMessageService _messageService = new MessageService();
