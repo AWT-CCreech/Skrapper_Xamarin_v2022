@@ -21865,7 +21865,7 @@ namespace Skrapper.Droid
 			public const int icon_barcode = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
-			public const int icon_carrier_suffix = 2131165293;
+			public const int icon_carrier = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
 			public const int icon_feed = 2131165294;
