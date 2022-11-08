@@ -66,7 +66,16 @@
                 FontSize="18"
                 FontAttributes="Bold" 
                 Grid.Column="2"
-                Grid.ColumnSpan="4"
+                Grid.ColumnSpan="3"
+                Grid.Row="0"
+                Margin="0,0,0,0"/>
+            <Button 
+                x:Name="BtnAddCarrierSuffix"
+                ImageSource="icon_carrier.png"
+                CornerRadius="9"
+                BackgroundColor="{StaticResource Tertiary}"
+                Grid.Column="5"
+                Grid.ColumnSpan="1"
                 Grid.Row="0"
                 Margin="0,0,0,0"/>
 
@@ -107,16 +116,7 @@
                 BackgroundColor="{StaticResource PkrBG}"
                 TextColor="{StaticResource PkrText}"
                 Grid.Column="2"
-                Grid.ColumnSpan="3"
-                Grid.Row="2"
-                Margin="0,0,0,0"/>
-            <Button 
-                x:Name="BtnAddCarrierSuffix"
-                ImageSource="icon_carrier.svg"
-                CornerRadius="9"
-                BackgroundColor="{StaticResource Tertiary}"
-                Grid.Column="5"
-                Grid.ColumnSpan="1"
+                Grid.ColumnSpan="4"
                 Grid.Row="2"
                 Margin="0,0,0,0"/>
         </Grid>
