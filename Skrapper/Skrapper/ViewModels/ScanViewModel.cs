@@ -10,6 +10,7 @@ namespace Skrapper
 {
     public class ScanViewModel : MainViewModel
     {
+        public IMessageService _messageService = new MessageService();
         public ScanViewModel()
         {
             Title = "SCAN";

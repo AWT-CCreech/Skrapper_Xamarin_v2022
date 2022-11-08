@@ -160,7 +160,7 @@
 
             <Frame 
                 BackgroundColor="{StaticResource PkrBG}"
-                CornerRadius="15"
+                CornerRadius="9"
                 Grid.Column="0"
                 Grid.ColumnSpan="5"
                 Grid.Row="4"
