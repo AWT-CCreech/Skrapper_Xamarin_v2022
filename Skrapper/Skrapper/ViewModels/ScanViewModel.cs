@@ -14,6 +14,17 @@ namespace Skrapper
         public ScanViewModel()
         {
             Title = "SCAN";
+            EnterPartNumberCommand = new Command(
+                execute: async () =>
+                {
+                    if (PartNumberChoices == null) return;
+                    bool b = await _messageService.CustomInputDialog(PartNumberChoices.Result, "Part # Entry", "Please insert part number below...", "OK");
+                    if (b)
+                    {
+                        SetProperty(ref selectedPartNumberIndex, 0);
+                        OnPropertyChanged("SelectedPartNumberIndex");
+                    }
+                });
         }
 
         int selectedPartNumberIndex;
@@ -21,7 +32,7 @@ namespace Skrapper
         {
             set
             {
-                Console.WriteLine("[MainViewModel.cs] (SelectedPartNumberIndex) >> " + value);
+                Console.WriteLine("[ScanViewModel.cs] (SelectedPartNumberIndex) >> " + value);
                 SetProperty(ref selectedPartNumberIndex, value);
                 Globals.pPartNumIdx = selectedPartNumberIndex;
             }
@@ -33,7 +44,7 @@ namespace Skrapper
         {
             set
             {
-                Console.WriteLine("[MainViewModel.cs] (SelectedPartNumber) >> " + value);
+                Console.WriteLine("[ScanViewModel.cs] (SelectedPartNumber) >> " + value);
                 SetProperty(ref selectedPartNumber, value);
                 Globals.pPartNumItem = selectedPartNumber;
 
@@ -62,7 +73,7 @@ namespace Skrapper
         {
             set
             {
-                Console.WriteLine("[MainViewModel.cs] (AltPartNumber) >> " + value.Result);
+                Console.WriteLine("[ScanViewModel.cs] (AltPartNumber) >> " + value.Result);
                 SetProperty(ref altPartNumber, value);
             }
             get { return altPartNumber; }
@@ -74,7 +85,7 @@ namespace Skrapper
         {
             set
             {
-                Console.WriteLine("[MainViewModel.cs] (PartQuantity) >> " + value);
+                Console.WriteLine("[ScanViewModel.cs] (PartQuantity) >> " + value);
                 if (value >= 1) 
                 { 
                     SetProperty(ref partQuantity, value); 
@@ -90,6 +101,33 @@ namespace Skrapper
                     SetProperty(ref partQuantity, 1);
                 return partQuantity;
             }
+        }
+
+        bool autoChecked = Globals.cbAuto;
+        public bool AutoChecked
+        {
+            set
+            {
+                Console.WriteLine("[ScanViewModel.cs] (AutoChecked) >> " + value);
+                SetProperty(ref autoChecked, value);
+                Globals.cbAuto = autoChecked;
+
+                if (autoChecked)
+                    Globals.gLastScanData = string.Empty;
+            }
+            get { return autoChecked; }
+        }
+
+        string serialNumber = "";
+        public string SerialNumber
+        {
+            set
+            {
+                Console.WriteLine("[ScanViewModel.cs] (SerialNumber) >> " + value);
+                SetProperty(ref serialNumber, value.ToUpper());
+                Globals.eSerialNoText = serialNumber.ToUpper();
+            }
+            get { return serialNumber.ToUpper(); }
         }
     }
 }

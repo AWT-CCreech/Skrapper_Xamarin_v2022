@@ -1,5 +1,5 @@
 ﻿using Android.Content.Res;
-using Skrapper.Droid;
+using Skrapper_Xamarin_v2022.Droid;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -7,7 +7,7 @@ using Xamarin.Forms.Platform.Android;
 
 [assembly: ResolutionGroupName("PlainEntryGroup")]
 [assembly: ExportEffect(typeof(PlainEntryEffect), "PlainEntryEffect")]
-namespace Skrapper.Droid
+namespace Skrapper_Xamarin_v2022.Droid
 {
     public class PlainEntryEffect : PlatformEffect
     {

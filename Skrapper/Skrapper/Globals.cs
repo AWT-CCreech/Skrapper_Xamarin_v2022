@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Java.Nio.FileNio;
+using System;
 using System.Collections;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -56,6 +57,7 @@ namespace Skrapper
 
         public static int ePartQuantity = 1;
 
+        public static bool cbAuto = true;
         public static string eSerialNoText = null;
 
         public static string cdi = null;

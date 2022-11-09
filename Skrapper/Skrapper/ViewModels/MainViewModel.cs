@@ -18,7 +18,7 @@ namespace Skrapper
         public string CopyrightLabel { get; } = Constants.ksCopyrightStr;
 
 
-        public Command EnterPartNumberCommand { private set; get; }
+        public Command EnterPartNumberCommand { set; get; }
         public Command SerialNumberReturnCommand { private set; get; }
         public Command SubmitScanCommand { private set; get; }
         public Command CompleteOrderCommand { private set; get; }
@@ -135,7 +135,7 @@ namespace Skrapper
 
         public void SetOrderInProcess(bool inProcess)
         {
-            SetProperty(ref orderInProcess, true);
+            SetProperty(ref orderInProcess, inProcess);
             OnPropertyChanged("OrderInProcess");
         }
         #endregion

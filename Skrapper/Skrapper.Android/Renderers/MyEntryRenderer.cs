@@ -4,10 +4,10 @@ using Android.Content;
 using Android.Views.InputMethods;
 using System;
 using Skrapper;
-using Skrapper.Droid;
+using Skrapper_Xamarin_v2022.Droid;
 
 [assembly: ExportRenderer(typeof(KeyboardlessEntry), typeof(KeyboardlessEntryRenderer))]
-namespace Skrapper.Droid
+namespace Skrapper_Xamarin_v2022.Droid
 {
     class KeyboardlessEntryRenderer : EntryRenderer
     {
