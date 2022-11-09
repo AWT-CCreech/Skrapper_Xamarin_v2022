@@ -16,5 +16,10 @@ namespace Skrapper.Views
         {
             InitializeComponent();
         }
+
+        private void StpPartQuantity_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

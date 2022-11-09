@@ -3,7 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"    
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Skrapper.Views.ScanPage"
-    xmlns:vm="clr-namespace:Skrapper"
+    xmlns:vm="clr-namespace:Skrapper" 
+    xmlns:effects="clr-namespace:Skrapper.Effects"
     Visual="Material"
     Title="{Binding Title}"
     BackgroundColor="{DynamicResource PageBackgroundColor}">
@@ -15,19 +16,19 @@
             Margin="10,10,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition 
-                    Height=".15*"/>
+                    Height=".18*"/>
                 <RowDefinition 
-                    Height=".15*"/>
+                    Height=".18*"/>
                 <RowDefinition 
-                    Height=".15*"/>
+                    Height=".18*"/>
                 <RowDefinition 
-                    Height=".15*"/>
+                    Height=".18*"/>
                 <RowDefinition 
-                    Height=".15*"/>
+                    Height=".18*"/>
                 <RowDefinition 
                     Height=".3*"/>
                 <RowDefinition 
-                    Height=".12*"/>
+                    Height=".15*"/>
                 <RowDefinition 
                     Height=".15*"/>
             </Grid.RowDefinitions>
@@ -37,13 +38,13 @@
                 <ColumnDefinition 
                     Width=".15*"/>
                 <ColumnDefinition 
-                    Width=".10*"/>
+                    Width=".15*"/>
+                <ColumnDefinition 
+                    Width=".15*"/>
                 <ColumnDefinition 
                     Width=".10*"/>
                 <ColumnDefinition 
-                    Width=".20*"/>
-                <ColumnDefinition 
-                    Width=".20*"/>
+                    Width=".10*"/>
             </Grid.ColumnDefinitions>
 
             <Button 
@@ -88,13 +89,11 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="1"
                 Margin="0,0,0,0"/>
-            <Entry 
+            <Label 
                 x:Name="EntAltPartNum"
                 BackgroundColor="{StaticResource PkrBG}"
                 Text="{Binding AltPartNumber.Result, Mode=TwoWay}"
                 TextColor="{StaticResource PkrText}" 
-                IsSpellCheckEnabled="False"
-                IsReadOnly="True"
                 FontSize="15"
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
@@ -109,7 +108,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
-                Margin="0,0,0,0"/>
+                Margin="0,15,0,-18"/>
             <Picker 
                 x:Name="PkrPartType"
                 TitleColor="{StaticResource Primary}"
@@ -118,7 +117,83 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="2"
-                Margin="0,0,0,0"/>
+                Margin="0,15,0,-18"/>
+
+            <Button 
+                Text="QTY" 
+                TextColor="#06477D"
+                BackgroundColor="#06477d"
+                IsEnabled="False"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="3"
+                Margin="0,15,0,-18"/>
+            <Entry
+                x:Name="EntPartQty"
+                Text="{Binding PartQuantity, Mode=TwoWay}"
+                TextColor="{StaticResource PkrText}"
+                BackgroundColor="{StaticResource PkrBG}"
+                Keyboard="Numeric"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="3"
+                Margin="0,15,0,-18"/>
+            <Stepper 
+                x:Name="StpPartQuantity"
+                Value="{Binding PartQuantity, Mode=TwoWay}"
+                Minimum="1" 
+                Maximum="3000" 
+                Increment="1"
+                Grid.Column="4"
+                Grid.ColumnSpan="2"
+                Grid.Row="3"
+                BackgroundColor="{StaticResource Primary}"
+                Margin="0,15,0,-18"/>
+
+            <Frame 
+                BackgroundColor="{StaticResource Primary}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="4"
+                Margin="0,30,0,-36"/>
+            <CheckBox 
+                x:Name="cbAuto"
+                x:FieldModifier="public"
+                IsChecked="{Binding AutoChecked, Mode=TwoWay}"
+                Color="{StaticResource Tertiary}"
+                Grid.Column="0"
+                Grid.Row="4"
+                Margin="0,30,0,-36"/>
+            <Label 
+                Text="S/N: "
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="18"
+                VerticalOptions="CenterAndExpand"
+                MaxLines="1"
+                LineBreakMode="NoWrap"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="4"
+                Margin="0,30,0,-36"/>
+            <vm:KeyboardlessEntry 
+                x:Name="entSerialNo"
+                Text="{Binding SerialNumber, Mode=TwoWay}"
+                TextColor="{StaticResource Secondary}"
+                ReturnCommand="{Binding SerialNumberReturnCommand}"
+                ClearButtonVisibility="WhileEditing"
+                BackgroundColor="{StaticResource PkrBG}"
+                VerticalTextAlignment="Center"
+                FontSize="18"
+                Grid.Column="2"
+                Grid.ColumnSpan="4"
+                Grid.Row="4"
+                Margin="-6,30,0,-36">
+                <vm:KeyboardlessEntry.Effects>
+                    <effects:PlainEntry/>
+                </vm:KeyboardlessEntry.Effects>
+            </vm:KeyboardlessEntry>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

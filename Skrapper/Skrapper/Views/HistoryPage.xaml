@@ -52,16 +52,15 @@
                    Grid.Row="1"
                    Margin="10,0,10,0"/>
 
-            <Button Text="+"
-                    Command="{Binding AddNoteCommand}"
-                    FontAttributes="Bold"
-                    FontSize="24"
-                    CornerRadius="5"
+            <Button x:Name="BtnAddNote"
+                    ImageSource="icon_note.png"
+                    BackgroundColor="{StaticResource Tertiary}"
+                    CornerRadius="9"
                     Grid.Column="1"
                     Grid.ColumnSpan="1"
                     Grid.Row="1"
-                    VerticalOptions="Center"
-                    Margin="0,0,10,0"/>
+                    Margin="0,0,10,0"
+                    Command="{Binding AddNoteCommand}"/>
 
             <Label Text="count: x"
                    FontSize="15" FontAttributes="Bold" 

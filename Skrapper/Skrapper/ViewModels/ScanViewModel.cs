@@ -68,5 +68,28 @@ namespace Skrapper
             get { return altPartNumber; }
         }
 
+
+        int partQuantity = Globals.ePartQuantity;
+        public int PartQuantity
+        {
+            set
+            {
+                Console.WriteLine("[MainViewModel.cs] (PartQuantity) >> " + value);
+                if (value >= 1) 
+                { 
+                    SetProperty(ref partQuantity, value); 
+                }
+                else 
+                { 
+                    SetProperty(ref partQuantity, 1);
+                }
+            }
+            get
+            {
+                if (partQuantity <= 1)
+                    SetProperty(ref partQuantity, 1);
+                return partQuantity;
+            }
+        }
     }
 }

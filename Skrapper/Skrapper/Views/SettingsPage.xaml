@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skrapper.Views.SettingsPage"
-             xmlns:vm="clr-namespace:Skrapper"
-             Visual="Material"
-             Title="{Binding Title}"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Skrapper.Views.SettingsPage"
+    xmlns:vm="clr-namespace:Skrapper"
+    Visual="Material"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.BindingContext>
         <vm:SettingsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid Margin="15,15,15,15">
+        <Grid 
+            Margin="15,15,15,15">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".2*"/>
                 <RowDefinition Height=".15*"/>
@@ -29,83 +31,97 @@
                 <ColumnDefinition Width=".25*"/>
             </Grid.ColumnDefinitions>
 
-            <Picker x:Name="pkrUser"
-                    Title="username" 
-                    BackgroundColor="{StaticResource PkrBG}"
-                    ItemsSource="{Binding Path=Users.Result}"
-                    SelectedIndex="{Binding Path=SelectedUserIndex, Mode=TwoWay}"
-                    SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}"
-                    FontSize="18"
-                    TitleColor="Gray"
-                    TextColor="{StaticResource PkrText}"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="4"
-                    Grid.Row="0"
-                    Margin="0,12,0,12"/>
+            <Picker 
+                x:Name="pkrUser"
+                Title="username" 
+                BackgroundColor="{StaticResource PkrBG}"
+                ItemsSource="{Binding Path=Users.Result}"
+                SelectedIndex="{Binding Path=SelectedUserIndex, Mode=TwoWay}"
+                SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}"
+                FontSize="18"
+                TitleColor="Gray"
+                TextColor="{StaticResource PkrText}"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="0"
+                Margin="0,12,0,12"/>
 
-            <Button Text="Device Info." 
-                        BackgroundColor="#06477D"
-                        Command="{Binding ShowDeviceInfoCommand}"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1"
-                        Margin="0,0,0,0"/>
-            <Button Text="Debug View"
-                        BackgroundColor="#06477D"
-                        Command="{Binding DebugResultsCommand}"
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1"
-                        Margin="0,0,0,0"/>
+            <Button 
+                Text="Device Info." 
+                BackgroundColor="#06477D"
+                Command="{Binding ShowDeviceInfoCommand}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Margin="0,0,0,0"/>
+            <Button 
+                Text="Debug View"
+                BackgroundColor="#06477D"
+                Command="{Binding DebugResultsCommand}"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Margin="0,0,0,0"/>
 
-            <Frame BackgroundColor="{StaticResource PkrBG}"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="4"
-                   Grid.Row="2"
-                   Grid.RowSpan="3"
-                   Margin="0,10,0,0"/>
-            <CheckBox x:Name="cbAlwaysFocusSN"
-                          IsChecked="{Binding Path=AutoFocusSn, Mode=TwoWay}"
-                          Color="#06477D" 
-                          Grid.Column="0"
-                          Grid.Row="2"
-                          Margin="0,10,0,0"/>
-            <Label Text="[AUTO] Focus S/N" 
-                       VerticalTextAlignment="Center"
-                       MaxLines="1"
-                       LineBreakMode="NoWrap" 
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
-                       Grid.Row="2"
-                       Margin="0,10,0,0">
+            <Frame 
+                BackgroundColor="{StaticResource PkrBG}"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="2"
+                Grid.RowSpan="3"
+                Margin="0,10,0,0"/>
+            <CheckBox 
+                x:Name="cbAlwaysFocusSN"
+                IsChecked="{Binding Path=AutoFocusSn, Mode=TwoWay}"
+                Color="#06477D" 
+                Grid.Column="0"
+                Grid.Row="2"
+                Margin="0,10,0,0"/>
+            <Label 
+                Text="[AUTO] Focus S/N" 
+                VerticalTextAlignment="Center"
+                MaxLines="1"
+                LineBreakMode="NoWrap" 
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="2"
+                Margin="0,10,0,0">
                 <Label.Triggers>
-                    <DataTrigger TargetType="Label"
-                               Binding="{Binding Source={x:Reference cbAlwaysFocusSN}, Path=IsChecked}"
-                               Value="true">
-                        <Setter Property="FontAttributes" Value="Bold" />
+                    <DataTrigger 
+                        TargetType="Label"
+                        Binding="{Binding Source={x:Reference cbAlwaysFocusSN}, Path=IsChecked}"
+                        Value="true">
+                        <Setter 
+                            Property="FontAttributes" 
+                            Value="Bold"/>
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
 
-            <CheckBox x:Name="cbOverrideKeyboardlessEntry"
-                          IsChecked="{Binding Path=OverrideKeyboardlessEntry, Mode=TwoWay}"
-                          Color="#06477D"
-                          Grid.Column="0"
-                          Grid.Row="3"
-                          Margin="0,10,0,0"/>
-            <Label Text="[OVERRIDE] Keyboardless Entry" 
-                       VerticalTextAlignment="Center"
-                       MaxLines="1"
-                       LineBreakMode="NoWrap"
-                       Grid.Column="1"
-                       Grid.ColumnSpan="3"
-                       Grid.Row="3"
-                       Margin="0,10,0,0">
+            <CheckBox 
+                x:Name="cbOverrideKeyboardlessEntry"
+                IsChecked="{Binding Path=OverrideKeyboardlessEntry, Mode=TwoWay}"
+                Color="#06477D"
+                Grid.Column="0"
+                Grid.Row="3"
+                Margin="0,10,0,0"/>
+            <Label 
+                Text="[OVERRIDE] Keyboardless Entry" 
+                VerticalTextAlignment="Center"
+                MaxLines="1"
+                LineBreakMode="NoWrap"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="3"
+                Margin="0,10,0,0">
                 <Label.Triggers>
-                    <DataTrigger TargetType="Label"
-                                     Binding="{Binding Source={x:Reference cbOverrideKeyboardlessEntry}, Path=IsChecked}"
-                                     Value="true">
-                        <Setter Property="FontAttributes" Value="Bold" />
+                    <DataTrigger 
+                        TargetType="Label"
+                        Binding="{Binding Source={x:Reference cbOverrideKeyboardlessEntry}, Path=IsChecked}"
+                        Value="true">
+                        <Setter 
+                            Property="FontAttributes" 
+                            Value="Bold"/>
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
@@ -132,7 +148,9 @@
                         TargetType="Label"
                         Binding="{Binding Source={x:Reference cbTestModeChecked}, Path=IsChecked}"
                         Value="true">
-                        <Setter Property="FontAttributes" Value="Bold" />
+                        <Setter 
+                            Property="FontAttributes" 
+                            Value="Bold"/>
                     </DataTrigger>
                 </Label.Triggers>
             </Label>

@@ -54,6 +54,8 @@ namespace Skrapper
         public static int pPartNumIdx = -1; //pkrPartNum.SelectedIndex
         public static string pPartNumItem = null;
 
+        public static int ePartQuantity = 1;
+
         public static string eSerialNoText = null;
 
         public static string cdi = null;
