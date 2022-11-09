@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Skrapper.Models
+﻿namespace Skrapper.Models
 {
     public class Item
     {

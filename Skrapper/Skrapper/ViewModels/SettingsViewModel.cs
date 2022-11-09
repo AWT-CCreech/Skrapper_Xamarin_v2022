@@ -5,11 +5,8 @@ using Skrapper.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using static Android.Webkit.ConsoleMessage;
 
 namespace Skrapper
 {

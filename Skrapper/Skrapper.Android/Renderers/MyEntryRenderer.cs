@@ -1,13 +1,13 @@
-﻿using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
-using Android.Content;
+﻿using Android.Content;
 using Android.Views.InputMethods;
-using System;
 using Skrapper;
-using Skrapper_Xamarin_v2022.Droid;
+using Skrapper.Droid;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(KeyboardlessEntry), typeof(KeyboardlessEntryRenderer))]
-namespace Skrapper_Xamarin_v2022.Droid
+namespace Skrapper.Droid
 {
     class KeyboardlessEntryRenderer : EntryRenderer
     {
@@ -42,8 +42,7 @@ namespace Skrapper_Xamarin_v2022.Droid
                 ((KeyboardlessEntry)e.OldElement).PropertyChanging -= OnPropertyChanging;
             }
             // Disable the Keyboard on Focus
-            //TODO: Enable
-            //Control.ShowSoftInputOnFocus = Globals.bOverrideKeyboardlessEntry;
+            Control.ShowSoftInputOnFocus = Globals.bOverrideKeyboardlessEntry;
         }
 
         private void OnPropertyChanging(object sender, PropertyChangingEventArgs propertyChangingEventArgs)
@@ -54,8 +53,7 @@ namespace Skrapper_Xamarin_v2022.Droid
                 try
                 {
                     // Disable the Keyboard on Focus
-                    //TODO: Enable
-                    //Control.ShowSoftInputOnFocus = Globals.bOverrideKeyboardlessEntry;
+                    Control.ShowSoftInputOnFocus = Globals.bOverrideKeyboardlessEntry;
 
                     // incase if the focus was moved from another Entry
                     // Forcefully dismiss the Keyboard 

@@ -1,7 +1,4 @@
 ﻿using Skrapper.Views;
-using System;
-using System.Collections.ObjectModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Skrapper

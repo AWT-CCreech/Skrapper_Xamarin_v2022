@@ -89,16 +89,21 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="1"
                 Margin="0,0,0,0"/>
-            <Label 
+            <Entry 
                 x:Name="EntAltPartNum"
                 BackgroundColor="{StaticResource PkrBG}"
                 Text="{Binding AltPartNumber.Result, Mode=TwoWay}"
                 TextColor="{StaticResource PkrText}" 
                 FontSize="15"
+                IsEnabled="False"
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="1"
-                Margin="0,0,0,0"/>
+                Margin="0,0,0,0">
+                <Entry.Effects>
+                    <effects:PlainEntry/>
+                </Entry.Effects>
+            </Entry>
 
             <Button
                 Text="Type"

@@ -1,12 +1,7 @@
-﻿using Android.Graphics.Drawables;
-using MyWebService;
-using Skrapper.Models;
+﻿using Skrapper.Models;
 using Skrapper.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Skrapper

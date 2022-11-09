@@ -1,14 +1,8 @@
-﻿using Skrapper.Models;
-using Skrapper.Services;
-using Skrapper.Themes;
-using Skrapper.Views;
+﻿using Skrapper.Themes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Webkit.ConsoleMessage;
 
 namespace Skrapper
 {

@@ -1,6 +1,5 @@
 ﻿using Skrapper.Services;
 using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
