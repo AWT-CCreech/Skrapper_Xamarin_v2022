@@ -46,6 +46,7 @@
             </ListView>
 
             <Entry Placeholder="(Add Note)"
+                   FontSize="15"
                    ClearButtonVisibility="WhileEditing"
                    Grid.Column="0"
                    Grid.ColumnSpan="1"

@@ -11,13 +11,6 @@ namespace Skrapper
         public string VersionLabel { get; } = Constants.ksVersionStr;
         public string CopyrightLabel { get; } = Constants.ksCopyrightStr;
 
-
-        public Command EnterPartNumberCommand { set; get; }
-        public Command SerialNumberReturnCommand { private set; get; }
-        public Command SubmitScanCommand { private set; get; }
-        public Command CompleteOrderCommand { private set; get; }
-        public Command DeleteLastScanCommand { private set; get; }
-
         public MainViewModel()
         {
             Theme theme;
@@ -37,6 +30,8 @@ namespace Skrapper
                         mergedDictionaries.Add(new TestTheme());
                         break;
                     case Theme.Live:
+                        mergedDictionaries.Add(new LiveTheme());
+                        break;
                     default:
                         mergedDictionaries.Add(new LiveTheme());
                         break;

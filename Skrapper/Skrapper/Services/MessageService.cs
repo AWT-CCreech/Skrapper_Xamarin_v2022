@@ -6,7 +6,7 @@ namespace Skrapper.Services
 {
     public interface IMessageService
     {
-        //Task<bool> ShowCompleteOrderWarning(string title, string message, string cancel, string confirm);
+        //Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm);
         Task<bool> CustomInputDialog(ObservableCollection<string> list, string title, string message, string confirm);
         Task DisplayError(string title, string message, string cancel);
         Task<bool> DisplayCustomPrompt(string title, string message, string confirm, string cancel);
@@ -20,12 +20,12 @@ namespace Skrapper.Services
         /// <param name="message"></param>
         /// <param name="cancel"></param>
         /// <param name="confirm"></param>
-        /// <returns>(bool) Globals.showCompleteOrderWarningAnswer</returns>
-        //public async Task<bool> ShowCompleteOrderWarning(string title, string message, string cancel, string confirm)
+        /// <returns>(bool) Globals.showCompleteSkidWarningAnswer</returns>
+        //public async Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm)
         //{
-            //Globals.showCompleteOrderWarningAnswer = await Xamarin.Forms.Application.Current.MainPage.DisplayAlert(title, message, confirm, cancel);
-            //Console.WriteLine("[MessageService.cs] (ShowCompleteOrderWarning) Globals.showCompleteOrderWarningAnswer >> " + Globals.showCompleteOrderWarningAnswer);
-            //return Globals.showCompleteOrderWarningAnswer;
+            //Globals.showCompleteSkidWarningAnswer = await Xamarin.Forms.Application.Current.MainPage.DisplayAlert(title, message, confirm, cancel);
+            //Console.WriteLine("[MessageService.cs] (ShowCompleteSkidWarning) Globals.showCompleteSkidWarningAnswer >> " + Globals.showCompleteSkidWarningAnswer);
+            //return Globals.showCompleteSkidWarningAnswer;
         //}
 
         /// <summary>
@@ -38,7 +38,12 @@ namespace Skrapper.Services
         /// <returns>(bool) r</returns>
         public async Task<bool> CustomInputDialog(ObservableCollection<string> list, string title, string message, string confirm)
         {
-            string r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21);
+            string r;
+            if(title.Contains("Skid"))
+                r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21, keyboard: Xamarin.Forms.Keyboard.Numeric);
+            else
+                r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21);
+
             Console.WriteLine("[MessageService.cs] (CustomInputDialog) r >> " + r);
             if (string.IsNullOrEmpty(r))
                 return false;

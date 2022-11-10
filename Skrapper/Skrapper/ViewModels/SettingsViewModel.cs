@@ -148,6 +148,8 @@ namespace Skrapper
                             mergedDictionaries.Add(new TestTheme());
                             break;
                         case Theme.Live:
+                            mergedDictionaries.Add(new LiveTheme());
+                            break;
                         default:
                             mergedDictionaries.Add(new LiveTheme());
                             break;

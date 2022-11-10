@@ -17,6 +17,8 @@ namespace Skrapper
         public SkidViewModel()
         {
             Title = "SKID";
+
+            #region ... COMMANDS ...
             EnterSkidNumberCommand = new Command(OnEnterSkidNumberClicked);
             CreateNewSkidNumberCommand = new Command(
                 execute: async () =>
@@ -26,6 +28,7 @@ namespace Skrapper
                     SetProperty(ref selectedSkidIndex, 0);
                     OnPropertyChanged("SelectedSkidIndex");
                 });
+            #endregion ... COMMANDS ...
         }
 
         private async void OnEnterSkidNumberClicked(object obj)

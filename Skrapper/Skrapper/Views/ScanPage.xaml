@@ -54,7 +54,8 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"
-                Command="{Binding EnterPartNumberCommand}"/>
+                Command="{Binding EnterPartNumberCommand}"
+                Margin="0,0,0,0"/>
             <Picker 
                 x:Name="PkrPartNum"
                 TitleColor="Gray"
@@ -92,7 +93,7 @@
             <Entry 
                 x:Name="EntAltPartNum"
                 BackgroundColor="{StaticResource PkrBG}"
-                Text="{Binding AltPartNumber.Result, Mode=TwoWay}"
+                Text="TEST"
                 TextColor="{StaticResource PkrText}" 
                 FontSize="15"
                 IsEnabled="False"
@@ -113,7 +114,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
-                Margin="0,15,0,-18"/>
+                Margin="0,9,0,-12"/>
             <Picker 
                 x:Name="PkrPartType"
                 TitleColor="{StaticResource Primary}"
@@ -122,7 +123,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="2"
-                Margin="0,15,0,-18"/>
+                Margin="0,9,0,-12"/>
 
             <Button 
                 Text="QTY" 
@@ -132,7 +133,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
-                Margin="0,15,0,-18"/>
+                Margin="0,9,0,-12"/>
             <Entry
                 x:Name="EntPartQty"
                 Text="{Binding PartQuantity, Mode=TwoWay}"
@@ -142,7 +143,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
-                Margin="0,15,0,-18"/>
+                Margin="0,9,0,-12"/>
             <Stepper 
                 x:Name="StpPartQuantity"
                 Value="{Binding PartQuantity, Mode=TwoWay}"
@@ -153,14 +154,14 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
                 BackgroundColor="{StaticResource Primary}"
-                Margin="0,15,0,-18"/>
+                Margin="0,9,0,-12"/>
 
             <Frame 
                 BackgroundColor="{StaticResource Primary}"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="4"
-                Margin="0,30,0,-36"/>
+                Margin="0,24,0,-30"/>
             <CheckBox 
                 x:Name="cbAuto"
                 x:FieldModifier="public"
@@ -168,7 +169,7 @@
                 Color="{StaticResource Tertiary}"
                 Grid.Column="0"
                 Grid.Row="4"
-                Margin="0,30,0,-36"/>
+                Margin="0,24,0,-30"/>
             <Label 
                 Text="S/N: "
                 TextColor="White"
@@ -180,7 +181,7 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Grid.Row="4"
-                Margin="0,30,0,-36"/>
+                Margin="0,24,0,-30"/>
             <vm:KeyboardlessEntry 
                 x:Name="entSerialNo"
                 Text="{Binding SerialNumber, Mode=TwoWay}"
@@ -193,11 +194,76 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="4"
-                Margin="-6,30,0,-36">
+                Margin="0,24,0,-30">
                 <vm:KeyboardlessEntry.Effects>
                     <effects:PlainEntry/>
                 </vm:KeyboardlessEntry.Effects>
             </vm:KeyboardlessEntry>
+
+            <Label 
+                x:Name="LabValidStatus"
+                BackgroundColor="{DynamicResource PageBackgroundColor}"
+                Text="{Binding ValidationText, Mode=TwoWay}"
+                TextColor="{Binding ValidationTextColor, Mode=TwoWay}"
+                FontSize="33"
+                FontAttributes="Bold" 
+                LineBreakMode="NoWrap"
+                IsVisible="True"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                MaxLines="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Grid.Row="5"
+                Margin="0,27,0,-9"/>
+
+            <Button x:Name="bSubmit" 
+                    Text="Submit" 
+                    BackgroundColor="#06477d"
+                    Command="{Binding SubmitScanCommand}"
+                    IsEnabled="{Binding SerialNumber.Length}"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="6"
+                    Margin="3,6,0,-15"/>
+            <Button x:Name="btnCompleteSkid" 
+                    Text="COMPLETE"
+                    BackgroundColor="ForestGreen"
+                    Command="{Binding CompleteSkidCommand}"
+                    IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="6"
+                    Margin="-3,6,0,-15"/>
+            <Button x:Name="DeleteLastScanButton" 
+                    Text="X" 
+                    Command="{Binding DeleteLastScanCommand}" 
+                    IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
+                    BackgroundColor="IndianRed" 
+                    FontAttributes="Italic,Bold" 
+                    Grid.Column="5"
+                    Grid.Row="6"
+                    Margin="-3,6,0,-15"/>
+
+            <Frame BackgroundColor="{StaticResource PkrBG}" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="6"
+                   Grid.Row="7"
+                   Margin="0,18,0,0"/>
+            <Label x:Name="lblStatus" 
+                   x:FieldModifier="public"
+                   Text="TEST"
+                   TextColor="#06477D"
+                   FontSize="15"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="EndAndExpand"
+                   MaxLines="1"
+                   LineBreakMode="NoWrap"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="6"
+                   Grid.Row="7"
+                   Margin="0,0,0,0"/>
 
         </Grid>
     </ContentPage.Content>

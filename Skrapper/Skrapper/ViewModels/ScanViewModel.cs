@@ -8,6 +8,13 @@ namespace Skrapper
     public class ScanViewModel : MainViewModel
     {
         public IMessageService _messageService = new MessageService();
+
+        public Command EnterPartNumberCommand { private set; get; }
+        public Command SerialNumberReturnCommand { private set; get; }
+        public Command SubmitScanCommand { private set; get; }
+        public Command CompleteSkidCommand { private set; get; }
+        public Command DeleteLastScanCommand { private set; get; }
+
         public ScanViewModel()
         {
             Title = "SCAN";
@@ -125,6 +132,28 @@ namespace Skrapper
                 Globals.eSerialNoText = serialNumber.ToUpper();
             }
             get { return serialNumber.ToUpper(); }
+        }
+
+        string validationText = Globals.gValidStatus;
+        public string ValidationText
+        {
+            set
+            {
+                Console.WriteLine("[ScanViewModel.cs] (ValidationText) >> " + value);
+                SetProperty(ref validationText, value);
+            }
+            get { return validationText; }
+        }
+
+        Color validationTextColor = Globals.gValidStatusTextColor;
+        public Color ValidationTextColor
+        {
+            set
+            {
+                Console.WriteLine("[ScanViewModel.cs] (ValidationTextColor) >> " + value);
+                SetProperty(ref validationTextColor, value);
+            }
+            get { return validationTextColor; }
         }
     }
 }
