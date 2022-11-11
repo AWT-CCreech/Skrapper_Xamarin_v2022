@@ -21868,34 +21868,34 @@ namespace Skrapper.Droid
 			public const int icon_carrier = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int icon_feed = 2131165294;
+			public const int icon_delete = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int icon_history = 2131165295;
+			public const int icon_feed = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int icon_logout = 2131165296;
+			public const int icon_history = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int icon_note = 2131165297;
+			public const int icon_logout = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public const int icon_pallet = 2131165298;
+			public const int icon_note = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int icon_plus = 2131165299;
+			public const int icon_pallet = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int icon_print = 2131165300;
+			public const int icon_plus = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int icon_refresh = 2131165301;
+			public const int icon_print = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int icon_settings = 2131165302;
+			public const int icon_refresh = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int icon_trash = 2131165303;
+			public const int icon_settings = 2131165303;
 			
 			// aapt resource value: 0x7F070064
 			public const int ic_arrow_down_24dp = 2131165284;
@@ -22043,6 +22043,9 @@ namespace Skrapper.Droid
 			
 			// aapt resource value: 0x7F0700A1
 			public const int tooltip_frame_light = 2131165345;
+			
+			// aapt resource value: 0x7F0700A2
+			public const int trash = 2131165346;
 			
 			static Drawable()
 			{

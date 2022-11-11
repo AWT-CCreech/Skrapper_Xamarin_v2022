@@ -236,7 +236,7 @@
                     Grid.Row="6"
                     Margin="-3,6,0,-15"/>
             <Button x:Name="DeleteLastScanButton" 
-                    ImageSource="icon_trash.svg"
+                    ImageSource="icon_delete.png"
                     Command="{Binding DeleteLastScanCommand}" 
                     IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
                     BackgroundColor="IndianRed" 
