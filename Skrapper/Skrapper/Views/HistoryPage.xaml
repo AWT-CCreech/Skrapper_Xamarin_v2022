@@ -54,7 +54,7 @@
                    Margin="10,0,10,0"/>
 
             <Button x:Name="BtnAddNote"
-                    ImageSource="icon_note.png"
+                    ImageSource="icon_note.svg"
                     BackgroundColor="{StaticResource Tertiary}"
                     CornerRadius="9"
                     Grid.Column="1"

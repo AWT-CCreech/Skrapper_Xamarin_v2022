@@ -73,7 +73,7 @@
                 Margin="0,0,0,0"/>
             <Button 
                 x:Name="BtnAddCarrierSuffix"
-                ImageSource="icon_carrier.png"
+                ImageSource="icon_carrier.svg"
                 CornerRadius="9"
                 BackgroundColor="{StaticResource Tertiary}"
                 Grid.Column="5"
@@ -236,7 +236,7 @@
                     Grid.Row="6"
                     Margin="-3,6,0,-15"/>
             <Button x:Name="DeleteLastScanButton" 
-                    Text="X" 
+                    ImageSource="icon_trash.svg"
                     Command="{Binding DeleteLastScanCommand}" 
                     IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
                     BackgroundColor="IndianRed" 
