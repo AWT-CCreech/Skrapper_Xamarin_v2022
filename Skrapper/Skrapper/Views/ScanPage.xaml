@@ -93,7 +93,7 @@
             <Entry 
                 x:Name="EntAltPartNum"
                 BackgroundColor="{StaticResource PkrBG}"
-                Text="TEST"
+                Text="{Binding AltPartNumber.Result, Mode=TwoWay}"
                 TextColor="{StaticResource PkrText}" 
                 FontSize="15"
                 IsEnabled="False"
@@ -236,11 +236,9 @@
                     Grid.Row="6"
                     Margin="0,12,0,-15"/>
             <Button x:Name="DeleteLastScanButton" 
-                    ImageSource="icon_delete.png"
+                    Style="{StaticResource DeleteButton}"
                     Command="{Binding DeleteLastScanCommand}" 
-                    IsEnabled="True"
-                    BackgroundColor="IndianRed" 
-                    FontAttributes="Italic,Bold" 
+                    IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
                     Grid.Column="5"
                     Grid.Row="6"
                     Margin="0,12,3,-15"/>

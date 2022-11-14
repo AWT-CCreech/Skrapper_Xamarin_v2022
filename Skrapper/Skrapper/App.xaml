@@ -19,6 +19,25 @@
             <Color x:Key="AddBGColor">#02c753</Color>
             <Color x:Key="BtnText">White</Color>
             <Color x:Key="RefreshBGColor">#7c0647</Color>
+            <Style x:Key="DeleteButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="IndianRed"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ImageSource" Value="icon_delete.svg" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="ImageSource" Value="icon_delete_disabled.svg" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
             <Style x:Key="BtnStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="FontAttributes" Value="Bold"></Setter>
