@@ -7,7 +7,6 @@ namespace Skrapper
 {
     public class ScanViewModel : MainViewModel
     {
-        public IMessageService _messageService = new MessageService();
 
         public Command EnterPartNumberCommand { private set; get; }
         public Command SerialNumberReturnCommand { private set; get; }

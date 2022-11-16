@@ -10,6 +10,7 @@ namespace Skrapper
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        public static IMessageService _messageService = new MessageService();
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;

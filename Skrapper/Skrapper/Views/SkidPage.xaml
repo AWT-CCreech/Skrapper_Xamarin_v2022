@@ -3,13 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Skrapper.Views.SkidPage"
-    xmlns:vm="clr-namespace:Skrapper"
+    x:DataType="vm:SkidViewModel"
+    xmlns:vm="clr-namespace:Skrapper" 
     Visual="Material"
     Title="{Binding Title}"
     BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ContentPage.BindingContext>
-        <vm:SkidViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid
             Margin="10,10,10,10">
@@ -52,9 +50,10 @@
                 Margin="0,0,0,0"/>
             <Picker 
                 x:Name="PkrSkidNum"
-                ItemsSource="{Binding Skids.Result}"
-                SelectedIndex="{Binding SelectedSkidIndex}"
-                SelectedItem="{Binding SelectedSkidItem}"
+                ItemsSource="{Binding Skids.Result, Mode=TwoWay}"
+                ItemDisplayBinding="{Binding .}"
+                SelectedIndex="{Binding SelectedSkidIndex, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedSkidItem, Mode=TwoWay}"
                 TitleColor="{StaticResource Primary}"
                 BackgroundColor="{StaticResource PkrBG}"
                 TextColor="{StaticResource PkrText}"
@@ -95,8 +94,8 @@
                 Margin="0,0,0,0"/>
             <Picker 
                 x:Name="PkrAction"
-                SelectedIndex="{Binding SelectedActionIndex}"
-                SelectedItem="{Binding SelectedActionItem}"
+                SelectedIndex="{Binding SelectedActionIndex, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedActionItem, Mode=TwoWay}"
                 TitleColor="{StaticResource Primary}"
                 BackgroundColor="{StaticResource PkrBG}"
                 TextColor="{StaticResource PkrText}"
@@ -124,9 +123,10 @@
                 Margin="0,0,0,0"/>
             <Picker 
                 x:Name="PkrCarrier"
-                ItemsSource="{Binding Carriers.Result}"
-                SelectedIndex="{Binding SelectedCarrierIndex}"
-                SelectedItem="{Binding SelectedCarrierItem}"
+                ItemsSource="{Binding Carriers.Result, Mode=TwoWay}"
+                ItemDisplayBinding="{Binding .}"
+                SelectedIndex="{Binding SelectedCarrierIndex, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedCarrierItem, Mode=TwoWay}"
                 TitleColor="{StaticResource Primary}"
                 BackgroundColor="{StaticResource PkrBG}"
                 TextColor="{StaticResource PkrText}"

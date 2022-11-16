@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:Skrapper.Views"
-       Title="Skrapper"
-       x:Class="Skrapper.AppShell">
+<Shell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Skrapper.Views"
+    xmlns:vm="clr-namespace:Skrapper"
+    Title="Skrapper"
+    x:Class="Skrapper.AppShell">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
     
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
-
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">

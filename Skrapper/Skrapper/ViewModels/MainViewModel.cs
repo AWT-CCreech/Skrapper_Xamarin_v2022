@@ -1,7 +1,11 @@
-﻿using Skrapper.Themes;
+﻿using MyWebService;
+using Skrapper.Themes;
+using Skrapper.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Skrapper
@@ -13,31 +17,7 @@ namespace Skrapper
 
         public MainViewModel()
         {
-            Theme theme;
-            if (!Globals.bTestMode)
-                theme = Theme.Live;
-            else
-                theme = Theme.Test;
-
-            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-            if (mergedDictionaries != null)
-            {
-                mergedDictionaries.Clear();
-
-                switch (theme)
-                {
-                    case Theme.Test:
-                        mergedDictionaries.Add(new TestTheme());
-                        break;
-                    case Theme.Live:
-                        mergedDictionaries.Add(new LiveTheme());
-                        break;
-                    default:
-                        mergedDictionaries.Add(new LiveTheme());
-                        break;
-                }
-            }
-
+            GetTheme();
             Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
             Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
             Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
@@ -117,6 +97,33 @@ namespace Skrapper
         #region --: Skid Page :-- 
         public NotifyTaskCompletion<ObservableCollection<string>> Skids { get; set; }
         public NotifyTaskCompletion<ObservableCollection<string>> Carriers { get; private set; }
+
+
+        public int selectedSkidIndex = Globals.pSkidIdx;
+        public int SelectedSkidIndex
+        {
+            set
+            {
+                SetProperty(ref selectedSkidIndex, value);
+
+                Globals.pSkidIdx = value;
+                Console.WriteLine("[SkidViewModel.cs] (SelectedSkidIndex) >> " + value);
+            }
+            get { return selectedSkidIndex; }
+        }
+
+        public string selectedSkidItem = Globals.pSkidItem;
+        public string SelectedSkidItem
+        {
+            set
+            {
+                SetProperty(ref selectedSkidItem, value);
+
+                Globals.pSkidItem = value;
+                Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
+            }
+            get { return selectedSkidItem; }
+        }
         #endregion
 
         #region --: Scan Page :--
@@ -129,12 +136,67 @@ namespace Skrapper
         }
         #endregion
 
-        //[SOURCE] frmMainSkrapper.cs
-        #region --: SKID Data Submit Functions :--
+        #region --: Settings Page : --
+
         #endregion
 
-        //[SOURCE] frmMainSkrapper.cs
-        #region --: SKID Related Functions and Events :--
+        #region --: Helper Functions :--
+        public async void GetTheme()
+        {
+            try
+            {
+                Theme theme;
+                if (!Globals.bTestMode)
+                    theme = Theme.Live;
+                else
+                    theme = Theme.Test;
+
+                ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+                if (mergedDictionaries != null)
+                {
+                    mergedDictionaries.Clear();
+
+                    switch (theme)
+                    {
+                        case Theme.Test:
+                            mergedDictionaries.Add(new TestTheme());
+                            break;
+                        case Theme.Live:
+                            mergedDictionaries.Add(new LiveTheme());
+                            break;
+                        default:
+                            mergedDictionaries.Add(new LiveTheme());
+                            break;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(GetTheme)\r\n" + ex.Message, "dismiss");
+            }
+        }
+        public async void DoResetPickerIndex()
+        {
+            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidIndex >> " + selectedSkidIndex);
+            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidItem >> " + selectedSkidItem);
+            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) Globals.SkidNumberList >> " + Globals.SkidNumberList);
+
+            try
+            {
+                Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+                OnPropertyChanged("Skids");
+                SetProperty(ref selectedSkidIndex, -1);
+                SetProperty(ref selectedSkidItem, null);
+                OnPropertyChanged("SelectedSkidIndex");
+                OnPropertyChanged("SelectedSkidItem");
+            }
+            catch(Exception ex)
+            {
+                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(DoResetPickerIndex)\r\n"+ex.Message, "dismiss");
+            }
+            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidIndex >> " + selectedSkidIndex);
+            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidItem >> " + selectedSkidItem);
+        }
         #endregion
     }
 }

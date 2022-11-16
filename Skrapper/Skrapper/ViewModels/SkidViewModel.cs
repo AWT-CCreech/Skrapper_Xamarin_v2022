@@ -9,8 +9,6 @@ namespace Skrapper
 {
     public class SkidViewModel : MainViewModel
     {
-        public IMessageService _messageService = new MessageService();
-
         public Command EnterSkidNumberCommand { private set; get; }
         public Command CreateNewSkidNumberCommand { private set; get; }
 
@@ -77,30 +75,6 @@ namespace Skrapper
             }
         }
 
-
-        int selectedSkidIndex = Globals.pSkidIdx;
-        public int SelectedSkidIndex
-        {
-            get { return selectedSkidIndex; }
-            set 
-            {
-                SetProperty(ref selectedSkidIndex, value);
-                Globals.pSkidIdx = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedSkidIndex) >> " + value);
-            }
-        }
-
-        string selectedSkidItem = Globals.pSkidItem;
-        public string SelectedSkidItem
-        {
-            get { return selectedSkidItem; }
-            set 
-            { 
-                SetProperty (ref selectedSkidItem, value);
-                Globals.pSkidItem = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
-            }
-        }
 
         int selectedActionIndex = Globals.pActionIdx;
         public int SelectedActionIndex

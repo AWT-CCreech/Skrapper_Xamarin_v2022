@@ -8,8 +8,6 @@ namespace Skrapper
 {
     public class HistoryViewModel : MainViewModel
     {
-        public IMessageService _messageService = new MessageService();
-
         public Command DeletePartScanCommand { private set; get; }
         public Command DisplayScanCommand { get; }
         public Command AddNoteCommand { get; }

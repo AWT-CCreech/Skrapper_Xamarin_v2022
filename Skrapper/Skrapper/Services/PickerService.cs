@@ -13,7 +13,6 @@ namespace Skrapper
     /// </summary>
     public class PickerService : ViewModelBase
     {
-        public static IMessageService _messageService = new MessageService();
         #region *** USER *** 
         /// <summary>
         /// Get all active usernames.
@@ -92,6 +91,7 @@ namespace Skrapper
                 }
             }
             string s = Globals.SkidNumberList;
+            Console.WriteLine(Globals.SkidNumberList);
             sList = s.Split(delims);
             skids = sList.ToList();
 

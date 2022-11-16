@@ -12,8 +12,6 @@ namespace Skrapper
 {
     public class SettingsViewModel : MainViewModel
     {
-        public IMessageService _messageService = new MessageService();
-
         #region *** SETTINGS TAB *****************************************************************************
         public Command LogoutCommand { private set; get; }
         public Command CheckServerCommand { private set; get; }
@@ -131,31 +129,8 @@ namespace Skrapper
                 Globals.bTestMode = testModeIsChecked;
                 Globals.gWS = eHelpDeskContext.GetWebServiceRef();
 
-                Theme theme;
-                if (!testModeIsChecked)
-                    theme = Theme.Live;
-                else
-                    theme = Theme.Test;
-
-                ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-                if (mergedDictionaries != null)
-                {
-                    mergedDictionaries.Clear();
-
-                    switch (theme)
-                    {
-                        case Theme.Test:
-                            mergedDictionaries.Add(new TestTheme());
-                            break;
-                        case Theme.Live:
-                            mergedDictionaries.Add(new LiveTheme());
-                            break;
-                        default:
-                            mergedDictionaries.Add(new LiveTheme());
-                            break;
-                    }
-                }
-
+                GetTheme();
+                DoResetPickerIndex();
             }
             get { return testModeIsChecked; }
         }

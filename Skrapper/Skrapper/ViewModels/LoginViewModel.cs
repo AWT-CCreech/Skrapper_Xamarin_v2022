@@ -7,7 +7,6 @@ namespace Skrapper
 {
     public class LoginViewModel : MainViewModel
     {
-        public IMessageService _messageService = new MessageService();
 
         public Command LoginCommand { get; }
         public Command QuitCommand { get; }
