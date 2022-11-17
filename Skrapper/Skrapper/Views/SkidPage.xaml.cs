@@ -3,14 +3,18 @@ using Xamarin.Forms.Xaml;
 
 namespace Skrapper.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SkidPage : ContentPage
     {
-        SkidViewModel _viewModel;
+        SkidViewModel _skidViewModel;
         public SkidPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new SkidViewModel();
+            BindingContext = _skidViewModel = new SkidViewModel();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _skidViewModel.OnAppearing();
         }
     }
 }

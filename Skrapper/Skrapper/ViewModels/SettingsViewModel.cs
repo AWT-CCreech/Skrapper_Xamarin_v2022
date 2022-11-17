@@ -130,7 +130,6 @@ namespace Skrapper
                 Globals.gWS = eHelpDeskContext.GetWebServiceRef();
 
                 GetTheme();
-                DoResetPickerIndex();
             }
             get { return testModeIsChecked; }
         }

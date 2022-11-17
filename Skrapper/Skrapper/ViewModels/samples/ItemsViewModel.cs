@@ -1,4 +1,5 @@
 ﻿using Skrapper.Models;
+using Skrapper.ViewModels;
 using Skrapper.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Skrapper
 {
-    public class ItemsViewModel : MainViewModel
+    public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
 

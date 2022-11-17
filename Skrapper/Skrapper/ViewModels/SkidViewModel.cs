@@ -1,7 +1,9 @@
 ﻿using MyWebService;
+using Skrapper.Models;
 using Skrapper.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -11,22 +13,24 @@ namespace Skrapper
     {
         public Command EnterSkidNumberCommand { private set; get; }
         public Command CreateNewSkidNumberCommand { private set; get; }
+        public Command RefreshSkidsCommand { private set; get; }
 
         public SkidViewModel()
         {
             Title = "SKID";
+            Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+            Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
 
             #region ... COMMANDS ...
             EnterSkidNumberCommand = new Command(OnEnterSkidNumberClicked);
-            CreateNewSkidNumberCommand = new Command(
-                execute: async () =>
-                {
-                    await OnCreateNewSkidNumberClicked(Skids.Result);
-                    OnPropertyChanged("Skids");
-                    SetProperty(ref selectedSkidIndex, 0);
-                    OnPropertyChanged("SelectedSkidIndex");
-                });
+            CreateNewSkidNumberCommand = new Command(async () => { await OnCreateNewSkidNumberClicked(Skids.Result);});
+            RefreshSkidsCommand = new Command(OnRefresh);
             #endregion ... COMMANDS ...
+        }
+
+        public void OnAppearing()
+        {
+            //RefreshSkidsCommand.Execute(true);
         }
 
         private async void OnEnterSkidNumberClicked(object obj)
@@ -36,7 +40,7 @@ namespace Skrapper
                 try
                 {
                     if (Skids == null) return;
-                    bool b = await _messageService.CustomInputDialog(Skids.Result, "Skid # Entry", "Please insert skid number below...", "OK");
+                    bool b = await _messageService.CustomInputDialog(Skids.Result, "Skid # Entry", "Please insert skid number below...", "OK", selectedSkidItem.ToString());
                     if (b)
                     {
                         SetProperty(ref selectedSkidIndex, 0);
@@ -72,6 +76,33 @@ namespace Skrapper
                     await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnCreateNewSkidNumberClicked)\r\n" + ex.Message, "dismiss");
                     Console.WriteLine("[ERROR: SkidViewModel.cs] (OnCreateNewSkidNumberClicked) >> " + ex.ToString());
                 }
+                OnPropertyChanged("Skids");
+                SetProperty(ref selectedSkidIndex, 0);
+                OnPropertyChanged("SelectedSkidIndex");
+            }
+        }
+
+        private async void OnRefresh()
+        {
+            isBusy = true;
+            try
+            {
+                Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+                OnPropertyChanged("Skids");
+                SetProperty(ref selectedSkidIndex, Globals.pSkidIdx);
+                SetProperty(ref selectedSkidItem, Globals.pSkidItem);
+                OnPropertyChanged("SelectedSkidIndex");
+                OnPropertyChanged("SelectedSkidItem");
+            }
+            catch (Exception ex)
+            {
+                isBusy= false;
+                Console.WriteLine("[ERROR: SkidViewModel.cs] (OnRefresh) ex >> " + ex.ToString());
+                await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnRefresh)\r\n" + ex.Message, "dismiss");
+            }
+            finally
+            {
+                isBusy = false;
             }
         }
 

@@ -1,16 +1,12 @@
 ﻿using Skrapper.Models;
+using Skrapper.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Skrapper
 {
-    public class NewItemViewModel : MainViewModel
+    public class NewItemViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
 
         public NewItemViewModel()
         {
@@ -22,16 +18,18 @@ namespace Skrapper
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !string.IsNullOrWhiteSpace(text)
+                && !string.IsNullOrWhiteSpace(description);
         }
 
+        private string text;
         public string Text
         {
             get => text;
             set => SetProperty(ref text, value);
         }
 
+        private string description;
         public string Description
         {
             get => description;
@@ -49,7 +47,7 @@ namespace Skrapper
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Item newItem = new()
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,

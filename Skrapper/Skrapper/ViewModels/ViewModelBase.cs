@@ -1,5 +1,4 @@
-﻿using Skrapper.Models;
-using Skrapper.Services;
+﻿using Skrapper.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,9 +10,9 @@ namespace Skrapper
     public class ViewModelBase : INotifyPropertyChanged
     {
         public static IMessageService _messageService = new MessageService();
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
-        bool isBusy = false;
+        public bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }

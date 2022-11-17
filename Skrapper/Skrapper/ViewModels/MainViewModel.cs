@@ -19,8 +19,8 @@ namespace Skrapper
         {
             GetTheme();
             Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
-            Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
-            Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
+            //Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+            //Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
         }
 
         #region [USER]
@@ -96,7 +96,7 @@ namespace Skrapper
 
         #region --: Skid Page :-- 
         public NotifyTaskCompletion<ObservableCollection<string>> Skids { get; set; }
-        public NotifyTaskCompletion<ObservableCollection<string>> Carriers { get; private set; }
+        public NotifyTaskCompletion<ObservableCollection<string>> Carriers { get; set; }
 
 
         public int selectedSkidIndex = Globals.pSkidIdx;
@@ -174,28 +174,6 @@ namespace Skrapper
             {
                 await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(GetTheme)\r\n" + ex.Message, "dismiss");
             }
-        }
-        public async void DoResetPickerIndex()
-        {
-            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidIndex >> " + selectedSkidIndex);
-            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidItem >> " + selectedSkidItem);
-            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) Globals.SkidNumberList >> " + Globals.SkidNumberList);
-
-            try
-            {
-                Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
-                OnPropertyChanged("Skids");
-                SetProperty(ref selectedSkidIndex, -1);
-                SetProperty(ref selectedSkidItem, null);
-                OnPropertyChanged("SelectedSkidIndex");
-                OnPropertyChanged("SelectedSkidItem");
-            }
-            catch(Exception ex)
-            {
-                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(DoResetPickerIndex)\r\n"+ex.Message, "dismiss");
-            }
-            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidIndex >> " + selectedSkidIndex);
-            Console.WriteLine("[MainViewModel.cs] (DoResetPickerIndex) selectedSkidItem >> " + selectedSkidItem);
         }
         #endregion
     }

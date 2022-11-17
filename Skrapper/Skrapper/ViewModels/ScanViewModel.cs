@@ -21,7 +21,7 @@ namespace Skrapper
                 execute: async () =>
                 {
                     if (PartNumberChoices == null) return;
-                    bool b = await _messageService.CustomInputDialog(PartNumberChoices.Result, "Part # Entry", "Please insert part number below...", "OK");
+                    bool b = await _messageService.CustomInputDialog(PartNumberChoices.Result, "Part # Entry", "Please insert part number below...", "OK", string.Empty);
                     if (b)
                     {
                         SetProperty(ref selectedPartNumberIndex, 0);
