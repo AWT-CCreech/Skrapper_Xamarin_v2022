@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"    
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Skrapper.Views.ScanPage"
+    x:DataType="vm:ScanViewModel"
     xmlns:vm="clr-namespace:Skrapper" 
     xmlns:effects="clr-namespace:Skrapper.Effects"
     Visual="Material"
