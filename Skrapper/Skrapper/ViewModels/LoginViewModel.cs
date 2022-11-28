@@ -97,7 +97,7 @@ namespace Skrapper
                 //await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
                 App.IsUserLoggedIn = true;
                 await Xamarin.Essentials.SecureStorage.SetAsync("isUserLogged", "1");
-                Application.Current.MainPage = new AppShell();
+                Application.Current.MainPage = new MainTabbedPage();
             }
             else
             {

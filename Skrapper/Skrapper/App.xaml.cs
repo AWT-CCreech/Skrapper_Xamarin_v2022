@@ -3,26 +3,26 @@ using Skrapper.Views;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Skrapper
 {
     public partial class App : Application
     {
         public static bool IsUserLoggedIn { get; set; }
-
         public App()
         {
             InitializeComponent();
             SecureStorage.SetAsync("isUserLogged", "0");
             DependencyService.Register<MockDataStore>();
-            //MainPage = new AppShell();
+            //MainTabbedPage = new AppShell();
 
             try
             {
                 string isUserLogged = SecureStorage.GetAsync("isUserLogged").Result;
                 if (isUserLogged == "1")
                 {
-                    MainPage = new AppShell();
+                    MainPage = new MainTabbedPage();
                 }
                 else
                 {

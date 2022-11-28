@@ -12,11 +12,11 @@
             Margin="10,10,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition 
-                    Height=".12*"/>
+                    Height=".1*"/>
                 <RowDefinition 
-                    Height=".12*"/>
+                    Height=".1*"/>
                 <RowDefinition 
-                    Height=".12*"/>
+                    Height=".1*"/>
                 <RowDefinition 
                     Height=".5*"/>
                 <RowDefinition 

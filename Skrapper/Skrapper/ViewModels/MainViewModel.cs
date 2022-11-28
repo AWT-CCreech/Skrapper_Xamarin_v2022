@@ -19,8 +19,8 @@ namespace Skrapper
         {
             GetTheme();
             Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
-            //Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
-            //Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
+            Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+            Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
         }
 
         #region [USER]

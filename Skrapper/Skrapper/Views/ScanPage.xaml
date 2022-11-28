@@ -70,6 +70,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="3"
                 Grid.Row="0"
+                VerticalOptions="CenterAndExpand"
                 Margin="0,0,0,0"/>
             <Button 
                 x:Name="BtnAddCarrierSuffix"
@@ -100,6 +101,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="1"
+                VerticalOptions="CenterAndExpand"
                 Margin="0,0,0,0">
                 <Entry.Effects>
                     <effects:PlainEntry/>
@@ -123,6 +125,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="2"
+                VerticalOptions="CenterAndExpand"
                 Margin="0,9,0,-12"/>
 
             <Button 
@@ -143,6 +146,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Grid.Row="3"
+                VerticalOptions="CenterAndExpand"
                 Margin="0,9,0,-12"/>
             <Stepper 
                 x:Name="StpPartQuantity"
@@ -194,6 +198,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="4"
+                VerticalOptions="CenterAndExpand"
                 Margin="0,24,0,-30">
                 <vm:KeyboardlessEntry.Effects>
                     <effects:PlainEntry/>

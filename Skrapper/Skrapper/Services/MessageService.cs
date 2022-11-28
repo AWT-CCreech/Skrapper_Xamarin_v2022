@@ -23,7 +23,7 @@ namespace Skrapper.Services
         /// <returns>(bool) Globals.showCompleteSkidWarningAnswer</returns>
         //public async Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm)
         //{
-            //Globals.showCompleteSkidWarningAnswer = await Xamarin.Forms.Application.Current.MainPage.DisplayAlert(title, message, confirm, cancel);
+            //Globals.showCompleteSkidWarningAnswer = await Xamarin.Forms.Application.Current.MainTabbedPage.DisplayAlert(title, message, confirm, cancel);
             //Console.WriteLine("[MessageService.cs] (ShowCompleteSkidWarning) Globals.showCompleteSkidWarningAnswer >> " + Globals.showCompleteSkidWarningAnswer);
             //return Globals.showCompleteSkidWarningAnswer;
         //}

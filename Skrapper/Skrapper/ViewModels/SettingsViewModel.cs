@@ -46,9 +46,9 @@ namespace Skrapper
                 {
                     if (!eHelpDeskContext.WebServiceConnected()) return;
 
-                    ts = Task.Run(() => locWS.Endpoint.Address.ToString());
+                    ts = Task.Run(locWS.Endpoint.Address.ToString);
                     s = ts.Result;
-                    ts = Task.Run(() => locWS.GetServerURL());
+                    ts = Task.Run(locWS.GetServerURL);
                     t = ts.Result;
                     locWS.Close();
                 }

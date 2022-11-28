@@ -13,24 +13,24 @@ namespace Skrapper
     {
         public Command EnterSkidNumberCommand { private set; get; }
         public Command CreateNewSkidNumberCommand { private set; get; }
-        public Command RefreshSkidsCommand { private set; get; }
+        public Command RefreshSkidsPickerCommand { private set; get; }
 
         public SkidViewModel()
         {
             Title = "SKID";
-            Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
-            Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
+            //Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+            //Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
 
             #region ... COMMANDS ...
             EnterSkidNumberCommand = new Command(OnEnterSkidNumberClicked);
             CreateNewSkidNumberCommand = new Command(async () => { await OnCreateNewSkidNumberClicked(Skids.Result);});
-            RefreshSkidsCommand = new Command(OnRefresh);
+            RefreshSkidsPickerCommand = new Command(OnSkidsPickerRefresh);
             #endregion ... COMMANDS ...
         }
 
         public void OnAppearing()
         {
-            //RefreshSkidsCommand.Execute(true);
+            //RefreshSkidsPickerCommand.Execute(true);
         }
 
         private async void OnEnterSkidNumberClicked(object obj)
@@ -82,23 +82,19 @@ namespace Skrapper
             }
         }
 
-        private async void OnRefresh()
+        private async void OnSkidsPickerRefresh()
         {
             isBusy = true;
             try
             {
                 Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
                 OnPropertyChanged("Skids");
-                SetProperty(ref selectedSkidIndex, Globals.pSkidIdx);
-                SetProperty(ref selectedSkidItem, Globals.pSkidItem);
-                OnPropertyChanged("SelectedSkidIndex");
-                OnPropertyChanged("SelectedSkidItem");
             }
             catch (Exception ex)
             {
                 isBusy= false;
-                Console.WriteLine("[ERROR: SkidViewModel.cs] (OnRefresh) ex >> " + ex.ToString());
-                await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnRefresh)\r\n" + ex.Message, "dismiss");
+                Console.WriteLine("[ERROR: SkidViewModel.cs] (OnSkidsPickerRefresh) ex >> " + ex.ToString());
+                await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnSkidsPickerRefresh)\r\n" + ex.Message, "dismiss");
             }
             finally
             {
