@@ -130,24 +130,24 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetTestPartInfoByID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement GetTestPartInfoByID(int ID);
+        System.Data.DataSet GetTestPartInfoByID(int ID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetTestPartInfoByID", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetTestPartInfoByIDAsync(int ID);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetTestPartInfoByIDAsync(int ID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetTestPartInfoByPartNo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement GetTestPartInfoByPartNo(string partNum);
+        System.Data.DataSet GetTestPartInfoByPartNo(string partNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetTestPartInfoByPartNo", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetTestPartInfoByPartNoAsync(string partNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetTestPartInfoByPartNoAsync(string partNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetTestPartInfoBySn", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement GetTestPartInfoBySn(string SerialNum);
+        System.Data.DataSet GetTestPartInfoBySn(string SerialNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetTestPartInfoBySn", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetTestPartInfoBySnAsync(string SerialNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetTestPartInfoBySnAsync(string SerialNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetPartNumberBySn", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -382,10 +382,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/Skp_SkidGetInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement Skp_SkidGetInfo(string SkidNo);
+        System.Data.DataSet Skp_SkidGetInfo(string SkidNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/Skp_SkidGetInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> Skp_SkidGetInfoAsync(string SkidNo);
+        System.Threading.Tasks.Task<System.Data.DataSet> Skp_SkidGetInfoAsync(string SkidNo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/Skp_SkidGetFieldData", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -417,10 +417,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/SoGetInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement SoGetInfo(string SoNum);
+        System.Data.DataSet SoGetInfo(string SoNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/SoGetInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> SoGetInfoAsync(string SoNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> SoGetInfoAsync(string SoNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/SoGetItemNumbers", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -431,10 +431,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/SoGetInfoByPartNum", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement SoGetInfoByPartNum(string ItemNum);
+        System.Data.DataSet SoGetInfoByPartNum(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/SoGetInfoByPartNum", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> SoGetInfoByPartNumAsync(string ItemNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> SoGetInfoByPartNumAsync(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/SoGetItemDescription", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -459,10 +459,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RtvGetInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement RtvGetInfo(string RtvID);
+        System.Data.DataSet RtvGetInfo(string RtvID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RtvGetInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RtvGetInfoAsync(string RtvID);
+        System.Threading.Tasks.Task<System.Data.DataSet> RtvGetInfoAsync(string RtvID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RtvGetItemNumbers", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -473,10 +473,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RtvGetInfoByPartNum", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement RtvGetInfoByPartNum(string ItemNum);
+        System.Data.DataSet RtvGetInfoByPartNum(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RtvGetInfoByPartNum", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RtvGetInfoByPartNumAsync(string ItemNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> RtvGetInfoByPartNumAsync(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetOpenList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -487,10 +487,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement PoGetInfo(string PoNum);
+        System.Data.DataSet PoGetInfo(string PoNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> PoGetInfoAsync(string PoNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> PoGetInfoAsync(string PoNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetItemNumbers", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -508,10 +508,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetInfoByPartNum", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement PoGetInfoByPartNum(string ItemNum);
+        System.Data.DataSet PoGetInfoByPartNum(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetInfoByPartNum", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> PoGetInfoByPartNumAsync(string ItemNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> PoGetInfoByPartNumAsync(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/PoGetItemDescription", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -536,10 +536,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RmaGetInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement RmaGetInfo(string RmaNum);
+        System.Data.DataSet RmaGetInfo(string RmaNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RmaGetInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RmaGetInfoAsync(string RmaNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> RmaGetInfoAsync(string RmaNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RmaGetItemNumbers", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -550,10 +550,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RmaGetInfoByPartNum", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement RmaGetInfoByPartNum(string ItemNum);
+        System.Data.DataSet RmaGetInfoByPartNum(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RmaGetInfoByPartNum", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RmaGetInfoByPartNumAsync(string ItemNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> RmaGetInfoByPartNumAsync(string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/RmaHistorySearch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -592,10 +592,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetPartInfoBySerialNumber", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement GetPartInfoBySerialNumber(string SerialNum);
+        System.Data.DataSet GetPartInfoBySerialNumber(string SerialNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetPartInfoBySerialNumber", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetPartInfoBySerialNumberAsync(string SerialNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetPartInfoBySerialNumberAsync(string SerialNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetScanHistoryFieldData", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -678,10 +678,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/FindSalesOrderNumbersForRmaItem", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement FindSalesOrderNumbersForRmaItem(string RmaNum, string ItemNum);
+        System.Data.DataSet FindSalesOrderNumbersForRmaItem(string RmaNum, string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/FindSalesOrderNumbersForRmaItem", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> FindSalesOrderNumbersForRmaItemAsync(string RmaNum, string ItemNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> FindSalesOrderNumbersForRmaItemAsync(string RmaNum, string ItemNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/GetEventInfoBySoNumber", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -692,10 +692,10 @@ namespace MyWebService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/AnyOrderWithPartNumber", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        MyWebService.ArrayOfXElement AnyOrderWithPartNumber(string PartNum);
+        System.Data.DataSet AnyOrderWithPartNumber(string PartNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/AnyOrderWithPartNumber", ReplyAction="*")]
-        System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> AnyOrderWithPartNumberAsync(string PartNum);
+        System.Threading.Tasks.Task<System.Data.DataSet> AnyOrderWithPartNumberAsync(string PartNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://10.0.0.33/ScanTestService/ScanTestCount", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -1092,32 +1092,32 @@ namespace MyWebService
             return base.Channel.AddTestablePartAsync(PartNo, UserName);
         }
         
-        public MyWebService.ArrayOfXElement GetTestPartInfoByID(int ID)
+        public System.Data.DataSet GetTestPartInfoByID(int ID)
         {
             return base.Channel.GetTestPartInfoByID(ID);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetTestPartInfoByIDAsync(int ID)
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetTestPartInfoByIDAsync(int ID)
         {
             return base.Channel.GetTestPartInfoByIDAsync(ID);
         }
         
-        public MyWebService.ArrayOfXElement GetTestPartInfoByPartNo(string partNum)
+        public System.Data.DataSet GetTestPartInfoByPartNo(string partNum)
         {
             return base.Channel.GetTestPartInfoByPartNo(partNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetTestPartInfoByPartNoAsync(string partNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetTestPartInfoByPartNoAsync(string partNum)
         {
             return base.Channel.GetTestPartInfoByPartNoAsync(partNum);
         }
         
-        public MyWebService.ArrayOfXElement GetTestPartInfoBySn(string SerialNum)
+        public System.Data.DataSet GetTestPartInfoBySn(string SerialNum)
         {
             return base.Channel.GetTestPartInfoBySn(SerialNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetTestPartInfoBySnAsync(string SerialNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetTestPartInfoBySnAsync(string SerialNum)
         {
             return base.Channel.GetTestPartInfoBySnAsync(SerialNum);
         }
@@ -1452,12 +1452,12 @@ namespace MyWebService
             return base.Channel.Skp_GetSkidNoBySerialNumberAsync(SerialNo);
         }
         
-        public MyWebService.ArrayOfXElement Skp_SkidGetInfo(string SkidNo)
+        public System.Data.DataSet Skp_SkidGetInfo(string SkidNo)
         {
             return base.Channel.Skp_SkidGetInfo(SkidNo);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> Skp_SkidGetInfoAsync(string SkidNo)
+        public System.Threading.Tasks.Task<System.Data.DataSet> Skp_SkidGetInfoAsync(string SkidNo)
         {
             return base.Channel.Skp_SkidGetInfoAsync(SkidNo);
         }
@@ -1502,12 +1502,12 @@ namespace MyWebService
             return base.Channel.SoGetOpenListAsync();
         }
         
-        public MyWebService.ArrayOfXElement SoGetInfo(string SoNum)
+        public System.Data.DataSet SoGetInfo(string SoNum)
         {
             return base.Channel.SoGetInfo(SoNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> SoGetInfoAsync(string SoNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> SoGetInfoAsync(string SoNum)
         {
             return base.Channel.SoGetInfoAsync(SoNum);
         }
@@ -1522,12 +1522,12 @@ namespace MyWebService
             return base.Channel.SoGetItemNumbersAsync(SoNum);
         }
         
-        public MyWebService.ArrayOfXElement SoGetInfoByPartNum(string ItemNum)
+        public System.Data.DataSet SoGetInfoByPartNum(string ItemNum)
         {
             return base.Channel.SoGetInfoByPartNum(ItemNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> SoGetInfoByPartNumAsync(string ItemNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> SoGetInfoByPartNumAsync(string ItemNum)
         {
             return base.Channel.SoGetInfoByPartNumAsync(ItemNum);
         }
@@ -1562,12 +1562,12 @@ namespace MyWebService
             return base.Channel.RtvGetOpenListAsync();
         }
         
-        public MyWebService.ArrayOfXElement RtvGetInfo(string RtvID)
+        public System.Data.DataSet RtvGetInfo(string RtvID)
         {
             return base.Channel.RtvGetInfo(RtvID);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RtvGetInfoAsync(string RtvID)
+        public System.Threading.Tasks.Task<System.Data.DataSet> RtvGetInfoAsync(string RtvID)
         {
             return base.Channel.RtvGetInfoAsync(RtvID);
         }
@@ -1582,12 +1582,12 @@ namespace MyWebService
             return base.Channel.RtvGetItemNumbersAsync(RtvID);
         }
         
-        public MyWebService.ArrayOfXElement RtvGetInfoByPartNum(string ItemNum)
+        public System.Data.DataSet RtvGetInfoByPartNum(string ItemNum)
         {
             return base.Channel.RtvGetInfoByPartNum(ItemNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RtvGetInfoByPartNumAsync(string ItemNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> RtvGetInfoByPartNumAsync(string ItemNum)
         {
             return base.Channel.RtvGetInfoByPartNumAsync(ItemNum);
         }
@@ -1602,12 +1602,12 @@ namespace MyWebService
             return base.Channel.PoGetOpenListAsync();
         }
         
-        public MyWebService.ArrayOfXElement PoGetInfo(string PoNum)
+        public System.Data.DataSet PoGetInfo(string PoNum)
         {
             return base.Channel.PoGetInfo(PoNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> PoGetInfoAsync(string PoNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> PoGetInfoAsync(string PoNum)
         {
             return base.Channel.PoGetInfoAsync(PoNum);
         }
@@ -1632,12 +1632,12 @@ namespace MyWebService
             return base.Channel.PoGetAllItemNumbersAsync(PoNum);
         }
         
-        public MyWebService.ArrayOfXElement PoGetInfoByPartNum(string ItemNum)
+        public System.Data.DataSet PoGetInfoByPartNum(string ItemNum)
         {
             return base.Channel.PoGetInfoByPartNum(ItemNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> PoGetInfoByPartNumAsync(string ItemNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> PoGetInfoByPartNumAsync(string ItemNum)
         {
             return base.Channel.PoGetInfoByPartNumAsync(ItemNum);
         }
@@ -1672,12 +1672,12 @@ namespace MyWebService
             return base.Channel.RmaGetOpenListAsync();
         }
         
-        public MyWebService.ArrayOfXElement RmaGetInfo(string RmaNum)
+        public System.Data.DataSet RmaGetInfo(string RmaNum)
         {
             return base.Channel.RmaGetInfo(RmaNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RmaGetInfoAsync(string RmaNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> RmaGetInfoAsync(string RmaNum)
         {
             return base.Channel.RmaGetInfoAsync(RmaNum);
         }
@@ -1692,12 +1692,12 @@ namespace MyWebService
             return base.Channel.RmaGetItemNumbersAsync(RmaNum);
         }
         
-        public MyWebService.ArrayOfXElement RmaGetInfoByPartNum(string ItemNum)
+        public System.Data.DataSet RmaGetInfoByPartNum(string ItemNum)
         {
             return base.Channel.RmaGetInfoByPartNum(ItemNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> RmaGetInfoByPartNumAsync(string ItemNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> RmaGetInfoByPartNumAsync(string ItemNum)
         {
             return base.Channel.RmaGetInfoByPartNumAsync(ItemNum);
         }
@@ -1752,12 +1752,12 @@ namespace MyWebService
             return base.Channel.VerifySerialNumber_V2Async(SerialNum, OrderType, OrderNum);
         }
         
-        public MyWebService.ArrayOfXElement GetPartInfoBySerialNumber(string SerialNum)
+        public System.Data.DataSet GetPartInfoBySerialNumber(string SerialNum)
         {
             return base.Channel.GetPartInfoBySerialNumber(SerialNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> GetPartInfoBySerialNumberAsync(string SerialNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetPartInfoBySerialNumberAsync(string SerialNum)
         {
             return base.Channel.GetPartInfoBySerialNumberAsync(SerialNum);
         }
@@ -1903,12 +1903,12 @@ namespace MyWebService
             return base.Channel.FindMatchingSoSerialNumAsync(request);
         }
         
-        public MyWebService.ArrayOfXElement FindSalesOrderNumbersForRmaItem(string RmaNum, string ItemNum)
+        public System.Data.DataSet FindSalesOrderNumbersForRmaItem(string RmaNum, string ItemNum)
         {
             return base.Channel.FindSalesOrderNumbersForRmaItem(RmaNum, ItemNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> FindSalesOrderNumbersForRmaItemAsync(string RmaNum, string ItemNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> FindSalesOrderNumbersForRmaItemAsync(string RmaNum, string ItemNum)
         {
             return base.Channel.FindSalesOrderNumbersForRmaItemAsync(RmaNum, ItemNum);
         }
@@ -1923,12 +1923,12 @@ namespace MyWebService
             return base.Channel.GetEventInfoBySoNumberAsync(SoNum, WhatField);
         }
         
-        public MyWebService.ArrayOfXElement AnyOrderWithPartNumber(string PartNum)
+        public System.Data.DataSet AnyOrderWithPartNumber(string PartNum)
         {
             return base.Channel.AnyOrderWithPartNumber(PartNum);
         }
         
-        public System.Threading.Tasks.Task<MyWebService.ArrayOfXElement> AnyOrderWithPartNumberAsync(string PartNum)
+        public System.Threading.Tasks.Task<System.Data.DataSet> AnyOrderWithPartNumberAsync(string PartNum)
         {
             return base.Channel.AnyOrderWithPartNumberAsync(PartNum);
         }

@@ -5,6 +5,8 @@
     x:Class="Skrapper.Views.SettingsPage"
     x:DataType="vm:SettingsViewModel"
     xmlns:vm="clr-namespace:Skrapper"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:effects="clr-namespace:Skrapper.Effects"
     Visual="Material"
     Title="{Binding Title}"
     BackgroundColor="{DynamicResource PageBackgroundColor}">

@@ -1,10 +1,17 @@
-﻿using MyWebService;
+﻿using Android.App;
+using Android.Hardware.Biometrics;
+using MyWebService;
+using Skrapper.Models;
 using Skrapper.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Skrapper
 {
@@ -13,6 +20,56 @@ namespace Skrapper
     /// </summary>
     public class PickerService : ViewModelBase
     {
+
+        public static async Task<ObservableCollection<History>> LoadGridFromSkidNum(string skidNo, bool loadGrid, bool loadPartList)
+        {
+            ObservableCollection<History> result = new();
+            if (loadGrid && skidNo.Length == 9)
+            {
+                try
+                {
+                    using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
+                    {
+                        DataSet dataSet = new("SkidInfo");
+                        //int count = 0;
+                        dataSet = locWS.Skp_SkidGetInfo(skidNo);
+                        var history = dataSet.Tables[0].AsEnumerable()
+                            .Select(dataRow => new History
+                            {
+                                SkidNo = dataRow.Field<string>("SkidNo"),
+                                PartNo = dataRow.Field<string>("PartNo"),
+                                Qty = dataRow.Field<int>("Qty"),
+                                SerialNo = dataRow.Field<string>("SerialNo"),
+                                SerialNoB = dataRow.Field<string>("SerialNoB"),
+                                HeciCode = dataRow.Field<string>("HeciCode"),
+                                ParentID = dataRow.Field<int>("ParentID")
+                            }).ToList();
+                        result = new ObservableCollection<History>(history);
+
+                        /*
+                        foreach (DataTable dt in dataSet.Tables)
+                        {
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                Console.WriteLine("--------------------------count:" + count++);
+                                foreach (var i in dr.ItemArray)
+                                {
+                                    Console.WriteLine(i);
+                                }
+                            }
+                        }
+                        */
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("[ERROR: PickerService.cs] (LoadGridFromSkidNum) ex >> " + ex.ToString());
+                    await _messageService.DisplayError("[ERROR: PickerService.cs]", "(LoadGridFromSkidNum)\r\n" + ex.Message, "dismiss");
+                }
+            }
+            return result;
+        }
+
         #region *** USER *** 
         /// <summary>
         /// Get all active usernames.

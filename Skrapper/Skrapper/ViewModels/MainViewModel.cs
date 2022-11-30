@@ -1,4 +1,6 @@
 ﻿using MyWebService;
+using Skrapper.Models;
+using Skrapper.Services;
 using Skrapper.Themes;
 using Skrapper.Views;
 using System;
@@ -6,14 +8,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel.Channels;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xamarin.Forms;
 
 namespace Skrapper
 {
     public class MainViewModel : ViewModelBase
     {
-        public string VersionLabel { get; } = Constants.ksVersionStr;
-        public string CopyrightLabel { get; } = Constants.ksCopyrightStr;
+        public string VersionLabel { get; } = Constants.VERSION;
+        public string CopyrightLabel { get; } = Constants.COPYRIGHT;
 
         public MainViewModel()
         {
@@ -98,6 +101,8 @@ namespace Skrapper
         public NotifyTaskCompletion<ObservableCollection<string>> Skids { get; set; }
         public NotifyTaskCompletion<ObservableCollection<string>> Carriers { get; set; }
 
+        public NotifyTaskCompletion<ObservableCollection<XElement>> SkidGrid { get; set; }
+
 
         public int selectedSkidIndex = Globals.pSkidIdx;
         public int SelectedSkidIndex
@@ -118,9 +123,13 @@ namespace Skrapper
             set
             {
                 SetProperty(ref selectedSkidItem, value);
-
                 Globals.pSkidItem = value;
                 Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
+
+                Task<ObservableCollection<History>> t = Task.Run(async () => await PickerService.LoadGridFromSkidNum(selectedSkidItem, true, true));
+                SkidHistory = new NotifyTaskCompletion<ObservableCollection<History>>(t);
+                OnPropertyChanged("SkidHistory");
+                OnPropertyChanged("SkidCountString");
             }
             get { return selectedSkidItem; }
         }
@@ -133,6 +142,21 @@ namespace Skrapper
         {
             SetProperty(ref orderInProcess, inProcess);
             OnPropertyChanged("OrderInProcess");
+        }
+        #endregion
+
+        #region --: History Page :--
+        public NotifyTaskCompletion<ObservableCollection<History>> SkidHistory { get; set; }
+
+        string skidCountString = "Scan Count: 0";
+        public string SkidCountString
+        {
+            set { SetProperty(ref skidCountString, value); }
+            get
+            {
+                string s = "Scan Count: " + SkidHistory.Result.Count.ToString();
+                return s;
+            }
         }
         #endregion
 

@@ -19,6 +19,13 @@ namespace Skrapper
             set { SetProperty(ref isBusy, value); }
         }
 
+        public bool isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set { SetProperty(ref isRefreshing, value); }
+        }
+
         public bool orderInProcess = false;
         public bool OrderInProcess
         {

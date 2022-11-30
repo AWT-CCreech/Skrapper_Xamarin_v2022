@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     x:DataType="skrapper:MainViewModel"
     x:Class="Skrapper.MainTabbedPage"
-    SelectedTabColor="IndianRed"
+    SelectedTabColor="{StaticResource Tertiary}"
     UnselectedTabColor="#e6e6e6"
     BarTextColor="White">
     <TabbedPage.BindingContext>

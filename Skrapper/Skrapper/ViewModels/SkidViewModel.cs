@@ -18,6 +18,7 @@ namespace Skrapper
         public SkidViewModel()
         {
             Title = "SKID";
+
             //Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
             //Carriers = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetCarriers());
 
@@ -60,6 +61,7 @@ namespace Skrapper
             Task<string> ts;
             if (eHelpDeskContext.WebServiceConnected())
             {
+                IsBusy = true;
                 try
                 {
                     using (ScannerWebServiceSoapClient locWS = eHelpDeskContext.GetWebServiceRef())
@@ -73,8 +75,13 @@ namespace Skrapper
                 }
                 catch (Exception ex)
                 {
+                    IsBusy = false;
                     await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnCreateNewSkidNumberClicked)\r\n" + ex.Message, "dismiss");
                     Console.WriteLine("[ERROR: SkidViewModel.cs] (OnCreateNewSkidNumberClicked) >> " + ex.ToString());
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
                 OnPropertyChanged("Skids");
                 SetProperty(ref selectedSkidIndex, 0);
@@ -84,21 +91,23 @@ namespace Skrapper
 
         private async void OnSkidsPickerRefresh()
         {
-            isBusy = true;
+            IsRefreshing = true;
             try
             {
+                SetProperty(ref selectedSkidIndex, -1);
+                OnPropertyChanged("SelectedSkidIndex");
                 Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
                 OnPropertyChanged("Skids");
             }
             catch (Exception ex)
             {
-                isBusy= false;
+                IsRefreshing = false;
                 Console.WriteLine("[ERROR: SkidViewModel.cs] (OnSkidsPickerRefresh) ex >> " + ex.ToString());
                 await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnSkidsPickerRefresh)\r\n" + ex.Message, "dismiss");
             }
             finally
             {
-                isBusy = false;
+                IsRefreshing = false;
             }
         }
 

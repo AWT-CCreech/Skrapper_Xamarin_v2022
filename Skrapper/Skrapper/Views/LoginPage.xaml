@@ -55,14 +55,14 @@
                 MaxLines="1"
                 Margin="0,0,0,0"/>
             <Label 
-                x:Name="ksVersionLabel" 
+                x:Name="VersionLabel" 
                 Text="{Binding VersionLabel}" 
                 HorizontalTextAlignment="Center" 
                 VerticalOptions="EndAndExpand"
                 MaxLines="1"
                 Margin="0,0,0,0"/>
             <Label 
-                x:Name="ksCopyrightLabel" 
+                x:Name="CopyrightLabel" 
                 Text="{Binding CopyrightLabel}" 
                 HorizontalTextAlignment="Center" 
                 VerticalOptions="EndAndExpand"

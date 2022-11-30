@@ -63,6 +63,9 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.Forms.DataGrid">
+      <Version>5.0.0.2515</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>5.0.0.2515</Version>
     </PackageReference>
