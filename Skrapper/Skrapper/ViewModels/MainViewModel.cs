@@ -127,7 +127,8 @@ namespace Skrapper
                 Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
 
                 Task<ObservableCollection<History>> t = Task.Run(async () => await PickerService.LoadGridFromSkidNum(selectedSkidItem, true, true));
-                SkidHistory = new NotifyTaskCompletion<ObservableCollection<History>>(t);
+                SkidHistory = new ObservableCollection<History>(t.Result);
+
                 OnPropertyChanged("SkidHistory");
                 OnPropertyChanged("SkidCountString");
             }
@@ -146,7 +147,16 @@ namespace Skrapper
         #endregion
 
         #region --: History Page :--
-        public NotifyTaskCompletion<ObservableCollection<History>> SkidHistory { get; set; }
+        public ObservableCollection<History> skidHistory = null;
+        public ObservableCollection<History> SkidHistory
+        {
+            set { SetProperty(ref skidHistory, value); }
+            get
+            {
+                skidHistory ??= new ObservableCollection<History>();
+                return skidHistory;
+            }
+        }
 
         string skidCountString = "Scan Count: 0";
         public string SkidCountString
@@ -154,7 +164,7 @@ namespace Skrapper
             set { SetProperty(ref skidCountString, value); }
             get
             {
-                string s = "Scan Count: " + SkidHistory.Result.Count.ToString();
+                string s = "Scan Count: " + SkidHistory.Count.ToString();
                 return s;
             }
         }

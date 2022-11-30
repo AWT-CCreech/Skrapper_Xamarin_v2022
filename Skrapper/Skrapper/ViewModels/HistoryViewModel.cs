@@ -2,6 +2,7 @@
 using Skrapper.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Skrapper
@@ -23,7 +24,7 @@ namespace Skrapper
 
         public void OnAppearing()
         {
-            if(selectedSkidIndex != -1)
+            if(Globals.pSkidIdx >= 0)
             {
                 DoRefreshHistoryCommand.Execute(true);
             }
@@ -34,6 +35,8 @@ namespace Skrapper
             IsRefreshing = true;
             try
             {
+                Task<ObservableCollection<History>> t = Task.Run(async () => await PickerService.LoadGridFromSkidNum(Globals.pSkidItem, true, true));
+                SkidHistory = t.Result;
                 OnPropertyChanged("SkidHistory");
             }
             catch(Exception ex)

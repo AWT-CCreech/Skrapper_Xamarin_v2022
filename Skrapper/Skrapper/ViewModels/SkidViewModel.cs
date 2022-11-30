@@ -91,7 +91,7 @@ namespace Skrapper
 
         private async void OnSkidsPickerRefresh()
         {
-            IsRefreshing = true;
+            IsBusy = true;
             try
             {
                 SetProperty(ref selectedSkidIndex, -1);
@@ -101,13 +101,13 @@ namespace Skrapper
             }
             catch (Exception ex)
             {
-                IsRefreshing = false;
+                IsBusy = false;
                 Console.WriteLine("[ERROR: SkidViewModel.cs] (OnSkidsPickerRefresh) ex >> " + ex.ToString());
                 await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnSkidsPickerRefresh)\r\n" + ex.Message, "dismiss");
             }
             finally
             {
-                IsRefreshing = false;
+                IsBusy = false;
             }
         }
 

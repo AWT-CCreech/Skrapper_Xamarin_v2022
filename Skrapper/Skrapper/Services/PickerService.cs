@@ -45,8 +45,9 @@ namespace Skrapper
                                 ParentID = dataRow.Field<int>("ParentID")
                             }).ToList();
                         result = new ObservableCollection<History>(history);
+                        Console.WriteLine("[PickerService.cs] (LoadGridFromSkidNum) result.Count >> " + result.Count.ToString());
 
-                        /*
+                        int count = 0;
                         foreach (DataTable dt in dataSet.Tables)
                         {
                             foreach (DataRow dr in dt.Rows)
@@ -58,7 +59,7 @@ namespace Skrapper
                                 }
                             }
                         }
-                        */
+                        
                     }
                 }
                 catch (Exception ex)
