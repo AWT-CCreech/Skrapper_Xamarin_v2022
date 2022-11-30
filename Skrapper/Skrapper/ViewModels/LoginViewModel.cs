@@ -90,8 +90,8 @@ namespace Skrapper
         {
             IsBusy = true;
 
-            bool validated = await IsValidUser();
-            if (validated)
+            Task<bool> validated = Task.Run(() => IsValidUser());
+            if (validated.Result)
             {
                 // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
                 //await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
@@ -101,6 +101,7 @@ namespace Skrapper
             }
             else
             {
+                IsBusy = false;
                 return;
             }
         }
@@ -128,6 +129,7 @@ namespace Skrapper
             {
                 await _messageService.DisplayError("[ERROR: LoginViewModel.cs]", ex.Message, "dismiss");
             }
+
             IsBusy = false;
             return res;
         }

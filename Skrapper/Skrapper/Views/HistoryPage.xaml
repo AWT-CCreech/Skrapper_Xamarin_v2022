@@ -27,55 +27,48 @@
             <dg:DataGrid 
                 x:Name="dgOrderData" x:DataType="vm:HistoryViewModel"
                 ItemsSource="{Binding Path=SkidHistory, Mode=TwoWay}" 
-                SelectionEnabled="True" 
-                RowHeight="70" 
-                HeaderHeight="50"  
-                BorderColor="#CCCCCC" 
-                HeaderBackground="#E0E6F8" 
                 PullToRefreshCommand="{Binding Path=DoRefreshHistoryCommand}" 
                 IsRefreshing="{Binding Path=IsRefreshing}" 
+                BorderColor="{DynamicResource PageBackgroundColor}" 
+                HeaderBackground="{StaticResource Primary}" 
+                SelectionEnabled="True" 
+                RowHeight="40" 
+                HeaderHeight="60"  
                 ActiveRowColor="#8899AA"
+                FontSize="10"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"
-                Margin="10,5,10,5">
+                Margin="10,10,10,10">
                 <dg:DataGrid.Columns>
-                    <dg:DataGridColumn Title="SkidNo" PropertyName="SkidNo" Width="2*">
+                    <dg:DataGridColumn Title="SkidNo" PropertyName="SkidNo" Width="3*">
                         <dg:DataGridColumn.FormattedTitle>
                             <FormattedString>
-                                <Span Text="SkidNo" FontSize="12" TextColor="{StaticResource Primary}" FontAttributes="Bold"/>
+                                <Span Text="SkidNo" FontSize="12" TextColor="#b1b4b8" FontAttributes="Bold"/>
                             </FormattedString>
                         </dg:DataGridColumn.FormattedTitle>
                     </dg:DataGridColumn>
 
-                    <dg:DataGridColumn PropertyName="PartNo" Width="2*">
+                    <dg:DataGridColumn PropertyName="PartNo" Width="4*">
                         <dg:DataGridColumn.FormattedTitle>
                             <FormattedString>
-                                <Span Text="PartNo" FontSize="12" TextColor="{StaticResource Primary}"/>
+                                <Span Text="PartNo" FontSize="12" TextColor="#b1b4b8"/>
                             </FormattedString>
                         </dg:DataGridColumn.FormattedTitle>
                     </dg:DataGridColumn>
 
-                    <dg:DataGridColumn Title="Qty" PropertyName="Qty" Width="2*">
+                    <dg:DataGridColumn Title="Qty" PropertyName="Qty" HorizontalContentAlignment="Center" Width="1.5*">
                         <dg:DataGridColumn.FormattedTitle>
                             <FormattedString>
-                                <Span Text="Qty" FontSize="12" TextColor="{StaticResource Primary}"/>
-                            </FormattedString>
-                        </dg:DataGridColumn.FormattedTitle>
-                    </dg:DataGridColumn>
-                    
-                    <dg:DataGridColumn Title="SerialNo" PropertyName="SerialNo" Width="3*">
-                        <dg:DataGridColumn.FormattedTitle>
-                            <FormattedString>
-                                <Span Text="SerialNo" FontSize="12" TextColor="{StaticResource Primary}"/>
+                                <Span Text="Qty" FontSize="12" TextColor="#b1b4b8"/>
                             </FormattedString>
                         </dg:DataGridColumn.FormattedTitle>
                     </dg:DataGridColumn>
 
-                    <dg:DataGridColumn Title="HeciCode" PropertyName="HeciCode" Width="2*">
+                    <dg:DataGridColumn Title="SerialNo" PropertyName="SerialNo" Width="4.5*">
                         <dg:DataGridColumn.FormattedTitle>
                             <FormattedString>
-                                <Span Text="HeciCode" FontSize="12" TextColor="{StaticResource Primary}"/>
+                                <Span Text="SerialNo" FontSize="12" TextColor="#b1b4b8"/>
                             </FormattedString>
                         </dg:DataGridColumn.FormattedTitle>
                     </dg:DataGridColumn>
@@ -88,7 +81,7 @@
                 </dg:DataGrid.RowsBackgroundColorPalette>
             </dg:DataGrid>
 
-            <Entry Placeholder="(Add Note)"
+            <Entry Placeholder="(Skid Note)"
                    FontSize="15"
                    ClearButtonVisibility="WhileEditing"
                    Grid.Column="0"

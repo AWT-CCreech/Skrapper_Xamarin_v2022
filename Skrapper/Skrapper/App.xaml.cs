@@ -14,7 +14,6 @@ namespace Skrapper
         {
             InitializeComponent();
             SecureStorage.SetAsync("isUserLogged", "0");
-            DependencyService.Register<MockDataStore>();
             //MainTabbedPage = new AppShell();
 
             try

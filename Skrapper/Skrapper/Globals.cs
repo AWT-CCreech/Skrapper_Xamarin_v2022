@@ -39,16 +39,21 @@ namespace Skrapper
         public static string SkidTypeList = null;
         public static string CarrierList = null;
         public static string LocationList = null;
+
         public static int pSkidIdx = -1;
         public static string pSkidItem = string.Empty;
-        public static int pActionIdx = -1;
-        public static string pActionItem = string.Empty;
+
+        public static int pActionIdx = 0;
+        public static string pActionItem = "ADD";
+
         public static int pCarrierIdx = -1;
         public static string pCarrierItem = string.Empty;
         #endregion
 
 
         #region--:[SCAN TAB]:--
+        public static string PartsList = null;
+
         public static int pPartNumIdx = -1; //pkrPartNum.SelectedIndex
         public static string pPartNumItem = null;
 

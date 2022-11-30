@@ -5,14 +5,16 @@ namespace Skrapper.Views
 {
     public partial class ScanPage : ContentPage
     {
+        ScanViewModel _scanViewModel;
         public ScanPage()
         {
             InitializeComponent();
+            BindingContext = _scanViewModel = new ScanViewModel();
         }
-
-        private void StpPartQuantity_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        protected override void OnAppearing()
         {
-
+            base.OnAppearing();
+            _scanViewModel.OnAppearing();
         }
     }
 }

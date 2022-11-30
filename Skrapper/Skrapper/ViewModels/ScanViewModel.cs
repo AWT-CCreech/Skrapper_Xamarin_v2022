@@ -1,5 +1,6 @@
 ﻿using Skrapper.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -27,6 +28,26 @@ namespace Skrapper
                         OnPropertyChanged("SelectedPartNumberIndex");
                     }
                 });
+        }
+
+        public void OnAppearing()
+        {
+            /*
+            bool b = PartNumberChoices.Result.LongCount() <= 0;
+            if (b)
+            {
+                DoRefreshHistoryCommand.Execute(true);
+            }
+            else
+            {
+                if (Globals.pSkidItem != SkidHistory[0].SkidNo)
+                {
+                    DoRefreshHistoryCommand.Execute(true);
+                }
+            }
+            */
+            //UtilityService.FillListControl(PartNumberChoices, Globals.PartsList, false);
+            
         }
 
         int selectedPartNumberIndex;

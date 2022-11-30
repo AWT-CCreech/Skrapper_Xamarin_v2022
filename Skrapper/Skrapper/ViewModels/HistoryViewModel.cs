@@ -24,31 +24,67 @@ namespace Skrapper
 
         public void OnAppearing()
         {
+            /*
             if(Globals.pSkidIdx >= 0)
+            */
+            bool b = SkidHistory.Count <= 0;
+            if (b)
             {
                 DoRefreshHistoryCommand.Execute(true);
+            }
+            else
+            {
+                if(Globals.pSkidItem != SkidHistory[0].SkidNo)
+                {
+                    DoRefreshHistoryCommand.Execute(true);
+                }
             }
         }
 
         private async void DoRefreshHistory(object obj)
         {
-            IsRefreshing = true;
-            try
+            if(Globals.pSkidIdx < 0)
             {
-                Task<ObservableCollection<History>> t = Task.Run(async () => await PickerService.LoadGridFromSkidNum(Globals.pSkidItem, true, true));
-                SkidHistory = t.Result;
-                OnPropertyChanged("SkidHistory");
+                IsRefreshing = true;
+                try
+                {
+                    SkidHistory.Clear();
+                    OnPropertyChanged("SkidHistory");
+                    OnPropertyChanged("SkidCountString");
+                }
+                catch(Exception ex)
+                {
+                    IsRefreshing = false;
+                    await _messageService.DisplayError("[ERROR: HistoryViewModel.cs]", ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: HistoryViewModel.cs] (DoRefreshHistory) >> " + ex.ToString());
+                }
+                finally
+                {
+                    IsRefreshing= false;
+                }
             }
-            catch(Exception ex)
+            else
             {
-                IsRefreshing= false;
-                await _messageService.DisplayError("[ERROR: HistoryViewModel.cs]", ex.Message, "dismiss");
-                Console.WriteLine("[ERROR: HistoryViewModel.cs] (DoRefreshHistory) >> " + ex.ToString());
+                IsRefreshing = true;
+                try
+                {
+                    Task<ObservableCollection<History>> t = Task.Run(async () => await DataGridService.LoadGridFromSkidNum(Globals.pSkidItem));
+                    SkidHistory = t.Result;
+                    OnPropertyChanged("SkidHistory");
+                    OnPropertyChanged("SkidCountString");
+                }
+                catch (Exception ex)
+                {
+                    IsRefreshing = false;
+                    await _messageService.DisplayError("[ERROR: HistoryViewModel.cs]", ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: HistoryViewModel.cs] (DoRefreshHistory) >> " + ex.ToString());
+                }
+                finally
+                {
+                    IsRefreshing = false;
+                }
             }
-            finally
-            {
-                IsRefreshing = false;
-            }
+            
         }
 
 

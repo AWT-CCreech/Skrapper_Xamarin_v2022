@@ -126,9 +126,16 @@ namespace Skrapper
                 Globals.pSkidItem = value;
                 Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
 
-                Task<ObservableCollection<History>> t = Task.Run(async () => await PickerService.LoadGridFromSkidNum(selectedSkidItem, true, true));
-                SkidHistory = new ObservableCollection<History>(t.Result);
+                if(selectedSkidIndex > -1)
+                {
+                    //Task<ObservableCollection<History>> t = Task.Run(async () => await DataGridService.LoadGridFromSkidNum(selectedSkidItem));
+                    //SkidHistory = new ObservableCollection<History>(t.Result);
 
+                    Task<ObservableCollection<string>> s = Task.Run(async () => await DataGridService.LoadPartListFromSkidNum(selectedSkidItem));
+                    PartNumberChoices = new NotifyTaskCompletion<ObservableCollection<string>>(s);
+                }
+
+                OnPropertyChanged("PartNumberChoices");
                 OnPropertyChanged("SkidHistory");
                 OnPropertyChanged("SkidCountString");
             }

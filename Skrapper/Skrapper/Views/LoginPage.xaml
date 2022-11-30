@@ -41,9 +41,10 @@
                 Command="{Binding QuitCommand}"/>
             <ActivityIndicator 
                 x:Name="aiLogin" x:FieldModifier="public" 
-                Color="DarkGray"
+                Color="{StaticResource Primary}"
                 IsVisible="True"
-                IsRunning="{Binding IsBusy}"
+                IsEnabled="True"
+                IsRunning="{Binding Path=IsBusy, Mode=TwoWay}"
                 VerticalOptions="CenterAndExpand" 
                 Scale=".60"
                 Margin="0,0,0,0"/>
