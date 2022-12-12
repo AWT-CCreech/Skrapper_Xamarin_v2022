@@ -18,15 +18,15 @@
             Margin="10,10,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition 
-                    Height=".18*"/>
+                    Height=".15*"/>
                 <RowDefinition 
-                    Height=".18*"/>
+                    Height=".15*"/>
                 <RowDefinition 
-                    Height=".18*"/>
+                    Height=".15*"/>
                 <RowDefinition 
-                    Height=".18*"/>
+                    Height=".15*"/>
                 <RowDefinition 
-                    Height=".18*"/>
+                    Height=".15*"/>
                 <RowDefinition 
                     Height=".3*"/>
                 <RowDefinition 
@@ -85,6 +85,7 @@
                 Margin="0,0,0,0"/>
 
             <Button 
+                x:Name="BtnAltPartNum"
                 Text="Alt #" 
                 TextColor="#06477D"
                 BackgroundColor="#06477d"
@@ -111,6 +112,7 @@
             </Entry>
 
             <Button
+                x:Name="BtnPartType"
                 Text="Type"
                 TextColor="#06477D"
                 BackgroundColor="#06477d"
@@ -121,6 +123,9 @@
                 Margin="0,9,0,-12"/>
             <Picker 
                 x:Name="PkrPartType"
+                ItemsSource="{Binding PartTypes.Result, Mode=TwoWay}"
+                SelectedIndex="{Binding SelectedPartTypeIndex, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedPartType, Mode=TwoWay}"
                 TitleColor="{StaticResource Primary}"
                 BackgroundColor="{StaticResource PkrBG}"
                 TextColor="{StaticResource PkrText}"
@@ -131,6 +136,7 @@
                 Margin="0,9,0,-12"/>
 
             <Button 
+                x:Name="BtnPartQty"
                 Text="QTY" 
                 TextColor="#06477D"
                 BackgroundColor="#06477d"
@@ -151,7 +157,7 @@
                 VerticalOptions="CenterAndExpand"
                 Margin="0,9,0,-12"/>
             <Stepper 
-                x:Name="StpPartQuantity"
+                x:Name="StpPartQty"
                 Value="{Binding PartQuantity, Mode=TwoWay}"
                 Minimum="1" 
                 Maximum="3000" 
@@ -163,13 +169,14 @@
                 Margin="0,9,0,-12"/>
 
             <Frame 
+                x:Name="FrameCbAuto"
                 BackgroundColor="{StaticResource Primary}"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Grid.Row="4"
                 Margin="0,24,0,-30"/>
             <CheckBox 
-                x:Name="cbAuto"
+                x:Name="CbAuto"
                 x:FieldModifier="public"
                 IsChecked="{Binding AutoChecked, Mode=TwoWay}"
                 Color="{StaticResource Tertiary}"
@@ -177,6 +184,7 @@
                 Grid.Row="4"
                 Margin="0,24,0,-30"/>
             <Label 
+                x:Name="LblSerialNo"
                 Text="S/N: "
                 TextColor="White"
                 FontAttributes="Bold"
@@ -189,18 +197,18 @@
                 Grid.Row="4"
                 Margin="0,24,0,-30"/>
             <vm:KeyboardlessEntry 
-                x:Name="entSerialNo"
+                x:Name="EntSerialNo"
                 Text="{Binding SerialNumber, Mode=TwoWay}"
                 TextColor="{StaticResource Secondary}"
                 ReturnCommand="{Binding SerialNumberReturnCommand}"
                 ClearButtonVisibility="WhileEditing"
                 BackgroundColor="{StaticResource PkrBG}"
                 VerticalTextAlignment="Center"
+                VerticalOptions="FillAndExpand"
                 FontSize="18"
                 Grid.Column="2"
                 Grid.ColumnSpan="4"
                 Grid.Row="4"
-                VerticalOptions="CenterAndExpand"
                 Margin="0,24,0,-30">
                 <vm:KeyboardlessEntry.Effects>
                     <effects:PlainEntry/>
@@ -208,7 +216,7 @@
             </vm:KeyboardlessEntry>
 
             <Label 
-                x:Name="LabValidStatus"
+                x:Name="LblValidStatus"
                 BackgroundColor="{DynamicResource PageBackgroundColor}"
                 Text="{Binding ValidationText, Mode=TwoWay}"
                 TextColor="{Binding ValidationTextColor, Mode=TwoWay}"
@@ -224,51 +232,57 @@
                 Grid.Row="5"
                 Margin="0,27,0,-9"/>
 
-            <Button x:Name="bSubmit" 
-                    Text="Submit" 
-                    BackgroundColor="#06477d"
-                    Command="{Binding SubmitScanCommand}"
-                    IsEnabled="{Binding SerialNumber.Length}"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="6"
-                    Margin="3,12,0,-15"/>
-            <Button x:Name="btnCompleteSkid" 
-                    Text="COMPLETE"
-                    BackgroundColor="ForestGreen"
-                    Command="{Binding CompleteSkidCommand}"
-                    IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
-                    Grid.Column="2"
-                    Grid.ColumnSpan="3"
-                    Grid.Row="6"
-                    Margin="0,12,0,-15"/>
-            <Button x:Name="DeleteLastScanButton" 
-                    Style="{StaticResource DeleteButton}"
-                    Command="{Binding DeleteLastScanCommand}" 
-                    IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
-                    Grid.Column="5"
-                    Grid.Row="6"
-                    Margin="0,12,3,-15"/>
+            <Button 
+                x:Name="BtnSubmit" 
+                Text="Submit" 
+                BackgroundColor="#06477d"
+                Command="{Binding SubmitScanCommand}"
+                IsEnabled="{Binding SerialNumber.Length, Mode=TwoWay}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="6"
+                Margin="3,12,0,-15"/>
+            <Button 
+                x:Name="BtnCompleteSkid" 
+                Text="COMPLETE"
+                BackgroundColor="ForestGreen"
+                Command="{Binding CompleteSkidCommand}"
+                IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
+                Grid.Column="2"
+                Grid.ColumnSpan="3"
+                Grid.Row="6"
+                Margin="0,12,0,-15"/>
+            <Button 
+                x:Name="BtnDeleteLastScan" 
+                Style="{StaticResource DeleteButton}"
+                Command="{Binding DeleteLastScanCommand}" 
+                IsEnabled="{Binding OrderInProcess, Mode=TwoWay}"
+                Grid.Column="5"
+                Grid.Row="6"
+                Margin="0,12,3,-15"/>
 
-            <Frame BackgroundColor="{StaticResource PkrBG}" 
-                   Grid.Column="0"
-                   Grid.ColumnSpan="6"
-                   Grid.Row="7"
-                   Margin="0,18,0,0"/>
-            <Label x:Name="lblStatus" 
-                   x:FieldModifier="public"
-                   Text="TEST"
-                   TextColor="#06477D"
-                   FontSize="15"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   VerticalOptions="EndAndExpand"
-                   MaxLines="1"
-                   LineBreakMode="NoWrap"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="6"
-                   Grid.Row="7"
-                   Margin="0,0,0,0"/>
+            <Frame 
+                x:Name="FrameLblStatus"
+                BackgroundColor="{StaticResource PkrBG}" 
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Grid.Row="7"
+                Margin="0,18,0,0"/>
+            <Label 
+                x:Name="LblStatus" 
+                x:FieldModifier="public"
+                Text="TEST"
+                TextColor="#06477D"
+                FontSize="15"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                MaxLines="1"
+                LineBreakMode="NoWrap"
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Grid.Row="7"
+                Margin="0,0,0,6"/>
 
         </Grid>
     </ContentPage.Content>

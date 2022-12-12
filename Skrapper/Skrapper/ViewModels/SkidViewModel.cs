@@ -14,6 +14,7 @@ namespace Skrapper
         public Command EnterSkidNumberCommand { private set; get; }
         public Command CreateNewSkidNumberCommand { private set; get; }
         public Command RefreshSkidsPickerCommand { private set; get; }
+        public Command UpdateSkidCommand { private set; get; }
 
         public SkidViewModel()
         {
@@ -25,7 +26,8 @@ namespace Skrapper
             #region ... COMMANDS ...
             EnterSkidNumberCommand = new Command(OnEnterSkidNumberClicked);
             CreateNewSkidNumberCommand = new Command(async () => { await OnCreateNewSkidNumberClicked(Skids.Result);});
-            RefreshSkidsPickerCommand = new Command(OnSkidsPickerRefresh);
+            RefreshSkidsPickerCommand = new Command(async () => await OnSkidsPickerRefresh());
+            UpdateSkidCommand = new Command(OnUpdateSkidClicked);
             #endregion ... COMMANDS ...
         }
 
@@ -89,15 +91,17 @@ namespace Skrapper
             }
         }
 
-        private async void OnSkidsPickerRefresh()
+        public async Task OnSkidsPickerRefresh()
         {
             IsBusy = true;
             try
             {
-                SetProperty(ref selectedSkidIndex, -1);
-                OnPropertyChanged("SelectedSkidIndex");
-                Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
-                OnPropertyChanged("Skids");
+                if (selectedSkidIndex == -1) return;
+                await DataGridService.LoadGridFromSkidNum(selectedSkidItem);
+                await DataGridService.LoadPartListFromSkidNum(selectedSkidItem);
+                await SkidInfoDataLoad(selectedSkidItem);
+                //Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
+                //OnPropertyChanged("Skids");
             }
             catch (Exception ex)
             {
@@ -111,53 +115,12 @@ namespace Skrapper
             }
         }
 
-
-        int selectedActionIndex = Globals.pActionIdx;
-        public int SelectedActionIndex
+        private void OnUpdateSkidClicked()
         {
-            get { return selectedActionIndex; }
-            set 
-            { 
-                SetProperty(ref selectedActionIndex, value);
-                Globals.pActionIdx = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedActionIndex) >> " + value);
-            }
+            if (Globals.pSkidIdx < 0) return;
+            Task.Run(()=>SkidInfoDataSave(false));
         }
 
-        string selectedActionItem = Globals.pActionItem;
-        public string SelectedActionItem
-        {
-            get { return selectedActionItem; }
-            set 
-            { 
-                SetProperty (ref selectedActionItem, value);
-                Globals.pActionItem = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedActionItem) >> " + value);
-            }    
-        }
 
-        int selectedCarrierIndex = Globals.pCarrierIdx;
-        public int SelectedCarrierIndex
-        {
-            get { return selectedCarrierIndex; }
-            set 
-            { 
-                SetProperty(ref selectedCarrierIndex, value);
-                Globals.pCarrierIdx = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedCarrierIndex) >> " + value);
-            }
-        }
-
-        string selectedCarrierItem = Globals.pCarrierItem;
-        public string SelectedCarrierItem
-        {
-            get { return selectedCarrierItem; }
-            set 
-            { 
-                SetProperty (ref selectedCarrierItem, value);
-                Globals.pCarrierItem = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedCarrierItem) >> " + value);
-            }
-        }
     }
 }

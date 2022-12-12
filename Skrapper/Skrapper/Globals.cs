@@ -41,21 +41,28 @@ namespace Skrapper
         public static string LocationList = null;
 
         public static int pSkidIdx = -1;
-        public static string pSkidItem = string.Empty;
+        public static string pSkidItem = "";
 
         public static int pActionIdx = 0;
         public static string pActionItem = "ADD";
 
         public static int pCarrierIdx = -1;
-        public static string pCarrierItem = string.Empty;
+        public static string pCarrierItem = "";
+
+        public static string lblSkidPrint = string.Empty;
         #endregion
 
 
         #region--:[SCAN TAB]:--
-        public static string PartsList = null;
+        public static bool showCompleteSkidWarningAnswer = false;
+
+        public static string PartsList = string.Empty;
 
         public static int pPartNumIdx = -1; //pkrPartNum.SelectedIndex
-        public static string pPartNumItem = null;
+        public static string pPartNumItem = "";
+
+        public static int pPartTypeIdx = -1; //31
+        public static string pPartTypeItem = ""; //"Telecom - General"
 
         public static int ePartQuantity = 1;
 
@@ -80,6 +87,8 @@ namespace Skrapper
 
 
         #region--:[INFO/HISTORY TAB]:--
+        public static string dgSelectedScanItem = string.Empty;
+        public static string eNoteText = "";
         #endregion
 
 

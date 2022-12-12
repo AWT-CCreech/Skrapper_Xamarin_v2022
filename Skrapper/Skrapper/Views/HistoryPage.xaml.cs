@@ -22,5 +22,6 @@ namespace Skrapper.Views
             base.OnAppearing();
             _historyViewModel.OnAppearing();
         }
+
     }
 }

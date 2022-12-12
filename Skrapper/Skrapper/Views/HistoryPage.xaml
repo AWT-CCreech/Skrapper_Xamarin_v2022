@@ -27,10 +27,13 @@
             <dg:DataGrid 
                 x:Name="dgOrderData" x:DataType="vm:HistoryViewModel"
                 ItemsSource="{Binding Path=SkidHistory, Mode=TwoWay}" 
+                SelectedItem="{Binding Path=SelectedScan}"
                 PullToRefreshCommand="{Binding Path=DoRefreshHistoryCommand}" 
                 IsRefreshing="{Binding Path=IsRefreshing}" 
                 BorderColor="{DynamicResource PageBackgroundColor}" 
                 HeaderBackground="{StaticResource Primary}" 
+                IsEnabled="True"
+                SortedColumnIndex="1"
                 SelectionEnabled="True" 
                 RowHeight="40" 
                 HeaderHeight="60"  
@@ -57,7 +60,7 @@
                         </dg:DataGridColumn.FormattedTitle>
                     </dg:DataGridColumn>
 
-                    <dg:DataGridColumn Title="Qty" PropertyName="Qty" HorizontalContentAlignment="Center" Width="1.5*">
+                    <dg:DataGridColumn Title="Qty" PropertyName="Qty" Width="1.5*">
                         <dg:DataGridColumn.FormattedTitle>
                             <FormattedString>
                                 <Span Text="Qty" FontSize="12" TextColor="#b1b4b8"/>
@@ -81,7 +84,9 @@
                 </dg:DataGrid.RowsBackgroundColorPalette>
             </dg:DataGrid>
 
-            <Entry Placeholder="(Skid Note)"
+            <Entry x:Name="NoteEntry"
+                   Text="{Binding NoteEntryText}"
+                   Placeholder="(Skid Note)"
                    FontSize="15"
                    ClearButtonVisibility="WhileEditing"
                    Grid.Column="0"
@@ -91,13 +96,14 @@
 
             <Button x:Name="BtnAddNote"
                     ImageSource="icon_note.svg"
+                    IsEnabled="{Binding Path=NoteEntryText.Length, Mode=TwoWay}"
+                    Command="{Binding Path=AddNoteCommand}"
                     BackgroundColor="{StaticResource Tertiary}"
                     CornerRadius="9"
                     Grid.Column="1"
                     Grid.ColumnSpan="1"
                     Grid.Row="1"
-                    Margin="0,0,10,0"
-                    Command="{Binding Path=AddNoteCommand}"/>
+                    Margin="0,0,10,0"/>
 
             <Label Text="{Binding Path=SkidCountString, Mode=TwoWay}"
                    FontSize="15" FontAttributes="Bold" 

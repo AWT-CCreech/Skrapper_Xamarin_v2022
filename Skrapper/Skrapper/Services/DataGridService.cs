@@ -1,4 +1,5 @@
-﻿using MyWebService;
+﻿using Java.Sql;
+using MyWebService;
 using Skrapper.Models;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace Skrapper.Services
                         var history = dataSet.Tables[0].AsEnumerable()
                             .Select(dataRow => new History
                             {
+                                //rowID = dataRow.Field<int>("rowID"),
                                 SkidNo = dataRow.Field<string>("SkidNo"),
                                 PartNo = dataRow.Field<string>("PartNo"),
                                 Qty = dataRow.Field<int>("Qty"),

@@ -2,6 +2,7 @@
 {
     public class History
     {
+        //public int rowID { get; set; }
         public string SkidNo { get; set; }
         public string PartNo { get; set; }
         public int Qty { get; set; }

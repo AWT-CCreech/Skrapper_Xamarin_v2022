@@ -6,7 +6,7 @@ namespace Skrapper.Services
 {
     public interface IMessageService
     {
-        //Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm);
+        Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm);
         Task<bool> CustomInputDialog(ObservableCollection<string> list, string title, string message, string confirm, string initialValue);
         Task DisplayError(string title, string message, string cancel);
         Task<bool> DisplayCustomPrompt(string title, string message, string confirm, string cancel);
@@ -21,12 +21,12 @@ namespace Skrapper.Services
         /// <param name="cancel"></param>
         /// <param name="confirm"></param>
         /// <returns>(bool) Globals.showCompleteSkidWarningAnswer</returns>
-        //public async Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm)
-        //{
-            //Globals.showCompleteSkidWarningAnswer = await Xamarin.Forms.Application.Current.MainTabbedPage.DisplayAlert(title, message, confirm, cancel);
-            //Console.WriteLine("[MessageService.cs] (ShowCompleteSkidWarning) Globals.showCompleteSkidWarningAnswer >> " + Globals.showCompleteSkidWarningAnswer);
-            //return Globals.showCompleteSkidWarningAnswer;
-        //}
+        public async Task<bool> ShowCompleteSkidWarning(string title, string message, string cancel, string confirm)
+        {
+            Globals.showCompleteSkidWarningAnswer = await Xamarin.Forms.Application.Current.MainPage.DisplayAlert(title, message, confirm, cancel);
+            Console.WriteLine("[MessageService.cs] (ShowCompleteSkidWarning) Globals.showCompleteSkidWarningAnswer >> " + Globals.showCompleteSkidWarningAnswer);
+            return Globals.showCompleteSkidWarningAnswer;
+        }
 
         /// <summary>
         /// Allows for display of custom async prompt (i.e. Order # Entry, Part # Entry).
@@ -42,7 +42,7 @@ namespace Skrapper.Services
             if(title.Contains("Skid"))
                 r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21, keyboard: Xamarin.Forms.Keyboard.Numeric, initialValue: initialValue);
             else
-                r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21);
+                r = await Xamarin.Forms.Application.Current.MainPage.DisplayPromptAsync(title, message, confirm, maxLength: 21, initialValue: initialValue);
 
             Console.WriteLine("[MessageService.cs] (CustomInputDialog) r >> " + r);
             if (string.IsNullOrEmpty(r))

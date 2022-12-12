@@ -6,8 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:skrapper="clr-namespace:Skrapper" 
     xmlns:local="clr-namespace:Skrapper.Views"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:effects="clr-namespace:Skrapper.Effects"
     mc:Ignorable="d"
     x:DataType="skrapper:MainViewModel"
     x:Class="Skrapper.MainTabbedPage"

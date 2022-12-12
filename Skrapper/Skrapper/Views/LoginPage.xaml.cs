@@ -5,11 +5,11 @@ namespace Skrapper.Views
 {
     public partial class LoginPage : ContentPage
     {
-        LoginViewModel _loginViewModel;
+        MainViewModel _mainViewModel;
         public LoginPage()
         {
             InitializeComponent(); 
-            BindingContext= _loginViewModel = new LoginViewModel();
+            BindingContext= _mainViewModel = new MainViewModel();
         }
     }
 }

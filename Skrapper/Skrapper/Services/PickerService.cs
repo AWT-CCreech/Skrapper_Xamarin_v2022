@@ -113,6 +113,7 @@ namespace Skrapper
         /// <returns>(ObservableCollection<string>) partTypes</returns>
         public static async Task<ObservableCollection<string>> GetPartTypes()
         {
+
             List<string> types;
             Task<string> ts;
             char[] delims = new char[] { ',' };
@@ -140,6 +141,7 @@ namespace Skrapper
             types = sList.ToList();
 
             result = new ObservableCollection<string>(types);
+            Console.WriteLine("[PickerService.cs] (GetPartTypes) Globals.PartTypeList >> " + Globals.PartTypeList);
 
             return result;
         }

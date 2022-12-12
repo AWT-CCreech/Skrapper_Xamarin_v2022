@@ -8,14 +8,14 @@ namespace Skrapper
     public class LoginViewModel : MainViewModel
     {
 
-        public Command LoginCommand { get; }
-        public Command QuitCommand { get; }
+        //public Command LoginCommand { get; }
+        //public Command QuitCommand { get; }
 
         public LoginViewModel()
         {
             //Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
-            LoginCommand = new Command(OnLoginClicked);
-            QuitCommand = new Command(OnQuitClicked);
+            //LoginCommand = new Command(OnLoginClicked);
+            //QuitCommand = new Command(OnQuitClicked);
         }
 
         //public NotifyTaskCompletion<ObservableCollection<string>> Users { get; private set; }
@@ -86,52 +86,6 @@ namespace Skrapper
             get { return messageLabel; }
         }
         */
-        private async void OnLoginClicked(object obj)
-        {
-            IsBusy = true;
-
-            Task<bool> validated = Task.Run(() => IsValidUser());
-            if (validated.Result)
-            {
-                // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-                //await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
-                App.IsUserLoggedIn = true;
-                await Xamarin.Essentials.SecureStorage.SetAsync("isUserLogged", "1");
-                Application.Current.MainPage = new MainTabbedPage();
-            }
-            else
-            {
-                IsBusy = false;
-                return;
-            }
-        }
-
-        private void OnQuitClicked(object obj)
-        {
-            Globals.gWS = null;
-            App.IsUserLoggedIn = false;
-            Environment.Exit(0);
-        }
-
-        private async Task<bool> IsValidUser()
-        {
-            bool res = false;
-            try
-            {
-                res = selectedUserIndex > -1;
-                if (res)
-                    SetProperty(ref messageLabel, string.Empty);
-                else
-                    SetProperty(ref messageLabel, "[ERROR: Select Username]");
-                OnPropertyChanged("MessageLabel");
-            }
-            catch(Exception ex)
-            {
-                await _messageService.DisplayError("[ERROR: LoginViewModel.cs]", ex.Message, "dismiss");
-            }
-
-            IsBusy = false;
-            return res;
-        }
+        
     }
 }
