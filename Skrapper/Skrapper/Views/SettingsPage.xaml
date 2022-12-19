@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Skrapper"
     x:Class="Skrapper.Views.SettingsPage"
     x:DataType="vm:SettingsViewModel"
-    xmlns:vm="clr-namespace:Skrapper"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:effects="clr-namespace:Skrapper.Effects"
-    Visual="Material"
-    Title="{Binding Title}"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    Visual="Material">
     <ContentPage.BindingContext>
         <vm:SettingsViewModel />
     </ContentPage.BindingContext>
@@ -34,8 +32,35 @@
                 <ColumnDefinition Width=".25*"/>
             </Grid.ColumnDefinitions>
 
+            <!--
+            <TableView 
+                x:Name="tvSettings"
+                BackgroundColor="{StaticResource PkrBG}"
+                Intent="Settings"
+                Grid.Row="2"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Margin="0,0,0,15">
+                <TableRoot>
+                    <TableSection>
+                        <SwitchCell 
+                            Text="Auto-Focus S/N" 
+                            On="{Binding AutoFocusSn}"/>
+                        <SwitchCell 
+                            Text="Enable S/N Keyboard" 
+                            On="{Binding OverrideKeyboardlessEntry}"/>
+                        <SwitchCell 
+                            Text="Test Server Mode" 
+                            Tapped="SwitchCell_Tapped"
+                            On="{Binding TestModeIsChecked}"/>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            -->
+
             <Picker 
-                x:Name="pkrUser"
+                x:Name="PkrUser"
                 Title="username" 
                 BackgroundColor="{StaticResource PkrBG}"
                 ItemsSource="{Binding Path=Users.Result}"
@@ -50,6 +75,7 @@
                 Margin="0,12,0,12"/>
 
             <Button 
+                x:Name="BtnDeviceInfo"
                 Text="Device Info." 
                 BackgroundColor="#06477D"
                 Command="{Binding ShowDeviceInfoCommand}"
@@ -58,6 +84,7 @@
                 Grid.Row="1"
                 Margin="0,0,0,0"/>
             <Button 
+                x:Name="BtnDebugView"
                 Text="Debug View"
                 BackgroundColor="#06477D"
                 Command="{Binding DebugResultsCommand}"
@@ -74,7 +101,7 @@
                 Grid.RowSpan="3"
                 Margin="0,10,0,0"/>
             <CheckBox 
-                x:Name="cbAlwaysFocusSN"
+                x:Name="CbAlwaysFocusSN"
                 IsChecked="{Binding Path=AutoFocusSn, Mode=TwoWay}"
                 Color="#06477D" 
                 Grid.Column="0"
@@ -92,7 +119,7 @@
                 <Label.Triggers>
                     <DataTrigger 
                         TargetType="Label"
-                        Binding="{Binding Source={x:Reference cbAlwaysFocusSN}, Path=IsChecked}"
+                        Binding="{Binding Source={x:Reference CbAlwaysFocusSN}, Path=IsChecked}"
                         Value="true">
                         <Setter 
                             Property="FontAttributes" 
@@ -102,7 +129,7 @@
             </Label>
 
             <CheckBox 
-                x:Name="cbOverrideKeyboardlessEntry"
+                x:Name="CbOverrideKeyboardlessEntry"
                 IsChecked="{Binding Path=OverrideKeyboardlessEntry, Mode=TwoWay}"
                 Color="#06477D"
                 Grid.Column="0"
@@ -120,7 +147,7 @@
                 <Label.Triggers>
                     <DataTrigger 
                         TargetType="Label"
-                        Binding="{Binding Source={x:Reference cbOverrideKeyboardlessEntry}, Path=IsChecked}"
+                        Binding="{Binding Source={x:Reference CbOverrideKeyboardlessEntry}, Path=IsChecked}"
                         Value="true">
                         <Setter 
                             Property="FontAttributes" 
@@ -130,7 +157,7 @@
             </Label>
 
             <vm:EnumCheckBox 
-                x:Name="cbTestModeChecked"
+                x:Name="CbTestModeChecked"
                 EnumType="{x:Type vm:Theme}"
                 IsChecked="{Binding TestModeIsChecked, Mode=TwoWay}"
                 Color="#06477D"
@@ -149,7 +176,7 @@
                 <Label.Triggers>
                     <DataTrigger 
                         TargetType="Label"
-                        Binding="{Binding Source={x:Reference cbTestModeChecked}, Path=IsChecked}"
+                        Binding="{Binding Source={x:Reference CbTestModeChecked}, Path=IsChecked}"
                         Value="true">
                         <Setter 
                             Property="FontAttributes" 
@@ -158,6 +185,7 @@
                 </Label.Triggers>
             </Label>
             <Button 
+                x:Name="BtnCheckServer"
                 Text="check" Scale=".69" 
                 HorizontalOptions="EndAndExpand"
                 BackgroundColor="#06477D"
@@ -168,7 +196,7 @@
                 Margin="0,-6,0,0"/>
 
             <Button 
-                x:Name="btnLogoff" 
+                x:Name="BtnLogoff" 
                 Text="Logout" 
                 BackgroundColor="IndianRed" 
                 VerticalOptions="End"

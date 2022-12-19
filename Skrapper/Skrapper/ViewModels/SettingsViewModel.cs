@@ -28,6 +28,11 @@ namespace Skrapper
             ShowDeviceInfoCommand = new Command(OnShowDeviceInfoClicked);
         }
 
+        public void OnAppearing()
+        {
+            //RefreshSkidsPickerCommand.Execute(true);
+        }
+
         private async void OnDebugClicked()
         {
             if (Globals.gLastScanData.Length > 0 || Globals.gLastScanResults.Length > 0)

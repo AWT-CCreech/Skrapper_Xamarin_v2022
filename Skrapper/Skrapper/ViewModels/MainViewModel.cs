@@ -419,14 +419,14 @@ namespace Skrapper
         #region --: History Page :--
         public Command DisplayScanCommand { get; }
 
-        public ObservableCollection<History> skidHistory = null;
-        public ObservableCollection<History> SkidHistory
+        public ObservableCollection<History> scanHistory = null;
+        public ObservableCollection<History> ScanHistory
         {
-            set { SetProperty(ref skidHistory, value); }
+            set { SetProperty(ref scanHistory, value); }
             get
             {
-                skidHistory ??= new ObservableCollection<History>();
-                return skidHistory;
+                scanHistory ??= new ObservableCollection<History>();
+                return scanHistory;
             }
         }
 
@@ -451,7 +451,6 @@ namespace Skrapper
             }
             get
             {
-                selectedScan ??= new History();
                 return selectedScan;
             }
         }
@@ -472,13 +471,13 @@ namespace Skrapper
             }
         }
 
-        public string skidCountString = "Scan Count: 0";
-        public string SkidCountString
+        public string scanCountString = "Scan Count: 0";
+        public string ScanCountString
         {
-            set { SetProperty(ref skidCountString, value); }
+            set { SetProperty(ref scanCountString, value); }
             get
             {
-                string s = "Scan Count: " + $"{SkidHistory.Count}";
+                string s = "Scan Count: " + $"{ScanHistory.Count}";
                 return s;
             }
         }

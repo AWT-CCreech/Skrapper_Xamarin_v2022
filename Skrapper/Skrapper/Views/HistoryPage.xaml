@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
+    Title="{Binding Path=Title}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Skrapper"
     xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"  
     x:Class="Skrapper.Views.HistoryPage"
     x:DataType="vm:HistoryViewModel"
-    xmlns:vm="clr-namespace:Skrapper"
-    Visual="Material"
-    Title="{Binding Path=Title}"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    Visual="Material">
     <ContentPage.BindingContext>
         <vm:HistoryViewModel />
     </ContentPage.BindingContext>
@@ -24,9 +24,10 @@
                 <RowDefinition Height=".05*"/>
             </Grid.RowDefinitions>
 
+
             <dg:DataGrid 
-                x:Name="dgOrderData" x:DataType="vm:HistoryViewModel"
-                ItemsSource="{Binding Path=SkidHistory, Mode=TwoWay}" 
+                x:Name="DgOrderData" x:DataType="vm:HistoryViewModel"
+                ItemsSource="{Binding Path=ScanHistory, Mode=TwoWay}" 
                 SelectedItem="{Binding Path=SelectedScan}"
                 PullToRefreshCommand="{Binding Path=DoRefreshHistoryCommand}" 
                 IsRefreshing="{Binding Path=IsRefreshing}" 
@@ -34,7 +35,6 @@
                 HeaderBackground="{StaticResource Primary}" 
                 IsEnabled="True"
                 SortedColumnIndex="1"
-                SelectionEnabled="True" 
                 RowHeight="40" 
                 HeaderHeight="60"  
                 ActiveRowColor="#8899AA"
@@ -105,14 +105,16 @@
                     Grid.Row="1"
                     Margin="0,0,10,0"/>
 
-            <Label Text="{Binding Path=SkidCountString, Mode=TwoWay}"
-                   FontSize="15" FontAttributes="Bold" 
-                   Grid.Column="0" 
-                   Grid.ColumnSpan="2"
-                   Grid.Row="2" 
-                   VerticalOptions="EndAndExpand"
-                   HorizontalOptions="CenterAndExpand" 
-                   Margin="0,0,0,3"/>
+            <Label 
+                x:Name="LblScanCount"
+                Text="{Binding Path=ScanCountString, Mode=TwoWay}"
+                FontSize="15" FontAttributes="Bold" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Grid.Row="2" 
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="CenterAndExpand" 
+                Margin="0,0,0,3"/>
             <!--Text="{Binding Path=ScanCountString, Mode=TwoWay}"-->
         </Grid>
     </ContentPage.Content>

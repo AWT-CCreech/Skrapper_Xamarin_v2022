@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Skrapper"
     x:Class="Skrapper.Views.SkidPage"
     x:DataType="vm:SkidViewModel"
-    xmlns:vm="clr-namespace:Skrapper"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:effects="clr-namespace:Skrapper.Effects"
-    Visual="Material"
-    Title="{Binding Title}"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    Visual="Material">
     <ContentPage.Content>
         <Grid
             Margin="10,10,10,10">

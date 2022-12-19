@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}"
     xmlns="http://xamarin.com/schemas/2014/forms"    
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Skrapper" 
     x:Class="Skrapper.Views.ScanPage"
     x:DataType="vm:ScanViewModel"
-    xmlns:vm="clr-namespace:Skrapper" 
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:effects="clr-namespace:Skrapper.Effects"
-    Visual="Material"
-    Title="{Binding Title}"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    Visual="Material">
     <ContentPage.BindingContext>
         <vm:ScanViewModel />
     </ContentPage.BindingContext>
@@ -179,6 +178,7 @@
                 x:Name="CbAuto"
                 x:FieldModifier="public"
                 IsChecked="{Binding AutoChecked, Mode=TwoWay}"
+                CheckedChanged="CbAuto_CheckedChanged"
                 Color="{StaticResource Tertiary}"
                 Grid.Column="0"
                 Grid.Row="4"
@@ -201,8 +201,10 @@
                 Text="{Binding SerialNumber, Mode=TwoWay}"
                 TextColor="{StaticResource Secondary}"
                 ReturnCommand="{Binding SerialNumberReturnCommand}"
+                Focused="EntSerialNo_Focused"
                 ClearButtonVisibility="WhileEditing"
                 BackgroundColor="{StaticResource PkrBG}"
+                IsSpellCheckEnabled="False"
                 VerticalTextAlignment="Center"
                 VerticalOptions="FillAndExpand"
                 FontSize="18"

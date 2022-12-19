@@ -31,7 +31,7 @@ namespace Skrapper.Services
                         DataSet dataSet = new("SkidInfo");
                         //int count = 0;
                         dataSet = locWS.Skp_SkidGetInfo(skidNo);
-                        var history = dataSet.Tables[0].AsEnumerable()
+                        List<History> history = dataSet.Tables[0].AsEnumerable()
                             .Select(dataRow => new History
                             {
                                 //rowID = dataRow.Field<int>("rowID"),
@@ -60,8 +60,8 @@ namespace Skrapper.Services
         {
             List<string> parts;
             Task<string> pl;
-            char[] delims = new char[] { ',' };
             string[] pList;
+            char[] delims = new char[] { ',' };
             ObservableCollection<string> result = new();
             if (skidNo.Length == 9)
             {

@@ -25,14 +25,14 @@ namespace Skrapper
 
         public void OnAppearing()
         {
-            bool b = SkidHistory.Count <= 0;
+            bool b = ScanHistory.Count <= 0;
             if (b)
             {
                 DoRefreshHistoryCommand.Execute(true);
             }
             else
             {
-                if(Globals.pSkidItem != SkidHistory[0].SkidNo)
+                if(Globals.pSkidItem != ScanHistory[0].SkidNo)
                 {
                     DoRefreshHistoryCommand.Execute(true);
                 }
@@ -46,9 +46,9 @@ namespace Skrapper
                 IsRefreshing = true;
                 try
                 {
-                    SkidHistory.Clear();
-                    OnPropertyChanged("SkidHistory");
-                    OnPropertyChanged("SkidCountString");
+                    ScanHistory.Clear();
+                    OnPropertyChanged("ScanHistory");
+                    OnPropertyChanged("ScanCountString");
                 }
                 catch(Exception ex)
                 {
@@ -67,9 +67,9 @@ namespace Skrapper
                 try
                 {
                     Task<ObservableCollection<History>> t = Task.Run(async () => await DataGridService.LoadGridFromSkidNum(Globals.pSkidItem));
-                    SkidHistory = t.Result;
-                    OnPropertyChanged("SkidHistory");
-                    OnPropertyChanged("SkidCountString");
+                    ScanHistory = t.Result;
+                    OnPropertyChanged("ScanHistory");
+                    OnPropertyChanged("ScanCountString");
                 }
                 catch (Exception ex)
                 {

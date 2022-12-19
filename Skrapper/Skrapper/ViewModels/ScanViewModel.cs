@@ -1,4 +1,5 @@
-﻿using Skrapper.Services;
+﻿using Android.OS;
+using Skrapper.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,6 +20,9 @@ namespace Skrapper
         {
             Title = "SCAN";
             EnterPartNumberCommand = new Command(OnEnterPartNumberClicked);
+            SubmitScanCommand = new Command(OnSubmitScanClicked);
+
+            DeleteLastScanCommand = new Command(OnDeleteLastScanClicked);
         }
 
         public void OnAppearing()
@@ -45,6 +49,43 @@ namespace Skrapper
                 SetProperty(ref selectedPartNumberIndex, 0);
                 OnPropertyChanged("SelectedPartNumberIndex");
             }
+        }
+
+        private async void OnSubmitScanClicked(object obj)
+        {
+            if (eHelpDeskContext.WebServiceConnected())
+            {
+                IsBusy = true;
+                try
+                {
+                    if(orderInProcess == false)
+                    {
+                        SetOrderInProcess(true);
+                    }
+
+                    if(partQuantity > 1)
+                    {
+                        bool confirmSubmit = await _messageService.DisplayCustomPrompt("Confirmation Needed...", "Are you sure you would like to submit " + partQuantity + " of " + selectedPartNumber + "?", "yes", "no");
+                    }    
+                }
+                catch(Exception ex)
+                {
+                    IsBusy = false;
+                    await _messageService.DisplayError("[ScanViewModel.cs]", "(OnSubmitScanClicked)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ScanViewModel.cs] (OnSubmitScanClicked) ex >> " + ex.ToString());
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+            
+        }
+
+        private async void OnDeleteLastScanClicked(object obj)
+        {
+            bool b = await _messageService.DisplayCustomPrompt("Delete Last Scan?", "Are you sure you would like to delete the following scan:\r\nP/N: " + selectedScan.PartNo + "\r\nS/N: " + selectedScan.SerialNo, "yes", "no");
+            Console.WriteLine("[ScanViewModel.cs] (OnDeleteLastScanClicked) b >> " + b);
         }
     }
 }

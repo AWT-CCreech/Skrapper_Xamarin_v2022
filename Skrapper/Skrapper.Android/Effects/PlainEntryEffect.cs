@@ -14,6 +14,7 @@ namespace Skrapper.Droid
         public PlainEntryEffect()
         {
         }
+
         protected override void OnAttached()
         {
             try
@@ -30,9 +31,11 @@ namespace Skrapper.Droid
                 Console.WriteLine("Error... Unable to set property on attached control", ex.Message);
             }
         }
+
         protected override void OnDetached()
         {
         }
+
         protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnElementPropertyChanged(args);
