@@ -96,12 +96,14 @@ namespace Skrapper
                     IsBusy = true;
                     if (noteEntryText.Trim().Length > 0)
                     {
+                        Console.WriteLine("[HistoryViewModel.cs] (OnAddNoteClicked) selectedUser >> " + selectedUser);
                         Console.WriteLine("[HistoryViewModel.cs] (OnAddNoteClicked) NoteEntryText >> " + noteEntryText);
+                        Console.WriteLine("[HistoryViewModel.cs] (OnAddNoteClicked) selectedSkidItem >> " + Globals.pSkidItem);
                         //await SkidInfoDataSave(true);
-                        locWS.Skp_SkidUpdateNote(selectedUser, "SKP_Skid", selectedSkidItem, noteEntryText);
-
-                        SkidPrintLabel = "SKID UPDATED";
-                        OnPropertyChanged("SkidPrintLabel");
+                        Task<string> ts = Task.Run(() => locWS.Skp_SkidGetFieldData(Globals.pSkidItem, "SkidID"));
+                        string skidID = ts.Result;
+                        locWS.Skp_SkidUpdateNote(selectedUser, "SKP_Skid", skidID, noteEntryText);
+                        await _messageService.DisplayError("NOTE ADDED", "You have successfully submitted a note for SKID#"+Globals.pSkidItem, "dismiss");
                     }
                     else
                     {
@@ -117,6 +119,10 @@ namespace Skrapper
             }
             finally
             {
+                SetProperty(ref skidPrintLabel, "NOTE SUBMITTED");
+                OnPropertyChanged("SkidPrintLabel");
+                NoteEntryText = string.Empty;
+                OnPropertyChanged("NoteEntryText");
                 IsBusy = false;
             }
         }

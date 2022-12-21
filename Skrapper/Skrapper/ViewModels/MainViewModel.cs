@@ -180,9 +180,10 @@ namespace Skrapper
         {
             set
             {
+                Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
                 SetProperty(ref selectedSkidItem, value);
                 Globals.pSkidItem = value;
-                Console.WriteLine("[SkidViewModel.cs] (SelectedSkidItem) >> " + value);
+
                 if (selectedSkidIndex > -1)
                     Task.Run(()=>SkidInfoDataLoad(Globals.pSkidItem));
 
@@ -243,7 +244,11 @@ namespace Skrapper
         public string skidPrintLabel = Globals.lblSkidPrint;
         public string SkidPrintLabel
         {
-            set { SetProperty(ref skidPrintLabel, value); }
+            set 
+            { 
+                SetProperty(ref skidPrintLabel, value);
+                Globals.lblSkidPrint = skidPrintLabel;
+            }
             get
             {
                 skidPrintLabel ??= string.Empty;

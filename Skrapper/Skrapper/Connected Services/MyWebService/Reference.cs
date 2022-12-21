@@ -11,7 +11,7 @@ namespace MyWebService
 {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://10.0.0.33/ScanTestService/", ConfigurationName="MyWebService.ScannerWebServiceSoap")]
     public interface ScannerWebServiceSoap
     {
@@ -762,7 +762,7 @@ namespace MyWebService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FindSoNumFromPartSerialNum", WrapperNamespace="http://10.0.0.33/ScanTestService/", IsWrapped=true)]
     public partial class FindSoNumFromPartSerialNumRequest
     {
@@ -789,7 +789,7 @@ namespace MyWebService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FindSoNumFromPartSerialNumResponse", WrapperNamespace="http://10.0.0.33/ScanTestService/", IsWrapped=true)]
     public partial class FindSoNumFromPartSerialNumResponse
     {
@@ -820,7 +820,7 @@ namespace MyWebService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FindMatchingSoSerialNum", WrapperNamespace="http://10.0.0.33/ScanTestService/", IsWrapped=true)]
     public partial class FindMatchingSoSerialNumRequest
     {
@@ -855,7 +855,7 @@ namespace MyWebService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FindMatchingSoSerialNumResponse", WrapperNamespace="http://10.0.0.33/ScanTestService/", IsWrapped=true)]
     public partial class FindMatchingSoSerialNumResponse
     {
@@ -889,13 +889,13 @@ namespace MyWebService
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public interface ScannerWebServiceSoapChannel : MyWebService.ScannerWebServiceSoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     public partial class ScannerWebServiceSoapClient : System.ServiceModel.ClientBase<MyWebService.ScannerWebServiceSoap>, MyWebService.ScannerWebServiceSoap
     {
         
@@ -2083,7 +2083,7 @@ namespace MyWebService
     }
     
     [System.Xml.Serialization.XmlSchemaProviderAttribute(null, IsAny=true)]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil-lib", "2.0.3.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil-lib", "2.1.0.0")]
     public partial class ArrayOfXElement : object, System.Xml.Serialization.IXmlSerializable
     {
         

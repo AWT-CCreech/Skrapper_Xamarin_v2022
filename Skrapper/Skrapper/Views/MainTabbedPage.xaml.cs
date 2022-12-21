@@ -10,9 +10,11 @@ namespace Skrapper
 {
     public partial class MainTabbedPage : TabbedPage
     {
+        MainViewModel _mainViewModel;
         public MainTabbedPage()
         {
             InitializeComponent();
+            BindingContext= _mainViewModel = new MainViewModel();
         }
     }
 }

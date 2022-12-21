@@ -34,6 +34,8 @@ namespace Skrapper
         public void OnAppearing()
         {
             //RefreshSkidsPickerCommand.Execute(true);
+            SetProperty(ref skidPrintLabel, Globals.lblSkidPrint);
+            OnPropertyChanged("SkidPrintLabel");
         }
 
         private async void OnEnterSkidNumberClicked(object obj)
