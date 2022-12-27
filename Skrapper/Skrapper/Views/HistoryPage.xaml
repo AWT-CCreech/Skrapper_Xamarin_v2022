@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
-    Title="{Binding Path=Title}"
-    BackgroundColor="{DynamicResource PageBackgroundColor}"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Skrapper"
-    xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"  
+    xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
     x:Class="Skrapper.Views.HistoryPage"
     x:DataType="vm:HistoryViewModel"
-    Visual="Material">
+    Visual="Material"
+    Title="{Binding Path=Title}"
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.BindingContext>
         <vm:HistoryViewModel />
     </ContentPage.BindingContext>

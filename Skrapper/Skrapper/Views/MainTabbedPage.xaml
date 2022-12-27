@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage 
+<TabbedPage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:skrapper="clr-namespace:Skrapper" 
+    xmlns:skrapper="clr-namespace:Skrapper"
     xmlns:local="clr-namespace:Skrapper.Views"
     mc:Ignorable="d"
     x:DataType="skrapper:MainViewModel"
     x:Class="Skrapper.MainTabbedPage"
-    SelectedTabColor="{StaticResource Tertiary}"
+    Visual="Material"
+    BarTextColor="White"
     UnselectedTabColor="#e6e6e6"
-    BarTextColor="White">
+    SelectedTabColor="{StaticResource Tertiary}">
     <TabbedPage.BindingContext>
         <skrapper:MainViewModel/>
     </TabbedPage.BindingContext>
