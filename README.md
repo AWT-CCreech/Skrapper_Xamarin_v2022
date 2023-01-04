@@ -1,5 +1,5 @@
 # Skrapper_Xamarin_v2022
-![Quality Score](https://api.codiga.io/project/35120/score/svg) ![Code Grade](https://api.codiga.io/project/35120/status/svg)
+![Code Grade](https://api.codiga.io/project/35120/status/svg) ![Code Score](https://api.codiga.io/project/35120/score/svg)
 
 <b>Company</b>: AirWay Technologies <br>
 <b>Authors</b>: Chris Creech
