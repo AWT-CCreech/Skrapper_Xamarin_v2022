@@ -21,14 +21,14 @@
 		<PackageReference Include="System.ServiceModel.Http" Version="4.10.0" />
 		<PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.0" />
 		<PackageReference Include="System.ServiceModel.Security" Version="4.10.0" />
+		<PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.6.0" />
 		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
-		<PackageReference Include="Xamarin.Forms.DataGrid" Version="5.0.0.2515" />
+		<PackageReference Include="Xamarin.Forms.DataGrid" Version="4.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Connected Services\" />
-		<Folder Include="ViewModels\ViewModels\TaskWatcher\" />
 	</ItemGroup>
 
 	<ItemGroup>

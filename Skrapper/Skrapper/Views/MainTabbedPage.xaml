@@ -13,9 +13,6 @@
     BarTextColor="White"
     UnselectedTabColor="#e6e6e6"
     SelectedTabColor="{StaticResource Tertiary}">
-    <TabbedPage.BindingContext>
-        <skrapper:MainViewModel/>
-    </TabbedPage.BindingContext>
     <TabbedPage.Children>
         <local:SkidPage 
             Title="SKID" 

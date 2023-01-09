@@ -12,9 +12,9 @@ namespace Skrapper
     public class SkidViewModel : MainViewModel
     {
         public Command EnterSkidNumberCommand { private set; get; }
-        public Command CreateNewSkidNumberCommand { private set; get; }
-        public Command RefreshSkidsPickerCommand { private set; get; }
-        public Command UpdateSkidCommand { private set; get; }
+        public Command CreateSkidCommand { private set; get; }
+        public Command RefreshCommand { private set; get; }
+        public Command UpdateCommand { private set; get; }
 
         public SkidViewModel()
         {
@@ -25,15 +25,15 @@ namespace Skrapper
 
             #region ... COMMANDS ...
             EnterSkidNumberCommand = new Command(OnEnterSkidNumberClicked);
-            CreateNewSkidNumberCommand = new Command(async () => { await OnCreateNewSkidNumberClicked(Skids.Result);});
-            RefreshSkidsPickerCommand = new Command(async () => await OnSkidsPickerRefresh());
-            UpdateSkidCommand = new Command(OnUpdateSkidClicked);
+            CreateSkidCommand = new Command(async () => { await OnCreateSkidClicked(Skids.Result);});
+            RefreshCommand = new Command(async () => await OnRefreshClicked());
+            UpdateCommand = new Command(OnUpdateClicked);
             #endregion ... COMMANDS ...
         }
 
         public void OnAppearing()
         {
-            //RefreshSkidsPickerCommand.Execute(true);
+            //RefreshCommand.Execute(true);
             SetProperty(ref skidPrintLabel, Globals.lblSkidPrint);
             OnPropertyChanged("SkidPrintLabel");
         }
@@ -60,7 +60,7 @@ namespace Skrapper
             }
         }
 
-        private async Task OnCreateNewSkidNumberClicked(ObservableCollection<string> list)
+        private async Task OnCreateSkidClicked(ObservableCollection<string> list)
         {
             Task<string> ts;
             if (eHelpDeskContext.WebServiceConnected())
@@ -72,7 +72,7 @@ namespace Skrapper
                     {
                         ts = Task.Run(() => locWS.Skp_SkidNewNumber(selectedUser));
                         string skidNo = ts.Result;
-                        Console.WriteLine("[SkidsViewModel.cs] (OnCreateNewSkidNumberClicked) skidNo >>" + skidNo);
+                        Console.WriteLine("[SkidsViewModel.cs] (OnCreateSkidClicked) skidNo >>" + skidNo);
                         list.Insert(0, skidNo);
                         locWS.Close();
                     }
@@ -80,8 +80,8 @@ namespace Skrapper
                 catch (Exception ex)
                 {
                     IsBusy = false;
-                    await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnCreateNewSkidNumberClicked)\r\n" + ex.Message, "dismiss");
-                    Console.WriteLine("[ERROR: SkidViewModel.cs] (OnCreateNewSkidNumberClicked) >> " + ex.ToString());
+                    await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnCreateSkidClicked)\r\n" + ex.Message, "dismiss");
+                    Console.WriteLine("[ERROR: SkidViewModel.cs] (OnCreateSkidClicked) >> " + ex.ToString());
                 }
                 finally
                 {
@@ -93,7 +93,7 @@ namespace Skrapper
             }
         }
 
-        public async Task OnSkidsPickerRefresh()
+        public async Task OnRefreshClicked()
         {
             IsBusy = true;
             try
@@ -108,8 +108,8 @@ namespace Skrapper
             catch (Exception ex)
             {
                 IsBusy = false;
-                Console.WriteLine("[ERROR: SkidViewModel.cs] (OnSkidsPickerRefresh) ex >> " + ex.ToString());
-                await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnSkidsPickerRefresh)\r\n" + ex.Message, "dismiss");
+                Console.WriteLine("[ERROR: SkidViewModel.cs] (OnRefreshClicked) ex >> " + ex.ToString());
+                await _messageService.DisplayError("[ERROR: SkidViewModel.cs]", "(OnRefreshClicked)\r\n" + ex.Message, "dismiss");
             }
             finally
             {
@@ -117,7 +117,7 @@ namespace Skrapper
             }
         }
 
-        private void OnUpdateSkidClicked()
+        private void OnUpdateClicked()
         {
             if (Globals.pSkidIdx < 0) return;
             Task.Run(()=>SkidInfoDataSave(false));

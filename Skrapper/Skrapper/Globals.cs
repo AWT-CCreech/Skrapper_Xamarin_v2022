@@ -1,4 +1,5 @@
-﻿using Xamarin.Essentials;
+﻿using Skrapper.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Android.Provider.Settings;
 
@@ -87,8 +88,9 @@ namespace Skrapper
 
 
         #region--:[INFO/HISTORY TAB]:--
+        public static History dgSelectedScan = null;
         public static string dgSelectedScanItem = string.Empty;
-        public static string eNoteText = "";
+        public static string eNoteText = string.Empty;
         #endregion
 
 

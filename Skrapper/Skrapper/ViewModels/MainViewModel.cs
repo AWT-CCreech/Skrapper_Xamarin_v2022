@@ -1,17 +1,14 @@
-﻿using Android.Hardware;
-using MyWebService;
+﻿using MyWebService;
 using Skrapper.Models;
 using Skrapper.Services;
 using Skrapper.Themes;
-using Skrapper.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ServiceModel.Channels;
+using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Xamarin.Forms;
-using Xamarin.Forms.DataGrid;
 
 namespace Skrapper
 {
@@ -26,7 +23,6 @@ namespace Skrapper
 
             LoginCommand = new Command(OnLoginClicked);
             QuitCommand = new Command(OnQuitClicked);
-            DisplayScanCommand = new Command(OnDisplayScanClicked);
 
             Users = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetUserPickerList());
             Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
@@ -158,8 +154,6 @@ namespace Skrapper
         #region --: Skid Page :-- 
         public NotifyTaskCompletion<ObservableCollection<string>> Skids { get; set; }
         public NotifyTaskCompletion<ObservableCollection<string>> Carriers { get; set; }
-
-        public NotifyTaskCompletion<ObservableCollection<XElement>> SkidGrid { get; set; }
 
 
         public int selectedSkidIndex = Globals.pSkidIdx;
@@ -422,75 +416,7 @@ namespace Skrapper
         #endregion
 
         #region --: History Page :--
-        public Command DisplayScanCommand { get; }
-
-        public ObservableCollection<History> scanHistory = null;
-        public ObservableCollection<History> ScanHistory
-        {
-            set { SetProperty(ref scanHistory, value); }
-            get
-            {
-                scanHistory ??= new ObservableCollection<History>();
-                return scanHistory;
-            }
-        }
-
-        public History selectedScan = null;
-        public History SelectedScan
-        {
-            set
-            {
-                if (value != null)
-                {
-                    SetProperty(ref selectedScan, value);
-                    Console.WriteLine("[MainViewModel.cs] (SelectedScan) selectedScan.rowID           >> " + selectedScan.SkidNo);
-                    Console.WriteLine("[MainViewModel.cs] (SelectedScan) selectedScan.iAdjID          >> " + selectedScan.PartNo);
-                    Console.WriteLine("[MainViewModel.cs] (SelectedScan) selectedScan.PartNum         >> " + selectedScan.SerialNo);
-                    DisplayScanCommand.Execute(true);
-                    //_messageService.DisplayError("Detail", string.Format("UserName: {0}\r\nrowID: {1}\r\niAdjID: {2}\r\nPartNum: {3}\r\nSerialNum: {4}\r\nScanDate: {5}", selectedScan.UserName, selectedScan.rowID, selectedScan.iAdjID, selectedScan.PartNum, selectedScan.SerialNumber, selectedScan.ScanDate), "dismiss");
-                }
-                else
-                {
-                    SetProperty(ref selectedScan, null);
-                }
-            }
-            get
-            {
-                return selectedScan;
-            }
-        }
-
-        public string noteEntryText = Globals.eNoteText;
-        public string NoteEntryText
-        {
-            set 
-            { 
-                SetProperty(ref noteEntryText, value); 
-                Globals.eNoteText= value;
-                Console.WriteLine("[MainViewModel.cs] (NoteEntryText) noteEntryText >> "+$"{noteEntryText}");
-            }
-            get 
-            {
-                noteEntryText ??= string.Empty;
-                return noteEntryText; 
-            }
-        }
-
-        public string scanCountString = "Scan Count: 0";
-        public string ScanCountString
-        {
-            set { SetProperty(ref scanCountString, value); }
-            get
-            {
-                string s = "Scan Count: " + $"{ScanHistory.Count}";
-                return s;
-            }
-        }
-
-        public async void OnDisplayScanClicked(object obj)
-        {
-            await _messageService.DisplayError("Scan Details", selectedScan.PartNo + "\r\n", "dismiss");
-        }
+        
         #endregion
 
         #region --: Settings Page : --
@@ -498,6 +424,37 @@ namespace Skrapper
         #endregion
 
         #region --: Helper Functions :--
+        public async void PlayBeep(string beepfile)
+        {
+            try
+            {
+                Console.WriteLine("[MainViewModel.cs] (PlayBeep) beepfile >> " + beepfile);
+                var stream = await GetStreamFromFile(beepfile);
+                var audio = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                audio.Load(stream);
+                audio.Play();
+            }
+            catch(Exception e)
+            {
+                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(PlayBeep)\r\n" + e.Message, "dismiss");
+            }
+        }
+        async Task<Stream> GetStreamFromFile(string filename)
+        {
+            Assembly assembly;
+            Stream stream = null;
+            try
+            {
+                assembly = typeof(App).GetTypeInfo().Assembly;
+                stream = assembly.GetManifestResourceStream("ScanMaster.Sounds." + filename);
+            }
+            catch (Exception e)
+            {
+                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(GetStreamFromFile)\r\n" + e.Message, "dismiss");
+            }
+            return stream;
+
+        }
 
         public async Task SkidInfoDataLoad(string SkidNo)
         {

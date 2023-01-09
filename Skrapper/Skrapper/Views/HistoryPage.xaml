@@ -9,9 +9,6 @@
     Visual="Material"
     Title="{Binding Path=Title}"
     BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ContentPage.BindingContext>
-        <vm:HistoryViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -27,16 +24,17 @@
 
             <dg:DataGrid 
                 x:Name="DgOrderData" x:DataType="vm:HistoryViewModel"
-                ItemsSource="{Binding Path=ScanHistory, Mode=TwoWay}" 
-                SelectedItem="{Binding Path=SelectedScan}"
-                PullToRefreshCommand="{Binding Path=DoRefreshHistoryCommand}" 
-                IsRefreshing="{Binding Path=IsRefreshing}" 
-                BorderColor="{DynamicResource PageBackgroundColor}" 
-                HeaderBackground="{StaticResource Primary}" 
+                ItemsSource="{Binding Path=ScanHistory, Mode=TwoWay}"
+                SelectedItem="{Binding Path=SelectedScan, Mode=TwoWay}"
+                PullToRefreshCommand="{Binding Path=DoRefreshHistoryCommand}"
+                IsRefreshing="{Binding Path=IsRefreshing}"
+                BorderColor="{DynamicResource PageBackgroundColor}"
+                HeaderBackground="{StaticResource Primary}"
                 IsEnabled="True"
+                SelectionEnabled="True"
                 SortedColumnIndex="1"
-                RowHeight="40" 
-                HeaderHeight="60"  
+                RowHeight="40"
+                HeaderHeight="60"
                 ActiveRowColor="#8899AA"
                 FontSize="10"
                 Grid.Column="0"
@@ -52,7 +50,7 @@
                         </dg:DataGridColumn.FormattedTitle>
                     </dg:DataGridColumn>
 
-                    <dg:DataGridColumn PropertyName="PartNo" Width="4*">
+                    <dg:DataGridColumn Title="PartNo" PropertyName="PartNo" Width="4*">
                         <dg:DataGridColumn.FormattedTitle>
                             <FormattedString>
                                 <Span Text="PartNo" FontSize="12" TextColor="#b1b4b8"/>

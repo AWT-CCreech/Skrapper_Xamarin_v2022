@@ -84,7 +84,7 @@ namespace Skrapper
 
         private async void OnDeleteLastScanClicked(object obj)
         {
-            bool b = await _messageService.DisplayCustomPrompt("Delete Last Scan?", "Are you sure you would like to delete the following scan:\r\nP/N: " + selectedScan.PartNo + "\r\nS/N: " + selectedScan.SerialNo, "yes", "no");
+            bool b = await _messageService.DisplayCustomPrompt("Delete Last Scan?", "Are you sure you would like to delete the following scan:\r\nP/N: " + Globals.dgSelectedScan.PartNo + "\r\nS/N: " + Globals.dgSelectedScan.SerialNo, "yes", "no");
             Console.WriteLine("[ScanViewModel.cs] (OnDeleteLastScanClicked) b >> " + b);
         }
     }

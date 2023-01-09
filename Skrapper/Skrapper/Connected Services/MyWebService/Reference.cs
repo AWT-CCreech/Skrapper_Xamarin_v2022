@@ -2064,7 +2064,7 @@ namespace MyWebService
         {
             if ((endpointConfiguration == EndpointConfiguration.ScannerWebServiceSoap))
             {
-                return new System.ServiceModel.EndpointAddress("http://10.0.0.33/ScanTestService/service.asmx");
+                return new System.ServiceModel.EndpointAddress("http://10.0.0.33/ScanProdService/service.asmx");
             }
             if ((endpointConfiguration == EndpointConfiguration.ScannerWebServiceSoap12))
             {

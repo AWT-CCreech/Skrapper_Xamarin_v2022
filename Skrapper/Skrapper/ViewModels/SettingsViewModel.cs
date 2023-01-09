@@ -30,7 +30,7 @@ namespace Skrapper
 
         public void OnAppearing()
         {
-            //RefreshSkidsPickerCommand.Execute(true);
+            //RefreshCommand.Execute(true);
         }
 
         private async void OnDebugClicked()
@@ -69,13 +69,13 @@ namespace Skrapper
 
         private async void OnShowDeviceInfoClicked()
         {
-            string _info = "Model: " + Globals.gDeviceModel
-                            + "\r\nName: " + Globals.gDeviceName
-                            + "\r\nPlatform: " + Globals.gDevicePlatform
-                            + "\r\nType: " + Globals.gDeviceType
-                            + "\r\nVersion: " + Globals.gDeviceVersion
-                            + "\r\nManufacturer: " + Globals.gDeviceManufacturer
-                            + "\r\n\r\n S/N: " + Globals.DeviceSN;
+            string _info = "Device Model:\t\t" + Globals.gDeviceModel
+                            + "\r\nDevice Name:\t\t\t" + Globals.gDeviceName
+                            + "\r\nDevice Platform:\t" + Globals.gDevicePlatform
+                            + "\r\nDevice Type:\t\t\t" + Globals.gDeviceType
+                            + "\r\nAndroid Version:\t" + Globals.gDeviceVersion
+                            + "\r\nManufacturer:\t" + Globals.gDeviceManufacturer
+                            + "\r\n\r\nS/N:\t" + Globals.DeviceSN;
 
             await _messageService.DisplayError("Device Info", _info, "dismiss");
         }
