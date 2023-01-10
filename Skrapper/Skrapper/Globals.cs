@@ -1,4 +1,5 @@
 ﻿using Skrapper.Models;
+using System.Collections.Generic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Android.Provider.Settings;
@@ -95,17 +96,20 @@ namespace Skrapper
 
 
         #region--:[SETTINGS TAB]:--
-        //username
+        //[User]
         public static int pUserIdx = -1; //pkrUser.SelectedIndex
 
-        //checkboxes
+        //[Checkbox]
         public static bool bAutoFocusSn = false;
         public static bool bOverrideKeyboardlessEntry = false;
         public static bool bTestMode = false;
 
-        //debug
+        //[DEBUG]
         public static string gLastScanResults = "";   // stores the last few scan results for debug purposes;
         public static string gLastScanData = "";      // ditto; accessed thru options/Debug screen
+
+        //[Consignment Codes]
+        public static List<string> CarrierCodes = new(4);
         #endregion
         #endregion
     }

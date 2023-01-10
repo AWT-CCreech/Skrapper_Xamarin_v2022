@@ -416,7 +416,16 @@ namespace Skrapper
         #endregion
 
         #region --: History Page :--
-        
+        public ObservableCollection<History> scanHistory = new();
+        public ObservableCollection<History> ScanHistory
+        {
+            set { SetProperty(ref scanHistory, value); }
+            get
+            {
+                scanHistory ??= new ObservableCollection<History>();
+                return scanHistory;
+            }
+        }
         #endregion
 
         #region --: Settings Page : --
@@ -424,6 +433,29 @@ namespace Skrapper
         #endregion
 
         #region --: Helper Functions :--
+        private async void AddHistory(string zStatusText, int iHistID, int iAdjID)
+        {
+            try
+            {
+                SubmitHistory hist = new SubmitHistory(zStatusText, iHistID, iAdjID);
+
+                hist.OrderType = "Skrap";
+                hist.OrderNum = selectedSkidItem;
+                hist.ScanUser = selectedUser;
+                hist.PartNum = selectedPartNumber;
+                hist.SerialNum = SerialNumber;
+
+                ScanHistory.Add(new History
+                {
+                    
+                });
+            }
+            catch (Exception ex)
+            {
+                await _messageService.DisplayError("[ERROR: MainViewModel.cs]", "(AddHistory)\r\n" + ex.ToString(), "dismiss");
+            }
+        }
+
         public async void PlayBeep(string beepfile)
         {
             try

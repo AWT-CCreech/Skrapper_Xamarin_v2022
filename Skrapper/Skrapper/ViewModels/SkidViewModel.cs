@@ -102,8 +102,6 @@ namespace Skrapper
                 await DataGridService.LoadGridFromSkidNum(selectedSkidItem);
                 await DataGridService.LoadPartListFromSkidNum(selectedSkidItem);
                 await SkidInfoDataLoad(selectedSkidItem);
-                //Skids = new NotifyTaskCompletion<ObservableCollection<string>>(PickerService.GetSkidNumbers());
-                //OnPropertyChanged("Skids");
             }
             catch (Exception ex)
             {
@@ -122,7 +120,5 @@ namespace Skrapper
             if (Globals.pSkidIdx < 0) return;
             Task.Run(()=>SkidInfoDataSave(false));
         }
-
-
     }
 }

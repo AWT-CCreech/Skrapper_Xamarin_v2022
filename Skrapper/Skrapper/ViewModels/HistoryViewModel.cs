@@ -165,19 +165,6 @@ namespace Skrapper
         }
 
 
-
-
-        public ObservableCollection<History> scanHistory = new();
-        public ObservableCollection<History> ScanHistory
-        {
-            set { SetProperty(ref scanHistory, value); }
-            get
-            {
-                scanHistory ??= new ObservableCollection<History>();
-                return scanHistory;
-            }
-        }
-
         public History selectedScan = null;
         public History SelectedScan
         {
@@ -188,7 +175,6 @@ namespace Skrapper
                     Globals.dgSelectedScan = value;
                     SetProperty(ref selectedScan, value);
                     DisplayScanCommand.Execute(true);
-                    //_messageService.DisplayError("Detail", string.Format("UserName: {0}\r\nrowID: {1}\r\niAdjID: {2}\r\nPartNum: {3}\r\nSerialNum: {4}\r\nScanDate: {5}", dgSelectedScan.UserName, dgSelectedScan.rowID, dgSelectedScan.iAdjID, dgSelectedScan.PartNum, dgSelectedScan.SerialNumber, dgSelectedScan.ScanDate), "dismiss");
                 }
                 else
                 {
